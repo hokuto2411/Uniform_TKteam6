@@ -5,6 +5,8 @@ th, td{
 
 th{
   background-color:#00FFFF;
+  background-color: #6ff;
+
 }
 
 header {
@@ -33,3 +35,6 @@ main {
   display: flex;
   padding-top: 60px;
 }
+
+
+
