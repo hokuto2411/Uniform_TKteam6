@@ -1,4 +1,3 @@
-@charset "UTF-8";
 th, td{
   text-align:left;
   border: 1px solid #000000;
@@ -6,4 +5,30 @@ th, td{
 
 th{
   background-color:#00FFFF;
+}
+
+header {
+  position: fixed; /* 画面に固定 */
+  top: 0;          /* 画面の最上部に配置 */
+  left: 0;         /* 画面の左端に配置 */
+  width: 100%;     /* 横幅を画面いっぱいに広げる */
+  z-index: 1000;   /* 他の要素より手前に表示させる */
+  background-color:white;
+}
+
+main {
+  margin-top: 100px; /* ヘッダーの高さに合わせて数値を調整 */
+}
+
+.side-item {
+  position: sticky;
+  top: 130px;
+  width: 120px;
+  padding-left: 20px;
+  border: 5px solid #00FFFF; 
+}
+
+.container {
+  display: flex;
+  padding-top: 60px;
 }
