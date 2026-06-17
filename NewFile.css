@@ -1,0 +1,9 @@
+@charset "UTF-8";
+th, td{
+  text-align:left;
+  border: 1px solid #000000;
+}
+
+th{
+  background-color:#00FFFF;
+}
