@@ -22,3 +22,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Eclipse固有の設定ファイル（メンバー間で競合するため除外）
+.metadata/
+.settings/
+.localHistory/
+.recommenders/
