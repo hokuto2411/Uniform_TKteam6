@@ -4,48 +4,67 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="<%= request.getContextPath()%>/css/NewFile.css">
+	<link rel="stylesheet" href="../css/NewFile.css">
 </head>
   
   <body>
   <header>
   	<h1 style="text-align:center">
-	  会員情報入力画面
+	  購入確認画面
 	</h1>
 	<hr style="height:5px; background-color: #00FFFF;">
   </header>
     
      <div class="container">
-       
-  <table style="margin:auto; padding-top: 50px; width:500px">
-    <tr>
-      <th>名前</th>
-      <td style="text-align: center; width: 200px">Name</td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td style="text-align: center; width: 200px">Adress</td>
-    </tr>
-    <tr>
-      <th>ID</th>
-      <td style="text-align: center; width: 200px">Id</td>
-    </tr>
-    <tr>
-      <th>パスワード</th>
-	  <td style="text-align: center; width: 200px">Password</td>
-    </tr>
-    <tr>
-      <th>メアド</th>
-	  <td style="text-align: center; width: 200px">Mail</td>
-    </tr>
-	
-	</table>
-	    </div> 
-	
-		<div style="margin: auto; text-align: center; padding-top: 200px; height:50px; width:200px">
-		<input type="hidden" name="unino" value=>
-		<input type="submit"  value="登録">
-		</div>
-  
+  <aside>
+    <div class="leftside-item">
+      <h2>
+        サイドバー
+      </h2><br>
+      <a href="">管理者メニュー</a><br>
+      <a href="">商品一覧</a><br>
+      <a href="">注文一覧</a><br>
+      <a href="">売上確認</a><br>
+      <a href="">ユーザー変更</a><br>
+    </div>
+  </aside>
+ 
+<main>
+	<table class="buyconfirm-table">
+	  	<tr>
+		    <th style="width: 40%;">商品名</th>
+		    <th style="width: 20%;">個数</th>
+		    <th style="width: 10%;"></th> <th style="width: 30%;">小計</th>
+	  	</tr>
+			<tr>
+		    <td><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYfcZJYeC7UfwWM60-5LqIJ3XIc9qutvSFAQxyXmsBEUiuICCSlr0fPb-VFB1gC-WglMkIEwiIBXIvFlQiAxwBfXSqDd3B1CHEL_lhicXfZvnxDjiSxSWoBFoj8ISL5c78WbABA0PeY5EneBQTgMWCuTtDc6lhuv99Twcm_jz1BskZCY0nhtu_hWtAUoBx/s900/genki_pose_schoolboy.png" alt="ユニフォーム" width="50"></td>
+		    <td>1</td> <td></td>    <td>¥1,000</td> </tr>
+		<tr>
+			<th style="width: 40%;">商品名</th>
+			<th style="width: 20%;">個数</th>
+			<th style="width: 10%;"></th> <th style="width: 30%;">小計</th>
+		</tr>
+		<tr>
+			<td><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYfcZJYeC7UfwWM60-5LqIJ3XIc9qutvSFAQxyXmsBEUiuICCSlr0fPb-VFB1gC-WglMkIEwiIBXIvFlQiAxwBfXSqDd3B1CHEL_lhicXfZvnxDjiSxSWoBFoj8ISL5c78WbABA0PeY5EneBQTgMWCuTtDc6lhuv99Twcm_jz1BskZCY0nhtu_hWtAUoBx/s900/genki_pose_schoolboy.png" alt="ユニフォーム" width="50"></td>
+			<td>1</td> <td></td>    <td>¥1,000</td> </tr>
+		<tr>
+			<th style="width: 40%;">商品名</th>
+			<th style="width: 20%;">個数</th>
+			<th style="width: 10%;"></th> <th style="width: 30%;">小計</th>
+		</tr>
+		<tr>
+			<td><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYfcZJYeC7UfwWM60-5LqIJ3XIc9qutvSFAQxyXmsBEUiuICCSlr0fPb-VFB1gC-WglMkIEwiIBXIvFlQiAxwBfXSqDd3B1CHEL_lhicXfZvnxDjiSxSWoBFoj8ISL5c78WbABA0PeY5EneBQTgMWCuTtDc6lhuv99Twcm_jz1BskZCY0nhtu_hWtAUoBx/s900/genki_pose_schoolboy.png" alt="ユニフォーム" width="50"></td>		
+			<td>1</td> <td></td>    <td>¥1,000</td> </tr>
+		</table>
+</main>
+          
+     <aside class="rightside-item">
+		<p style="font-size: 24px">購入情報</p>
+		<p style="text-align: center; width: 200px">合計金額</p>
+		<p>&nbsp;</p>
+		<p style="text-align: center; width: 200px">購入者氏名</p>
+		<p style="text-align: center; width: 200px">購入者住所</p>
+ 	 </aside>
+    </div>
   </body>
 </html>
