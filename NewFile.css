@@ -20,6 +20,7 @@ header {
 
 main {
   margin-top: 40px; /* ヘッダーの高さに合わせて数値を調整 */
+  margin: auto;
   padding-left:2%;
   text-align:center;
 }
@@ -70,8 +71,22 @@ main {
 
 .container {
   display: flex;
+  margin-top: 50px;
   padding-top: 60px;
 }
+
+.buyconfirm-table {
+    margin: auto;
+    width: 600px;
+    table-layout: fixed; /* 列幅を固定 */
+    border-collapse: collapse;
+  }
+.buyconfirm-table th, .buyconfirm-table td {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden;
+  }
 
 .usertable{
   width:130%;
@@ -90,4 +105,3 @@ main {
 .buttom{
   margin:20;
   
-}
