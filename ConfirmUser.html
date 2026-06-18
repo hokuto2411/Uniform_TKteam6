@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="<%= request.getContextPath()%>/css/NewFile.css">
+</head>
+  
+  <body>
+  <header>
+  	<h1 style="text-align:center">
+	  会員情報入力画面
+	</h1>
+	<hr style="height:5px; background-color: #00FFFF;">
+  </header>
+    
+     <div class="container">
+       
+  <table style="margin:auto; padding-top: 50px; width:500px">
+    <tr>
+      <th>名前</th>
+      <td style="text-align: center; width: 200px">Name</td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td style="text-align: center; width: 200px">Adress</td>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <td style="text-align: center; width: 200px">Id</td>
+    </tr>
+    <tr>
+      <th>パスワード</th>
+	  <td style="text-align: center; width: 200px">Password</td>
+    </tr>
+    <tr>
+      <th>メアド</th>
+	  <td style="text-align: center; width: 200px">Mail</td>
+    </tr>
+	
+	</table>
+	    </div> 
+	
+		<div style="margin: auto; text-align: center; padding-top: 200px; height:50px; width:200px">
+		<input type="hidden" name="unino" value=>
+		<input type="submit"  value="登録">
+		</div>
+  
+  </body>
+</html>
