@@ -37,6 +37,25 @@ main {
   float:left;
 }
 
+.leftside-item {
+  position: sticky;
+  top: 130px;
+  width: 130px;
+  padding-left: 20px;
+  margin-top: 50px;
+  border: 5px solid #00FFFF; 
+}
+
+.rightside-item {
+  position: sticky;
+  top: 130px;
+  width: 250px;
+  padding-left: 20px;
+  margin-top:50px;
+  margin-left: 20px;
+  border: 5px solid #00FFFF; 
+}
+
 .container {
   display: flex;
   padding-top: 60px;
