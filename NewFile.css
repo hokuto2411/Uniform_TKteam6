@@ -15,22 +15,26 @@ header {
   left: 0;         /* 画面の左端に配置 */
   width: 100%;     /* 横幅を画面いっぱいに広げる */
   z-index: 1000;   /* 他の要素より手前に表示させる */
-  background-color:white;
+  background-color:#ffff00;
 }
 
 main {
-  margin-top: 100px; /* ヘッダーの高さに合わせて数値を調整 */
+  margin-top: 40px; /* ヘッダーの高さに合わせて数値を調整 */
   padding-left:2%;
-  margin:auto;
+  text-align:center;
+}
+
+.title{
+  padding-left:120;
 }
 
 .side-item {
   position: sticky;
-  top: 130px;
+  top: 150px;
   width: 120px;
-  margin-top: 100px;
-  padding-left: 20px;
-  border: 5px solid #00FFFF; 
+  padding-left: 20px; 
+  background-color:yellow;
+  float:left;
 }
 
 .container {
@@ -38,5 +42,21 @@ main {
   padding-top: 60px;
 }
 
+.usertable{
+  width:130%;
+  height:50%;
+  border-spacing:10
+}
 
+.usertable td{
+  border:0px;
+}
 
+.tarea{
+  height:100
+}
+
+.buttom{
+  margin:20;
+  
+}
