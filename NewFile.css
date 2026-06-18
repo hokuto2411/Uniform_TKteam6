@@ -56,6 +56,18 @@ main {
   border: 5px solid #00FFFF; 
 }
 
+.site-name{
+  border: 5px solid #00FFFF; 
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.sample-image{
+    width: 100%;       /* 親要素に合わせて可変にする場合 */
+    max-width: 100px;  /* 最大幅を指定 */
+    border-radius: 10px; /* 角を丸くする */
+}
+
 .container {
   display: flex;
   padding-top: 60px;
