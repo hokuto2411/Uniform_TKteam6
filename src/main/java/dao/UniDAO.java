@@ -39,9 +39,6 @@ public class UniDAO {
 					+ uni.getPrice() + "','"
 					+ uni.getStock() + "','"
 					+ uni.getImage() + "','"
-					+ uni.getUnifrag() + "','"
-					+ uni.getUniupdatetime() + "','"
-					+ uni.getUnideletetime() + "')";
 
 			con = getConnection();
 			smt = con.createStatement();
