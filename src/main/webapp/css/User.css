@@ -1,0 +1,55 @@
+/*ユーザーcss*/
+
+th, td{
+  text-align:left;
+  border: 1px solid #000000;
+}
+
+th{
+  background-color:#00FFFF;
+  background-color: #6ff;
+
+}
+
+main {
+  margin-top: 130px; /* ヘッダーの高さに合わせて数値を調整 */
+  padding-left:2%;
+  text-align:center;
+}
+
+.title{
+  padding-left:120;
+}
+
+.side-item {
+  position: sticky;
+  top: 150px;
+  width: 130px;
+  padding-left: 20px; 
+  background-color:#ffff00;
+  float:left;
+}
+
+.container {
+  display: flex;
+  padding-top: 60px;
+}
+
+.usertable{
+  width:130%;
+  height:50%;
+  border-spacing:10
+}
+
+.usertable td{
+  border:0px;
+}
+
+.tarea{
+  height:100
+}
+
+.buttom{
+  margin:20;
+  
+}
