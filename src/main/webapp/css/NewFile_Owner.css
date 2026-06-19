@@ -1,0 +1,71 @@
+th, td{
+  text-align:left;
+  border: 1px solid #000000;
+}
+
+th{
+  background-color:#00FFFF;
+  background-color: #6ff;
+
+}
+
+header {
+  position: fixed; /* 画面に固定 */
+  top: 0;          /* 画面の最上部に配置 */
+  left: 0;         /* 画面の左端に配置 */
+  width: 100%;     /* 横幅を画面いっぱいに広げる */
+  z-index: 1000;   /* 他の要素より手前に表示させる */
+  background-color:#00bfff;
+}
+
+main {
+  margin-top: 40px; /* ヘッダーの高さに合わせて数値を調整 */
+  padding-left:2%;
+  text-align:center;
+}
+
+.title{
+  padding-left:120;
+}
+
+.side-item {
+  position: sticky;
+  top: 150px;
+  width: 120px;
+  padding-left: 20px; 
+  background-color:000bfff;
+  float:left;
+}
+
+.container {
+  display: flex;
+  padding-top: 60px;
+}
+
+.usertable{
+  width:130%;
+  height:50%;
+  border-spacing:10
+}
+
+.usertable td{
+  border:0px;
+}
+
+.tarea{
+  height:100
+}
+
+.buttom{
+  margin:20;
+  
+}
+
+.ornermenutitle{
+  text-align:center;
+  padding-top:10%;
+}
+
+.ornermenu{
+  text-align:center;
+}
