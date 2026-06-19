@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import bean.Uni;
-import dao.UniDAO;
+import bean.Uniform;
+import dao.UniformDAO;
 
 
 @WebServlet("/listUni")
@@ -20,14 +20,18 @@ public class ListUni extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
+		//エラー処理を管理する変数
 		String error = null;
 		String cmd = null;
 
 		try {	
-			UniDAO uniDao = new UniDAO();
+			//ユニフォーム情報管理を管理するクラスのインスタンス化
+			UniformDAO uniDao = new UniformDAO();
 
-			ArrayList<Uni> list = uniDao.selectAll();
+			//メソッドを利用しデータベースから書籍情報を取得
+			ArrayList<Uniform> list = uniDao.selectAll();
 
+			//取得したユニフォーム情報をリクエストスコープに格納
 			request.setAttribute("uniList", list);
 
 		}catch(IllegalStateException e) {
@@ -35,8 +39,10 @@ public class ListUni extends HttpServlet {
 			cmd = "dbError";
 		}finally {
 			if(error == null) {
+				//一覧画面にフォワード
 				request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
 			}else {
+				//エラー画面にフォワード
 				request.setAttribute("error", error);
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
