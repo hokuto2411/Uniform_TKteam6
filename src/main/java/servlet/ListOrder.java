@@ -23,7 +23,8 @@ public class ListOrder extends HttpServlet {
 			ArrayList<Order> list = OrderDaoObj.selectAll();
 			request.setAttribute("order_list",list);
 			
-			ArrayList<Order> lastmonth = OrderDaoObj.sumPriceByMonth(lastmonth);
+			int lastmonth = OrderDaoObj.getLastMonth();
+			request.setAttribute("lastmonth",lastmonth);
 			
 			int sales = 0;
 			for(int i=0; i < list.size(); i++) {
