@@ -30,7 +30,7 @@ public class UniDAO {
 		int count = 0;
 
 		try {
-			String sql = "INSERT INTO orderinfo VALUES('"
+			String sql = "INSERT INTO uniinfo VALUES('"
 					+ uni.getUnino() + "','"
 					+ uni.getUniname() + "','"
 					+ uni.getPrice() + "','"

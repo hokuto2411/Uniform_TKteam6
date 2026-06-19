@@ -30,7 +30,7 @@ public class OrderDetailDAO {
 		int count = 0;
 
 		try {
-			String sql = "INSERT INTO orderinfo VALUES('"
+			String sql = "INSERT INTO orderdetailinfo VALUES('"
 					+ orderDetail.getOrderno() + "','"
 					+ orderDetail.getUnino() + "','"
 					+ orderDetail.getQuantity() + "')";

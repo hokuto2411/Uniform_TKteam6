@@ -2,8 +2,10 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import bean.Order;
 
@@ -58,6 +60,47 @@ public class OrderDAO {
 				}
 			}
 		}
+	}
+	
+	
+	public ArrayList<Order> selectAll() {
+		Connection con = null;
+		Statement smt = null;
+		ArrayList<Order> orderList = new ArrayList<Order>();
+
+		try {
+			con = getConnection();
+			smt = con.createStatement();
+			String sql = "SELECT o.user,b.title,o.date FROM uniinfo b INNER JOIN orderinfo o ON b.isbn=o.isbn";
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				Order order = new Order();
+				order.setOrderno(rs.getInt("orderno"));
+				order.setUserno(rs.getInt("userno"));
+				order.setSumprice(rs.getInt("sumprice"));
+				order.setOrderdate(rs.getInt("orderdate"));
+				order.setDeposit(rs.getInt("deposit"));
+				order.setOrdercomment(rs.getString("ordercomment"));
+				orderList.add(order);
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return orderList;
 	}
 	
 	
