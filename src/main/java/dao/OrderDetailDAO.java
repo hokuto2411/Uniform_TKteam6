@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -57,5 +58,44 @@ public class OrderDetailDAO {
 		}
 	}
 	
+	
+	public OrderDetail selectByOrder(int orderno) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		OrderDetail orderDetail = new OrderDetail();
+		try {
+			
+			String sql = "SELECT * FROM orderdetailinfo WHERE orderno ='"+orderno+"'";
+
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				orderDetail.setOrderno(rs.getInt("orderno"));
+				orderDetail.setUnino(rs.getInt("unino"));
+				orderDetail.setQuantity(rs.getInt("quantity"));
+			}
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return orderDetail;
+	}
 	
 }

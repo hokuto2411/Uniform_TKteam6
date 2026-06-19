@@ -71,7 +71,7 @@ public class OrderDAO {
 		try {
 			con = getConnection();
 			smt = con.createStatement();
-			String sql = "SELECT o.user,b.title,o.date FROM uniinfo b INNER JOIN orderinfo o ON b.isbn=o.isbn";
+			String sql = "SELECT * FROM uniinfo";
 			ResultSet rs = smt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -103,5 +103,46 @@ public class OrderDAO {
 		return orderList;
 	}
 	
+	public Order selectByOrder(int orderno) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		Order order = new Order();
+		try {
+			
+			String sql = "SELECT * FROM orderinfo WHERE orderno ='"+orderno+"'";
+
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				order.setOrderno(rs.getInt("orderno"));
+				order.setUserno(rs.getInt("userno"));
+				order.setSumprice(rs.getInt("sumprice"));
+				order.setOrderdate(rs.getInt("orderdate"));
+				order.setDeposit(rs.getInt("deposit"));
+				order.setOrdercomment(rs.getString("ordercomment"));
+			}
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return order;
+	}
 	
 }
