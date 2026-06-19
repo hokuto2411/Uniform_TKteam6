@@ -1,3 +1,5 @@
+/*管理者css*/
+
 th, td{
   text-align:left;
   border: 1px solid #000000;
@@ -9,31 +11,34 @@ th{
 
 }
 
-header {
-  position: fixed; /* 画面に固定 */
-  top: 0;          /* 画面の最上部に配置 */
-  left: 0;         /* 画面の左端に配置 */
-  width: 100%;     /* 横幅を画面いっぱいに広げる */
-  z-index: 1000;   /* 他の要素より手前に表示させる */
-  background-color:#00bfff;
-}
-
 main {
   margin-top: 40px; /* ヘッダーの高さに合わせて数値を調整 */
   padding-left:2%;
   text-align:center;
 }
 
+main table{
+	margin:auto;
+	width:50%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+}
+
 .title{
   padding-left:120;
+}
+
+.title2{
+ padding-right:55%;
 }
 
 .side-item {
   position: sticky;
   top: 150px;
-  width: 120px;
+  width: 130px;
   padding-left: 20px; 
-  background-color:000bfff;
+  background-color:#00bfff;
   float:left;
 }
 
@@ -62,10 +67,44 @@ main {
 }
 
 .ornermenutitle{
-  text-align:center;
-  padding-top:10%;
+	text-align:center ;
+	padding-top: 10%;
+	padding-bottom: 3%;
 }
 
 .ornermenu{
   text-align:center;
+}
+
+.orderlist1{
+  width:130%;
+  margin:2%
+}
+
+.orderlist1 td{
+  border:0px;
+}
+
+.orderlist2{
+  margin:auto;
+  width:100%;
+  table-layout: fixed;
+}
+
+.Otd1{
+  width:50%
+}
+
+.Otd3{
+	width:10%;
+	padding-right: 50%;
+}
+
+.status{
+  text-align:left;
+}
+
+.picture{
+	width: 40%;
+	height:40%;
 }
