@@ -38,49 +38,50 @@
 
 
 
-		<table style="margin:0 auto;
-						width: 50%;
+		<table style="
+						text-align:right;
+						width: 80%;
 						table-layout: fixed;
 						border-collapse: separate;
   						border-spacing: 10px;
   						border:0px;">
 
 				<tr>
-					<td>ゆにふぉ～む</td>
-					<td>ユニフォームB</td>
-					<td>ゆにふぉーむ</td>
+					<td>商品A</td>
+					<td>商品B</td>
+					<td>商品C</td>
 				</tr>
 				<tr style="height: 150px;">
 					<td>
-						<p>写真</p>
+						<p>写真A</p>
 					</td>
 					<td>
-						<p>写真</p>
+						<p>写真B</p>
 					</td>
 					<td>
-						<p>写真</p>
+						<p>写真C</p>
 					</td>
 				</tr>
 				<tr>
-					<td>ゆにふぉ～む</td>
-					<td>ユニフォームB</td>
-					<td>ゆにふぉーむ</td>
+					<td>商品D</td>
+					<td>商品E</td>
+					<td>商品F</td>
 				</tr>
 				<tr style="height: 150px;">
 					<td>
-						<p>写真</p>
+						<p>写真D</p>
 					</td>
 					<td>
-						<p>写真</p>
+						<p>写真E</p>
 					</td>
 					<td>
-						<p>写真</p>
+						<p>写真F</p>
 					</td>
 				</tr>
 				<tr>
-					<td>ゆにふぉ～む</td>
-					<td>ユニフォームB</td>
-					<td>ゆにふぉーむ</td>
+					<td>商品G</td>
+					<td>商品H</td>
+					<td></td>
 				</tr>
 				<tr style="height: 150px;">
 					<td>
