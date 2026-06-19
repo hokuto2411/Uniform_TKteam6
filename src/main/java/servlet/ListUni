@@ -1,0 +1,47 @@
+package servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import bean.Uni;
+import dao.UniDAO;
+
+
+@WebServlet("/listUni")
+public class ListUni extends HttpServlet {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException ,IOException{
+
+		request.setCharacterEncoding("UTF-8");
+
+		String error = null;
+		String cmd = null;
+
+		try {	
+			UniDAO uniDao = new UniDAO();
+
+			ArrayList<Uni> list = uniDao.selectAll();
+
+			request.setAttribute("uniList", list);
+
+		}catch(IllegalStateException e) {
+			error = "DB接続エラーの為、一覧表示は行えませんでした。";
+			cmd = "dbError";
+		}finally {
+			if(error == null) {
+				request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+			}else {
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+		}
+	}
+
+}
