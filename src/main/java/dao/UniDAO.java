@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 import bean.Uni;
 
-public class UniDAO {
+public class UniformDAO {
 	private static String RDB_DRIVE = "com.mysql.cj.jdbc.Driver";
-	private static String URL = "jdbc:mysql://localhost/myunidb";
+	private static String URL = "jdbc:mysql://localhost/uniformdb";
 	private static String USER="root";
 	private static String PASSWD="root123";
 
@@ -39,6 +39,9 @@ public class UniDAO {
 					+ uni.getPrice() + "','"
 					+ uni.getStock() + "','"
 					+ uni.getImage() + "','"
+					+ uni.getUnifrag() + "','"
+					+ uni.getUniupdatetime() + "','"
+					+ uni.getUnideletetime() + "')";
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -70,7 +73,7 @@ public class UniDAO {
 		ArrayList<Uni> uniList = new ArrayList<Uni>();
 
 		try {
-			String sql = "SELECT unino,uniname,price,stock,image,unifrag,uniupdatetime FROM uni ORDER BY unino";
+			String sql = "SELECT unino,uniname,price,stock,image FROM uni ORDER BY unino";
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -82,9 +85,7 @@ public class UniDAO {
 				uniInfo.setUniname(rs.getString("uniname"));
 				uniInfo.setPrice(rs.getInt("price"));
 				uniInfo.setStock(rs.getInt("stock"));
-				uniInfo.setImage(rs.getString("image"));
-				uniInfo.setUnifrag(rs.getInt("unifrag"));
-				uniInfo.setUniupdatetime(rs.getInt("uniupdatetime"));			
+				uniInfo.setImage(rs.getString("image"));		
 				uniList.add(uniInfo);
 			}
 
@@ -191,3 +192,4 @@ public class UniDAO {
 		}
 	}
 
+}
