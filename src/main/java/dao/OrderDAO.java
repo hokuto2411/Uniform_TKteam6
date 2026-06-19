@@ -193,24 +193,16 @@ public class OrderDAO {
 		Connection con = null;
 		Statement smt = null;
 
-		Order order = new Order();
 		try {
 			
-			String sql = "SELECT sumprice AS total_price FROM orderinfo WHERE orderdate ='"+orderno+"'";
-
+			String sql = "SELECT SUM(sumprice) AS total_price FROM orderinfo WHERE orderdate >= "+month+" AND orderdate < " +month+ " + INTERVAL 1 MONTH";
+			
 			con = getConnection();
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
-
-			while (rs.next()) {
-				order.setOrderno(rs.getInt("orderno"));
-				order.setUserno(rs.getInt("userno"));
-				order.setSumprice(rs.getInt("sumprice"));
-				order.setOrderdate(rs.getDate("orderdate"));
-				order.setDeposit(rs.getInt("deposit"));
-				order.setSend(rs.getInt("send"));
-				order.setOrdercomment(rs.getString("ordercomment"));
-			}
+			
+			sum = rs.getInt("total_price");
+			
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
