@@ -31,7 +31,7 @@ public class Order {
 		this.userno = userno;
 	}
 	
-	public int getsumprice() {
+	public int getSumprice() {
 		return sumprice;
 	}
 	public void setSumprice(int sumprice) {
