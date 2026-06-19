@@ -1,0 +1,71 @@
+package servlet;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import bean.User;
+import dao.UserDAO;
+
+@WebServlet("/login")
+public class Login extends HttpServlet {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		//jsp画面(Web)からのフォームデータを取得する
+		String userid = request.getParameter("userid");
+		String password = request.getParameter("password");
+
+		//UserDAOクラスのインスタンス化
+		UserDAO objDao = new UserDAO();
+
+		//データベースのuserinfoより引数のuserデータを取得するメソッド
+		User objUser=null;
+		try {
+
+			objUser = objDao.selectByUser(userid, password);
+		} catch (IllegalStateException e) {
+
+			String message = "DB接続エラーの為、ログインは出来ません。";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+
+		}
+
+		//User情報がある場合(useridとpasswordが合っていた場合)
+		if (objUser.getUserid() != null) {
+
+			//セッションスコープに登録
+			HttpSession session = request.getSession();
+			session.setAttribute("user", objUser);
+
+			//クッキーにUserid情報登録
+			Cookie UserCookie = new Cookie("userid", objUser.getUserid());
+			UserCookie.setMaxAge(60 * 60 * 24 * 5);
+			response.addCookie(UserCookie);
+
+			//クッキーにPasswd情報登録
+			Cookie PasswdCookie = new Cookie("password", objUser.getPassword());
+			PasswdCookie.setMaxAge(60 * 60 * 24 * 5);
+			response.addCookie(PasswdCookie);
+
+			//menu.jspにフォワード
+			request.getRequestDispatcher("/view/ListUni.jsp").forward(request, response);
+
+		} else {
+
+			//リクエストスコープにエラーメッセージ登録
+			request.setAttribute("message", "入力データが間違っています。");
+
+			//login.jspにフォワード
+			request.getRequestDispatcher("/view/Login.jsp").forward(request, response);
+		}
+
+	}
+}
