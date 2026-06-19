@@ -1,6 +1,12 @@
 <!--ユーザー：カート追加 detailUni-->
 
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="util.MyFormat"%>
+<%@page import="java.util.ArrayList,bean.Order"%>
+<%
+MyFormat fmt = new MyFormat();
+Order order = (Order) request.getAttribute("order");
+%>
 <link rel="stylesheet"
 		href="<%=request.getContextPath() %>/css/User.css">
 
@@ -23,11 +29,13 @@
 
 			<form action="" method="get">
 				<table style="margin: auto">
-
+				<%
+				if(order != null) {
+				%>
 					<tr>
 						<th style="background-color: #00FFFF; text-align: center;  vertical-align: middle; width:150px">
 							No</th>
-						<td style="text-align: center; vertical-align: middle;">1</td>
+						<td style="text-align: center; vertical-align: middle;"><%=order.getOrderno()%></td>
 					</tr>
 					<tr>
 						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
@@ -46,7 +54,11 @@
 						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
 						<td style="text-align: center; vertical-align: middle;">100万</td>
 					</tr>
+					<%
+					}
+					%>
 				</table>
+				
 				<br>
 				<div style="text-align: center;">
 					<table style="margin: 0 auto;">
@@ -56,22 +68,6 @@
 					</table>
 				</div>
 			</form>
-
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
-			<p style="text-align:center;">PP</p>
 
 		</main>
 	</div>
