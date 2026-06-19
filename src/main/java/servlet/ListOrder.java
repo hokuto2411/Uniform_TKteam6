@@ -22,6 +22,15 @@ public class ListOrder extends HttpServlet {
 			OrderDAO OrderDaoObj = new OrderDAO();
 			ArrayList<Order> list = OrderDaoObj.selectAll();
 			request.setAttribute("order_list",list);
+			
+			ArrayList<Order> lastmonth = OrderDaoObj.sumPriceByMonth(lastmonth);
+			
+			int sales = 0;
+			for(int i=0; i < list.size(); i++) {
+				sales += list.get(i).getSumprice();
+			}
+			request.setAttribute("sales",sales);
+			
 			request.getRequestDispatcher("/view/listOrder.jsp").forward(request, response);
 			
 		} catch(IllegalStateException e) {

@@ -10,7 +10,7 @@ import bean.OrderDetail;
 
 public class OrderDetailDAO {
 	private static String RDB_DRIVE = "com.mysql.cj.jdbc.Driver";
-	private static String URL = "jdbc:mysql://localhost/myunidb";
+	private static String URL = "jdbc:mysql://localhost/uniformdb";
 	private static String USER="root";
 	private static String PASSWD="root123";
 	

@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import bean.Order;
 
 public class OrderDAO {
 	private static String RDB_DRIVE = "com.mysql.cj.jdbc.Driver";
-	private static String URL = "jdbc:mysql://localhost/myunidb";
+	private static String URL = "jdbc:mysql://localhost/uniformdb";
 	private static String USER="root";
 	private static String PASSWD="root123";
 	
@@ -79,8 +80,9 @@ public class OrderDAO {
 				order.setOrderno(rs.getInt("orderno"));
 				order.setUserno(rs.getInt("userno"));
 				order.setSumprice(rs.getInt("sumprice"));
-				order.setOrderdate(rs.getInt("orderdate"));
+				order.setOrderdate(rs.getDate("orderdate"));
 				order.setDeposit(rs.getInt("deposit"));
+				order.setSend(rs.getInt("send"));
 				order.setOrdercomment(rs.getString("ordercomment"));
 				orderList.add(order);
 			}
@@ -121,8 +123,9 @@ public class OrderDAO {
 				order.setOrderno(rs.getInt("orderno"));
 				order.setUserno(rs.getInt("userno"));
 				order.setSumprice(rs.getInt("sumprice"));
-				order.setOrderdate(rs.getInt("orderdate"));
+				order.setOrderdate(rs.getDate("orderdate"));
 				order.setDeposit(rs.getInt("deposit"));
+				order.setSend(rs.getInt("send"));
 				order.setOrdercomment(rs.getString("ordercomment"));
 			}
 			
@@ -143,6 +146,90 @@ public class OrderDAO {
 			}
 		}
 		return order;
+	}
+	
+	public int getLastMonth() {
+		int month = 0;
+		
+		Connection con = null;
+		Statement smt = null;
+
+		try {
+			
+			String sql = "SELECT * FROM orderinfo ORDER BY orderdate DESC LIMIT 1";
+
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(rs.getDate("orderdate"));
+			month = calendar.get(Calendar.MONTH) + 1;
+			
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		
+		return month;
+	}
+	
+	public int sumPriceByMonth(int month) {
+		int sum = 0;
+		
+		Connection con = null;
+		Statement smt = null;
+
+		Order order = new Order();
+		try {
+			
+			String sql = "SELECT sumprice AS total_price FROM orderinfo WHERE orderdate ='"+orderno+"'";
+
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				order.setOrderno(rs.getInt("orderno"));
+				order.setUserno(rs.getInt("userno"));
+				order.setSumprice(rs.getInt("sumprice"));
+				order.setOrderdate(rs.getDate("orderdate"));
+				order.setDeposit(rs.getInt("deposit"));
+				order.setSend(rs.getInt("send"));
+				order.setOrdercomment(rs.getString("ordercomment"));
+			}
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		
+		return sum;
 	}
 	
 }

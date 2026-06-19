@@ -1,19 +1,23 @@
 package bean;
 
+import java.sql.Date;
+
 public class Order {
 	private int orderno;
 	private int userno;
 	private int sumprice;
-	private int orderdate;
+	private Date orderdate;
 	private int deposit;
+	private int send;
 	private String ordercomment;
 	
 	public Order() {
 		this.orderno = 0;
 		this.userno = 0;
 		this.sumprice = 0;
-		this.orderdate = 0;
+		this.orderdate = null;
 		this.deposit = 0;
+		this.send = 0;
 		this.ordercomment = null;
 	}
 	
@@ -38,10 +42,10 @@ public class Order {
 		this.sumprice = sumprice;
 	}
 	
-	public int getOrderdate() {
+	public Date getOrderdate() {
 		return orderdate;
 	}
-	public void setOrderdate(int orderdate) {
+	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
 	
@@ -50,6 +54,13 @@ public class Order {
 	}
 	public void setDeposit(int deposit) {
 		this.deposit = deposit;
+	}
+	
+	public int getSend() {
+		return send;
+	}
+	public void setSend(int send) {
+		this.send = send;
 	}
 	
 	public String getOrdercomment() {
