@@ -1,6 +1,6 @@
 package bean;
 
-public class Uni {
+public class Uniform {
 	private int unino;
 	private String uniname;
 	private int price;
@@ -52,7 +52,7 @@ public class Uni {
 	public String getImage() {
 		return image;
 	}
-	public void setUnino(String image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 	
