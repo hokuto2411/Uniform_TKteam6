@@ -27,6 +27,8 @@ public class ListUni extends HttpServlet {
 		try {	
 			//ユニフォーム情報管理を管理するクラスのインスタンス化
 			UniformDAO uniDao = new UniformDAO();
+			
+			cmd = request.getParameter("cmd");
 
 			//メソッドを利用しデータベースから書籍情報を取得
 			ArrayList<Uniform> list = uniDao.selectAll();
@@ -38,9 +40,14 @@ public class ListUni extends HttpServlet {
 			error = "DB接続エラーの為、一覧表示は行えませんでした。";
 			cmd = "dbError";
 		}finally {
-			if(error == null) {
-				//一覧画面にフォワード
-				request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+			if(error == null || error.trim().equals("")) {
+				if(cmd == "owner") {
+					//一覧画面（管理者）にフォワード
+					request.getRequestDispatcher("/view/listUniOwner.jsp").forward(request, response);
+				}else {
+					//一覧画面にフォワード
+					request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+				}
 			}else {
 				//エラー画面にフォワード
 				request.setAttribute("error", error);
