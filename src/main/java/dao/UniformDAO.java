@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.Uni;
+import bean.Uniform;
 
 public class UniformDAO {
 	private static String RDB_DRIVE = "com.mysql.cj.jdbc.Driver";
@@ -25,52 +25,53 @@ public class UniformDAO {
 			throw new IllegalStateException(e);
 		}
 	}
-
+	
 	//データベースにユニフォームデータを登録するメソッド
-	public void insert(Uni uni) {
-		Connection con = null;
-		Statement smt = null;
-		int count = 0;
+		public void insert(Uniform uni) {
+			Connection con = null;
+			Statement smt = null;
+			int count = 0;
 
-		try {
-			String sql = "INSERT INTO uniinfo VALUES('"
-					+ uni.getUnino() + "','"
-					+ uni.getUniname() + "','"
-					+ uni.getPrice() + "','"
-					+ uni.getStock() + "','"
-					+ uni.getImage() + "','"
-					+ uni.getUnifrag() + "','"
-					+ uni.getUniupdatetime() + "','"
-					+ uni.getUnideletetime() + "')";
+			try {
+				
+				String sql = "INSERT INTO uni VALUES("
+						+ uni.getUnino() + ",'"
+						+ uni.getUniname() + "',"
+						+ uni.getPrice() + ","
+						+ uni.getStock() + ",'"
+						+ uni.getImage() + "','"
+						+ uni.getUnifrag() + "',"
+						+ uni.getUniupdatetime() + ")";
 
-			con = getConnection();
-			smt = con.createStatement();
-			count = smt.executeUpdate(sql);
+				con = getConnection();
+				smt = con.createStatement();
+				count = smt.executeUpdate(sql);
 
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		} finally {
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
+			} catch (Exception e) {
+				throw new IllegalStateException(e);
+			} finally {
+				if (smt != null) {
+					try {
+						smt.close();
+					} catch (SQLException ignore) {
+					}
 				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
+				if (con != null) {
+					try {
+						con.close();
+					} catch (SQLException ignore) {
+					}
 				}
 			}
 		}
-	}
+
 
 	//全ユニフォーム情報を取得するメソッド
-	public ArrayList<Uni> selectAll(){
+	public ArrayList<Uniform> selectAll(){
 		Connection con = null;
 		Statement smt = null;
 
-		ArrayList<Uni> uniList = new ArrayList<Uni>();
+		ArrayList<Uniform> uniList = new ArrayList<Uniform>();
 
 		try {
 			String sql = "SELECT unino,uniname,price,stock,image FROM uni ORDER BY unino";
@@ -80,7 +81,7 @@ public class UniformDAO {
 			ResultSet rs = smt.executeQuery(sql);
 
 			while(rs.next()) {
-				Uni uniInfo = new Uni();
+				Uniform uniInfo = new Uniform();
 				uniInfo.setUnino(rs.getInt("unino"));
 				uniInfo.setUniname(rs.getString("uniname"));
 				uniInfo.setPrice(rs.getInt("price"));
@@ -103,11 +104,11 @@ public class UniformDAO {
 	}
 
 	//指定されたユニフォームデータを検索するメソッド
-	public Uni selectByunino(int unino){
+	public Uniform selectByUnino(int unino){
 		Connection con = null;
 		Statement smt = null;
 
-		Uni uniInfo = new Uni();
+		Uniform uniInfo = new Uniform();
 
 		try{
 			String sql = "SELECT unino,uniname,price,stock,image,unifrag,uniupdatetime FROM uni WHERE unino = '" + unino + "'";
@@ -121,9 +122,7 @@ public class UniformDAO {
 				uniInfo.setUniname(rs.getString("uniname"));
 				uniInfo.setPrice(rs.getInt("price"));
 				uniInfo.setStock(rs.getInt("stock"));
-				uniInfo.setImage(rs.getString("image"));
-				uniInfo.setUnifrag(rs.getInt("unifrag"));
-				uniInfo.setUniupdatetime(rs.getInt("uniupdatetime"));			
+				uniInfo.setImage(rs.getString("image"));			
 			}
 
 		}catch(Exception e){
@@ -164,7 +163,7 @@ public class UniformDAO {
 	}
 
 	//指定されたユニフォームデータを更新するメソッド
-	public void update(Uni uni){
+	public void update(Uniform uni){
 
 		Connection con = null;
 		Statement smt = null;
@@ -192,4 +191,3 @@ public class UniformDAO {
 		}
 	}
 
-}
