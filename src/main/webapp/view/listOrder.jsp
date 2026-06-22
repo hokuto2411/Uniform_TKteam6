@@ -24,8 +24,8 @@ OrderDAO orderDaoObj = new OrderDAO();
 <title>listOrder</title>
 </head>
 <body>
-	<%@include file="../common/header.jsp"%>
-	<%@include file="../common/sidebar.jsp"%>
+	<%@include file="/common/header_Owner.jsp"%>
+	<%@include file="/common/sidebar_Owner.jsp"%>
 
 	<h1>注文一覧画面</h1>
 	<hr class="black">

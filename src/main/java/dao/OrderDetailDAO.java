@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import bean.OrderDetail;
 
@@ -59,12 +60,12 @@ public class OrderDetailDAO {
 	}
 	
 	
-	public OrderDetail selectByOrder(int orderno) {
+	public ArrayList<OrderDetail> selectByOrder(int orderno) {
 
 		Connection con = null;
 		Statement smt = null;
-
-		OrderDetail orderDetail = new OrderDetail();
+		
+		ArrayList<OrderDetail> detail_list = new ArrayList<OrderDetail>();
 		try {
 			
 			String sql = "SELECT * FROM orderdetailinfo WHERE orderno ='"+orderno+"'";
@@ -72,11 +73,13 @@ public class OrderDetailDAO {
 			con = getConnection();
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
-
+			
 			while (rs.next()) {
+				OrderDetail orderDetail = new OrderDetail();
 				orderDetail.setOrderno(rs.getInt("orderno"));
 				orderDetail.setUnino(rs.getInt("unino"));
 				orderDetail.setQuantity(rs.getInt("quantity"));
+				detail_list.add(orderDetail);
 			}
 			
 		} catch (Exception e) {
@@ -95,7 +98,7 @@ public class OrderDetailDAO {
 				}
 			}
 		}
-		return orderDetail;
+		return detail_list;
 	}
 	
 }
