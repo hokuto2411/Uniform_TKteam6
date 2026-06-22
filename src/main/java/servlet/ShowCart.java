@@ -24,7 +24,11 @@ public class ShowCart {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 			int unino = Integer.parseInt(request.getParameter("unino"));
+			String delunino = request.getParameter("delunino");
 			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
+			if(delunino != null) {
+				detail_list.remove(Integer.parseInt(delunino));
+			}
 			
 			UniformDAO UniformDaoObj = new UniformDAO();
 			ArrayList<Uni> uni_list = new ArrayList<Uni>();
@@ -32,6 +36,8 @@ public class ShowCart {
 				Uni uni = UniformDaoObj.selectByunino(unino);
 				uni_list.add(uni);
 			}
+			
+			
 			
 			request.setAttribute("detail_list",detail_list);
 			request.setAttribute("uni_list",uni_list);
