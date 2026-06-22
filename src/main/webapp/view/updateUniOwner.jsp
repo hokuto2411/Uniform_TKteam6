@@ -5,6 +5,7 @@
 				servlet.UpdateUniOwner"  %>
 <%
 Uniform uni =(Uniform)request.getAttribute("uniform");
+String filename=uni.getImage();
 %>
 <html>
 <head>
@@ -23,6 +24,8 @@ Uniform uni =(Uniform)request.getAttribute("uniform");
 
 	<!-- サイドバー -->
 	<%@include file="/common/sidebar_Owner.jsp"%>
+	
+	<!-- <img src="/fileupload/upload/<%=filename %>"> -->
 
 	<main>
 		<form action="<%=request.getContextPath()%>/updateUni">
@@ -30,7 +33,7 @@ Uniform uni =(Uniform)request.getAttribute("uniform");
 			<h2 style="text-align:center;">
 			商品変更画面</h2>
 			<h4 style="text-align:left">変更前情報</h4>
-			<img src="../file/uniform1.png"
+			<<img src="/upload/<%=filename %>"
 				 alt="変更前画像"
 			 	style="float:left;
 						border: 1px solid #333333;
