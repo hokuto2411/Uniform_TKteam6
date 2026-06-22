@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import bean.Order;
-import bean.Uniform;
+import bean.Uni;
 import dao.OrderDAO;
 import dao.UniformDAO;
 
@@ -25,7 +25,7 @@ public class InsertCart {
 			UniformDAO UniDaoObj = new UniformDAO();
 			Order order = OrderDaoObj.selectByOrder(orderno);
 			request.setAttribute("order",order);
-		    Uniform uni = UniDaoObj.selectByunino(unino);
+		    Uni uni = UniDaoObj.selectByunino(unino);
 			request.setAttribute("unino",unino);
 			
 			request.getRequestDispatcher("/view/insertCart.jsp").forward(request, response);

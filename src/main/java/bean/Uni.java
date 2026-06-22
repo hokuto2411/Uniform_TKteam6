@@ -1,6 +1,6 @@
 package bean;
 
-public class Uniform {
+public class Uni {
 	private int unino;
 	private String uniname;
 	private int price;
