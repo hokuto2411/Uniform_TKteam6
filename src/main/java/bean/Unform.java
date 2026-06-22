@@ -1,24 +1,23 @@
 package bean;
 
-public class Uni {
+public class Uniform {
 	private int unino;
 	private String uniname;
 	private int price;
 	private int stock;
 	private String image;
 	private int unifrag;
-	private int uniupdatetime;
-	private int unideletetime;
+	private String uniupdatetime;
 	
-	public Uni() {
+	//初期化用コンストラクタ
+	public Uniform() {
 		this.unino = 0;
 		this.uniname = null;
 		this.price = 0;
 		this.stock = 0;
 		this.image = null;
 		this.unifrag = 0;
-		this.uniupdatetime = 0;
-		this.unideletetime = 0;
+		this.uniupdatetime = null;
 	}
 	
 	public int getUnino() {
@@ -63,18 +62,11 @@ public class Uni {
 		this.unifrag = unifrag;
 	}
 	
-	public int getUniupdatetime() {
+	public String getUniupdatetime() {
 		return uniupdatetime;
 	}
-	public void setUniupdatetime(int uniupdatetime) {
+	public void setUniupdatetime(String uniupdatetime) {
 		this.uniupdatetime = uniupdatetime;
 	}
-	
-	public int getUnideletetime() {
-		return unideletetime;
-	}
-	public void setUnideletetime(int unideletetime) {
-		this.unideletetime = unideletetime;
-	}
-	
+
 }
