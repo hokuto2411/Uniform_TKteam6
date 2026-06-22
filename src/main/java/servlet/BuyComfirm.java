@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import bean.OrderDetail;
 import bean.Uni;
+import bean.Uniform;
 import bean.User;
 import dao.OrderDAO;
 import dao.UniformDAO;
@@ -55,7 +56,7 @@ public class BuyComfirm {
 			
 			for(int i=0; i < detail_list.size(); i++) {
 				OrderDetail detail = detail_list.get(i);
-				Uni uni = UniDaoObj.selectByunino(detail.getUnino());
+				Uniform uni = UniDaoObj.selectByunino(detail.getUnino());
 				// ↓???
 				OrderDaoObj.insert(detail);
 				list.add(Book);

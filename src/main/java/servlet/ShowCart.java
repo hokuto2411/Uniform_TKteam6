@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import bean.OrderDetail;
-import bean.Uni;
+import bean.Uniform;
 import bean.User;
 import dao.UniformDAO;
 
@@ -31,9 +31,9 @@ public class ShowCart {
 			}
 			
 			UniformDAO UniformDaoObj = new UniformDAO();
-			ArrayList<Uni> uni_list = new ArrayList<Uni>();
+			ArrayList<Uniform> uni_list = new ArrayList<Uniform>();
 			for(int i=0; i < detail_list.size(); i++) {
-				Uni uni = UniformDaoObj.selectByunino(unino);
+				Uniform uni = UniformDaoObj.selectByunino(unino);
 				uni_list.add(uni);
 			}
 			
