@@ -3,9 +3,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="util.MyFormat"%>
 <%@page import="java.util.ArrayList,bean.Order"%>
+<%@page import="java.util.ArrayList,bean.Uni"%>
 <%
 MyFormat fmt = new MyFormat();
 Order order = (Order) request.getAttribute("order");
+Uni uni = (Uni)request.getAttribute("uni");
 %>
 <link rel="stylesheet"
 		href="<%=request.getContextPath() %>/css/User.css">
@@ -31,6 +33,7 @@ Order order = (Order) request.getAttribute("order");
 				<table style="margin: auto">
 				<%
 				if(order != null) {
+					if(uni != null){
 				%>
 					<tr>
 						<th style="background-color: #00FFFF; text-align: center;  vertical-align: middle; width:150px">
@@ -40,22 +43,14 @@ Order order = (Order) request.getAttribute("order");
 					<tr>
 						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
 							種類</th>
-						<td style="text-align: center; vertical-align: middle;">ユニフォームA</td>
-					</tr>
-					<tr>
-						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">個数</th>
-						<td style="text-align: center; vertical-align: middle;">2</td>
-					</tr>
-					<tr>
-						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">サイズ</th>
-						<td style="text-align: center; vertical-align: middle;">F</td>
+						<td style="text-align: center; vertical-align: middle;"><%=uni.getUnino()%></td>
 					</tr>
 					<tr>
 						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
-						<td style="text-align: center; vertical-align: middle;">100万</td>
+						<td style="text-align: center; vertical-align: middle;"><%=uni.getPrice()%></td>
 					</tr>
 					<%
-					}
+					}}
 					%>
 				</table>
 				

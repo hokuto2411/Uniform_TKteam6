@@ -26,7 +26,7 @@ public class InsertCart {
 			Order order = OrderDaoObj.selectByOrder(orderno);
 			request.setAttribute("order",order);
 		    Uni uni = UniDaoObj.selectByunino(unino);
-			request.setAttribute("unino",unino);
+			request.setAttribute("uni",uni);
 			
 			request.getRequestDispatcher("/view/insertCart.jsp").forward(request, response);
 			
