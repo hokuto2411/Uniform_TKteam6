@@ -17,9 +17,7 @@
 			</tr>
 		</table>
 	</div>
-	<h1 style="margin-left: 20px;
-			font-family:"">
-		ゆにふぉーむのホーム</h1>
+	<img src="../picture/logo.png" style="width:20%; margin:5px auto" alt="ゆにふぉ～むのホーム">
 	<hr style="height: 5px; background-color: white;">
 </header>
 
