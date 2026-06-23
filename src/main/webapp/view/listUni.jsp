@@ -31,11 +31,9 @@
 				<% %>
 				<%--ログインしていない場合 --%>
 				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
-				<%--ログインのリンク --%>
 				<% %>
 				<%--ログインしている場合 --%>
-				<a href="">ログアウト</a><br>
-				<%--ログアウト --%>
+				<a href="<%=request.getContextPath()%>/logout">ログアウト</a><br>
 				<br>
 		</div>
 
