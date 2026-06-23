@@ -57,8 +57,7 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 					%>
 				</table> <br>
 				<div style="text-align: center;">
-					<form action="<%=request.getContextPath()%>/showCart"
-						method="get">
+					<form action="<%=request.getContextPath()%>/showCart" method="get">
 						<table style="margin: 0 auto;">
 							<tr>
 								<td>
@@ -68,7 +67,6 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 					</form>
 
 				</div>
-			</form>
 
 		</main>
 	</div>
