@@ -43,7 +43,7 @@
 		<br>
 		
 		<div style="text-align: center;">
-				<a href="<%=request.getContextPath()%>/list">会員登録はこちら</a>
+			<a href="<%=request.getContextPath()%>/view/insertUser.jsp">会員登録はこちら</a>
 		</div>
 	</form>
 
