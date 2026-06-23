@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td style="font-size: 20px; border: none;">
-					<a href="<%=request.getContextPath()%>/listUni">【商品一覧】</a>
+					<a href="<%=request.getContextPath()%>/listUni?cmdSwitch=owner">【商品一覧】</a>
 				</td>
 			</tr>
 			<tr>
