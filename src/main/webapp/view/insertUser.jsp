@@ -1,49 +1,61 @@
-<!--ユーザー：会員登録 InsertUser-->
-
 <%@page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/User.css">
+<%@page import="bean.User"%>
 
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<title>ゆにふぉーむのホーム-会員登録-</title>
-<link rel="stylesheet" href="NewFile.css">
+<title>会員登録</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/NewFile.css">
 </head>
 
 <body>
-	<%@ include file="/common/header_User.jsp"%>
+	<header>
+	<%@include file="/common/header_User.jsp"%>
+	<div style="padding-top:150px">
+	</div>
+		<h1 style="text-align: center">会員情報入力画面</h1>
+		<hr style="height: 5px; background-color: #00FFFF;">
+	</header>
 
-	<main>
-		<h2>会員登録</h2>
-
-		<form action="<%=request.getContextPath()%>/insertUser" method="post">
-
+	<div class="container">
+		<form action="<%=request.getContextPath()%>/inputCheck"method="post">
 			<table style="margin: auto; padding-top: 50px; width: 500px">
 				<tr>
-					<th>名前</th>
-					<td style="border: none;"><input type=text size="30" name="username" ></td>
-				</tr>
-				<tr>
-					<th>住所</th>
-					<td style="border: none;"><input type=text size="30" name="adress" ></td>
-				</tr>
-				<tr>
-					<th>ID</th>
-					<td style="border: none;"><input type=text size="30" name="userid" ></td>
+					<th>ユーザーID</th>
+					<td><input type=text size="30" name="userid"></td>
+
 				</tr>
 				<tr>
 					<th>パスワード</th>
-					<td style="border: none;"><input type=text size="30" name="password" ></td>
+					<td><input type=text size="30" name="password"></td>
 				</tr>
 				<tr>
-					<th>メアド</th>
-					<td style="border: none;"><input type=text size="30" name="mailaddress" ></td>
+					<th>名前</th>
+					<td><input type=text size="30" name="username"></td>
 				</tr>
-
+				<tr>
+					<th>住所</th>
+					<td><input type=text size="30" name="address"></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td><input type=text size="30" name="mailaddress"></td>
+				</tr>
+				<tr>
+				<th>権限<th>
+				<select name="authority">
+				<option value="0">一般ユーザー</option>
+				<option value="1">管理者</option>
+				</select>
 			</table>
 			
-			<div style="text-align: center"><input type="submit" name="insertUser" value="登録"></div>
-		</form>
-	</main>
+			<div style="text-align: center">
+				<input type="submit" value="確認">
+			</div>
 
+		</form>
+	</div>
 </body>
+</html>

@@ -28,7 +28,7 @@
 
 			</h3>
 			<p style="text-align: center">
-				[<a href="<%=request.getContextPath()%>/view/menu.jsp">メニュー画面へ</a>]
+				[<a href="<%=request.getContextPath()%>/view/listUni.jsp">メニュー画面へ</a>]
 			</p>
 		</main>
 	</div>
