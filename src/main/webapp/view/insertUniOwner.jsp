@@ -1,8 +1,15 @@
 <!--管理者：商品登録画面 InsertUniOwner-->
+<!DOCTYPE html>
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="bean.Uniform,
-				servlet.InsertUni" %>
+				servlet.InsertUni,
+				util.MyFormat" %>
+
+<%
+MyFormat objFormat = new MyFormat();
+Uniform uni =(Uniform)request.getAttribute("uniInfo");
+%>
 
 <html>
 <head>
@@ -16,55 +23,45 @@
 	<!-- ヘッダー -->
 	<%@ include file="/common/header_Owner.jsp"%>
 
-	<!-- コンテンツ -->
+	<!-- コンテナ -->
 	<div class="container">
 	
 	<!-- サイドバー -->
 	<%@include file="/common/sidebar_Owner.jsp"%>	
 
+	<!-- コンテナ -->
 	<main>
 	
-		<div style="padding-top:20px">
-		<form action="<%=request.getContextPath()%>/insertUni" method="post" enctype="multipart/form-data">
-			<div style="float:left;
-						padding-top: 20px;
-						padding: 15%;
-						margin-bottom: 15%;
-						border: 1px solid #333333;
-						border-radius: 10px">
-						
+	<!-- サブタイトル -->
+	<h1>商品登録画面</h1>
+	
+	<form>
+	<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
+		<tr>
+			<td rowspan="4" style="width:400px; height:400px; border:1px solid brack; text-align:center">
 			<input type="file" name="image">
-			</div>
-			
-			<h2 style="text-align:center;">商品登録画面</h2>
-			<table style="margin:auto;
-							width:50%;
-							height:70%;
-							padding-top: 20px;
-							table-layout: fixed;
-							border-collapse: collapse;
-							border: 1px solid #ccc;">
-							
-				<tr>
-					<th>商品名</th>
-						<td><input type="text" name="uniname"></td>
-				</tr>
-				
-				<tr>
-					<th>値段</th>
-						<td><input type="text" name="price"></td>
-				</tr>
-				
-				<tr>
-					<th>在庫</th>
-						<td><input type="text" name="stock"></td>
-				</tr>
-				
-			</table>
-			<input type="submit" value="登録" style = "margin:20px; text-align:left;">
-			</form>
-		</div>
+			</td>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
+					商品名</th>
+			<td style="text-align: center; vertical-align: middle;">
+				<input type=text name="uniname" style="width:90%"></td>
+		</tr>
+		<tr>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
+					価格</th>
+			<td style="text-align: center; vertical-align: middle;">
+				<input type=text name="price" style="width:90%;"></td>
+		</tr>
+		<tr>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
+					在庫数</th>
+			<td style="text-align: center; vertical-align: middle;">
+				<input type=text name="stock" style="width:90%;"></td>
+		</tr>
+		</table>
+		<input type="submit" value="登録" style = "margin:20px; text-align:left;">
+	</form>
 	</main>
-</div>
+	</div>
 </body>
 </html>
