@@ -12,10 +12,10 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 
 <html>
 <head>
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="bean.Uniform,util.MyFormat"%>
-<title>管理者：商品変更</title>
-<link rel="stylesheet"  href="<%=request.getContextPath() %>/css/Owner.css">
+	<meta charset="UTF-8">
+	<title>管理者：商品変更</title>
+	<link rel="stylesheet" 
+		href="<%=request.getContextPath() %>/css/Owner.css">
 </head>
 
 <body>
@@ -34,6 +34,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 		<!-- サブタイトル -->
 		<h1>商品変更画面</h1>
 		
+		<form>
 		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 			
 		<%
