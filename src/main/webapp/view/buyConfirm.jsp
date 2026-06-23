@@ -1,4 +1,4 @@
-<!--ユーザー：購入確認 buyConfirm-->
+<!-- ユーザー　購入確認　10 --> 
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
@@ -22,6 +22,7 @@ if (request.getAttribute("total") != null) {
 <!DOCTYPE html>
 <html>
 
+
 <head>
 <meta charset="UTF-8">
 <title>購入確認画面</title>
@@ -29,7 +30,27 @@ if (request.getAttribute("total") != null) {
 	href="<%=request.getContextPath()%>/view/css/style.css">
 </head>
 
+
+
+　<%@ include file="/common/header_User.jsp"%>
+
 <body>
+
+
+	
+
+	<div class="container">
+		<aside>
+			<div class="side-item">
+				<br>
+				<a href="">商品一覧</a><br>
+				<a href="">注文履歴</a><br>
+				<a href="">ユーザー情報変更</a><br>
+				<a href="">ログイン</a><br>
+				<br>
+			</div>
+		</aside>
+
 
 	<div class="wrapper">
 
@@ -37,7 +58,7 @@ if (request.getAttribute("total") != null) {
 
 			<header>
 
-		<h1 style="text-align: center">購入完了</h1>
+		<h2 style="text-align: center">購入完了</h2>
 
 		<hr style="height: 5px; background-color: #00FFFF;">
 
