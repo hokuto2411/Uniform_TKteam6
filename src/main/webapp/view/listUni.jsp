@@ -30,22 +30,18 @@
 				<%--ユーザー名 --%>
 				<% %>
 				<%--ログインしていない場合 --%>
-				<form action="<%=request.getContextPath()%>/login" method="post">
-					<input type="submit" value="ログイン">
-				</form>
+				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
+				<%--ログインのリンク --%>
+				<% %>
 				<%--ログインしている場合 --%>
-				<a href="<%=request.getContextPath()%>/logout">ログアウト</a><br>
+				<a href="">ログアウト</a><br>
+				<%--ログアウト --%>
 				<br>
 		</div>
 
 		<h1>商品一覧画面</h1>
 		
-		<table	
-			style="margin: 0 auto; 
-			width: 50%; table-layout: fixed; 
-			border-collapse: separate; 
-			border-spacing: 10px; 
-			border: 0px;">
+		<div style="display:flex; gap:15px;flex-wrap: wrap;justify-content: gap;">
 
 			<%
 			//ユニフォーム情報の取得
@@ -56,47 +52,25 @@
 				for (int i = 0; i < list.size(); i++) {
 					Uniform uni = (Uniform) list.get(i);
 			%>
-
-			<tr>
-				<td>
-				<a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
-					<%=uni.getUniname()%></a></td>
-				<td>
-				<a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
-					<%=uni.getUniname()%></a></td>
-				<td>
-				<a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
-					<%=uni.getUniname()%></a></td>
-			</tr>
-			<tr style="height: 150px;">
-				<td>
-					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
-					width="60%" height="60%">
-					</p>
-				</td>
-				<td>
-					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
-					width="60%" height="60%">
-					</p>
-				</td>
-				<td>
-					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
-					width="60%" height="60%">
-					</p>
-				</td>
-			</tr>
+			
+			<div style="padding: 15px;
+ 						flex: 100 100 200px;">
+				<!-- 商品名 -->
+				<p><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
+						<%=uni.getUniname()%></a>
+				<!-- 商品画像 -->
+				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+					 alt="<%=uni.getUniname() %>"
+					 style="height:150px;width:100%;border:1px brack;">
+				</div>
 			
 			<%
 			}
 
 			}
 			%>
-		</table>
+	</div>
 
 	</main>
 </div>
 </body>
-</html>
