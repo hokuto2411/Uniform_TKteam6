@@ -10,9 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import bean.OrderDetail;
-import bean.Uniform;
 import bean.User;
-import dao.UniformDAO;
+import dao.OrderDetailDAO;
 
 @WebServlet("/showCart")
 public class ShowCart {
@@ -21,26 +20,29 @@ public class ShowCart {
 		
 		String error = "";		
 		try {
+			
+			// Orderを表示する
+			// Orderno, U.uniname, OD.quantity, (U.price x OD.quan.)
+			
+			
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
-			int unino = Integer.parseInt(request.getParameter("unino"));
+			if(user == null) {
+				error = "セッション切れの為、購入は出来ません。 ";
+				request.setAttribute("error",error);
+				request.setAttribute("cmd","logout");
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+			
+			OrderDetailDAO DetailDaoObj = new OrderDetailDAO();
+			ArrayList<OrderDetail> detail_list = DetailDaoObj.selectAll();
+			
 			String delunino = request.getParameter("delunino");
-			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
 			if(delunino != null) {
 				detail_list.remove(Integer.parseInt(delunino));
 			}
-			
-			UniformDAO UniformDaoObj = new UniformDAO();
-			ArrayList<Uniform> uni_list = new ArrayList<Uniform>();
-			for(int i=0; i < detail_list.size(); i++) {
-				Uniform uni = UniformDaoObj.selectByunino(unino);
-				uni_list.add(uni);
-			}
-			
-			
-			
+						
 			request.setAttribute("detail_list",detail_list);
-			request.setAttribute("uni_list",uni_list);
 			request.getRequestDispatcher("/view/insertCart.jsp").forward(request, response);
 			
 		} catch(IllegalStateException e) {

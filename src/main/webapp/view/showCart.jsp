@@ -2,21 +2,20 @@
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="util.MyFormat"%>
-<%@page import="java.util.ArrayList,bean.Order"%>
 <%@page import="java.util.ArrayList,bean.OrderDetail"%>
-<%@page import="java.util.ArrayList,bean.Uni"%>
+<%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,dao.UniformDAO"%>
 <%
 MyFormat fmt = new MyFormat();
 ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
-ArrayList<Uni> uni_list = (ArrayList<Uni>) request.getAttribute("uni_list");
+ArrayList<Uniform> uni_list = (ArrayList<Uniform>) session.getAttribute("uni_list");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>カート内容確認</title>
-	<link rel="stylesheet" href="User.css">
+<meta charset="UTF-8">
+<title>カート内容確認</title>
+<link rel="stylesheet" href="User.css">
 </head>
 
 <body>
@@ -30,50 +29,55 @@ ArrayList<Uni> uni_list = (ArrayList<Uni>) request.getAttribute("uni_list");
 			<table style="margin: auto">
 
 				<tr>
-					<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">No
-					</th>
-					<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">種類
-					</th>
-					<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">個数
-					</th>
-					<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">価格
-					</th>
-					<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">削除
-					</th>
-				</tr>
-				
+					<th
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">No
+				</th>
+					<th
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">種類
+				</th>
+					<th
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">個数
+				</th>
+					<th
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">価格
+				</th>
+					<th
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">削除
+				</th>
+			</tr>
+
 				<%
 				int total = 0;
 				UniformDAO UniDao = new UniformDAO();
-				for(int i=0; i < detail_list.size(); i++){
-					OrderDetail detail = (OrderDetail) detail_list.get(i);
-					Uni uni = UniDao.selectByunino(detail.getUnino());
-					total += uni.getPrice();
+				if(detail_list != null){
+					if(uni_list != null){
+						for(int i=0; i < detail_list.size(); i++){
+							OrderDetail detail = (OrderDetail) detail_list.get(i);
+							Uniform uni = UniDao.selectByUnino(detail.getUnino());
+							total += uni.getPrice();
 				%>
 				<tr>
 					<td style="text-align: center; width: 400px"><%=detail.getOrderno() %></td>
 					<td style="text-align: center; width: 400px"><%=uni.getUniname() %></td>
 					<td style="text-align: center; width: 400px"><%=detail.getQuantity() %></td>
-					<td style="text-align: center; width: 400px"><%=uni.getPrice() %></td>
-					<td style="text-align: center; width: 400px">
-					<a href="<%=request.getContextPath()%>/showCart?delunino=<%=uni.getUnino()%>">削除</a>
-					</td>
-				</tr>
+					<td style="text-align: center; width: 400px"><%=fmt.moneyFormat(uni.getPrice()) %></td>
+					<td style="text-align: center; width: 400px"><a
+						href="<%=request.getContextPath()%>/showCart?delunino=<%=uni.getUnino()%>">削除</a>
+				</td>
+			</tr>
 				<%
-				}
+				}}}
 				%>
-			</table>
-			<br>
-			<br>
-			<hr style="height:1px; background-color:black;">
-			<hr style="height:1px; background-color:black;">
+			</table> <br> <br>
+			<hr style="height: 1px; background-color: black;">
+			<hr style="height: 1px; background-color: black;">
 
 			<div style="text-align: center;">
 				<table style="margin: 0 auto;">
 					<tr>
 						<th style="background-color: #00FFFF">合計</th>
-						<td><%=total %></td>
-					</tr>
+						<td><%=fmt.moneyFormat(total) %></td>
+				</tr>
 				</table>
 			</div>
 			<br>

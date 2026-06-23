@@ -72,7 +72,7 @@ public class OrderDAO {
 		try {
 			con = getConnection();
 			smt = con.createStatement();
-			String sql = "SELECT * FROM uniinfo";
+			String sql = "SELECT * FROM orderinfo";
 			ResultSet rs = smt.executeQuery(sql);
 
 			while (rs.next()) {

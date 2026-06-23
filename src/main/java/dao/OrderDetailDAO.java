@@ -101,4 +101,41 @@ public class OrderDetailDAO {
 		return detail_list;
 	}
 	
+	
+	public ArrayList<OrderDetail> selectAll() {
+		Connection con = null;
+		Statement smt = null;
+		ArrayList<OrderDetail> detailList = new ArrayList<OrderDetail>();
+
+		try {
+			con = getConnection();
+			smt = con.createStatement();
+			String sql = "SELECT * FROM orderdetailinfo";
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				OrderDetail detail = new OrderDetail();
+				detail.setOrderno(rs.getInt("orderno"));
+				detail.setUnino(rs.getInt("unino"));
+				detail.setQuantity(rs.getInt("quantity"));
+				detailList.add(detail);
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return detailList;
+	}
 }
