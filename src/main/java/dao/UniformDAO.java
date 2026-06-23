@@ -169,11 +169,14 @@ public class UniformDAO {
 		Statement smt = null;
 
 		try{
-			String sql = "UPDATE uni SET uniname='"
-					+uni.getUniname()+"',price="
-					+uni.getPrice()+" ',stock="
-					+uni.getStock()+" ',image= "
-					+uni.getImage()+" WHERE unino='"+uni.getUnino()+"'";
+			String sql = "UPDATE uni SET "
+					+ "uniname='"+ uni.getUniname() + "',"
+					+ "price="+ uni.getPrice() + ","
+					+ "stock="+ uni.getStock() + ","
+					+ "image='"+ uni.getImage() + "',"
+					+ "unifrag='"+ uni.getUnifrag() + "',"
+					+ "uniupdatetime="+ uni.getUniupdatetime()
+					+" WHERE unino="+ uni.getUnino();
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -190,5 +193,5 @@ public class UniformDAO {
 			}
 		}
 	}
-}
 
+}
