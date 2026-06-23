@@ -12,9 +12,16 @@ th{
 }
 
 main {
-  margin-top: 40px; /* ヘッダーの高さに合わせて数値を調整 */
+  margin-top: 0px; /* ヘッダーの高さに合わせて数値を調整 */
   padding-left:2%;
   text-align:center;
+  width:100%;
+}
+
+main h1{
+	max-width:80%;
+	text-align:left;
+	border-bottom: 3px dotted #ffff00;
 }
 
 main table{
@@ -44,7 +51,8 @@ main table{
 
 .container {
   display: flex;
-  padding-top: 60px;
+  padding-top: 10%;
+  width:100%;
 }
 
 .usertable{
@@ -89,10 +97,6 @@ main table{
   margin:auto;
   width:100%;
   table-layout: fixed;
-}
-
-.Otd1{
-  width:50%
 }
 
 .Otd3{
