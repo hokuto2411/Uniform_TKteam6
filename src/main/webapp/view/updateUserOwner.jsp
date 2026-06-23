@@ -43,10 +43,11 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 				<table
 					style="margin: auto; width: 50%; table-layout: fixed; border-collapse: collapse; border: 1px solid #ccc;">
 					<tr>
-						<th>名前</th>
-						<th>住所</th>
-						<th>ID</th>
-						<th>パスワード</th>
+						<th style="text-align: center">名前</th>
+						<th style="text-align: center">住所</th>
+						<th style="text-align: center">ID</th>
+						<th style="text-align: center">パスワード</th>
+						<th style="text-align: center">削除</th>
 					</tr>
 					
 						<%
@@ -61,6 +62,7 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 						<td><input type="text" name="address" value=<%=objUser.getAddress()%>></td>
 						<td><input type="text" name="userid" value=<%=objUser.getUserid()%>></td>
 						<td><input type="text" name="password" value=<%=objUser.getPassword()%>></td>
+						<td><a href="<%=request.getContextPath()%>/deleteUser?userid=<%=objUser.getUserid()%>&password=<%=objUser.getPassword()%>">削除</a><br></td>
 					</tr>
 					<%
 					}
