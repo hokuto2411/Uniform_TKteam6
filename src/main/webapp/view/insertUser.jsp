@@ -21,23 +21,23 @@
 			<table style="margin: auto; padding-top: 50px; width: 500px">
 				<tr>
 					<th>名前</th>
-					<td style="border: none;"><input type=text size="30" name="userid" value=Name></td>
+					<td style="border: none;"><input type=text size="30" name="username" ></td>
 				</tr>
 				<tr>
 					<th>住所</th>
-					<td style="border: none;"><input type=text size="30" name="adress" value=Adress></td>
+					<td style="border: none;"><input type=text size="30" name="adress" ></td>
 				</tr>
 				<tr>
 					<th>ID</th>
-					<td style="border: none;"><input type=text size="30" name="id" value=Id></td>
+					<td style="border: none;"><input type=text size="30" name="userid" ></td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
-					<td style="border: none;"><input type=text size="30" name="password" value=Password></td>
+					<td style="border: none;"><input type=text size="30" name="password" ></td>
 				</tr>
 				<tr>
 					<th>メアド</th>
-					<td style="border: none;"><input type=text size="30" name="mail" value=Mail></td>
+					<td style="border: none;"><input type=text size="30" name="mailaddress" ></td>
 				</tr>
 
 			</table>
