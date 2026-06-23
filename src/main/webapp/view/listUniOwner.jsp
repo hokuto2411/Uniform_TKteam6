@@ -71,7 +71,7 @@
 				<!-- 商品画像 -->
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
-					 style="height:150px;width:100%;border:1px brack;">
+					 style="height:150px;;border:1px brack;">
 				</div>
 		<%
 				}
