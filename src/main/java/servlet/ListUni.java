@@ -18,17 +18,22 @@ public class ListUni extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException ,IOException{
 
+		//文字エンコード
 		request.setCharacterEncoding("UTF-8");
 
 		//エラー処理を管理する変数
 		String error = null;
 		String cmd = null;
+		
+		//ユーザー・管理者切り替えコマンド
+		String cmdSwitch = null;
 
 		try {	
 			//ユニフォーム情報管理を管理するクラスのインスタンス化
 			UniformDAO uniDao = new UniformDAO();
 			
-			cmd = request.getParameter("cmd");
+			//画面から切り替え先の受け取り
+			cmdSwitch = request.getParameter("cmdSwitch");
 
 			//メソッドを利用しデータベースから書籍情報を取得
 			ArrayList<Uniform> list = uniDao.selectAll();
@@ -41,12 +46,13 @@ public class ListUni extends HttpServlet {
 			cmd = "dbError";
 		}finally {
 			if(error == null || error.trim().equals("")) {
-				if(cmd == "owner") {
+				if(cmdSwitch == null || cmdSwitch.trim().equals("")) {
+					//一覧画面（ユーザー）にフォワード
+					request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+				}		
+				else if(cmdSwitch.equals("owner")) {
 					//一覧画面（管理者）にフォワード
 					request.getRequestDispatcher("/view/listUniOwner.jsp").forward(request, response);
-				}else {
-					//一覧画面にフォワード
-					request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
 				}
 			}else {
 				//エラー画面にフォワード
