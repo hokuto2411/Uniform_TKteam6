@@ -30,8 +30,9 @@
 				<%--ユーザー名 --%>
 				<% %>
 				<%--ログインしていない場合 --%>
-				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
-				<% %>
+				<form action="<%=request.getContextPath()%>/login" method="post">
+					<input type="submit" value="ログイン">
+				</form>
 				<%--ログインしている場合 --%>
 				<a href="<%=request.getContextPath()%>/logout">ログアウト</a><br>
 				<br>

@@ -18,15 +18,22 @@
 				padding-left:10%;
 				text-align:center;">
 				
+<<<<<<< Upstream, based on branch 'master' of https://github.com/hokuto2411/Uniform_TKteam6
 			<h2 style="text-align:center">商品詳細画面</h2>
 			<form action="<%=request.getContextPath()%>/InssertCart" method="get">
 			
 				<table style="margin: 0 auto; width: 1000px; table-layout: fixed ">
+=======
+>>>>>>> f3cd58d 6
 				<%
 				MyFormat objFormat = new MyFormat();
 				
 				Uniform uni = (Uniform)request.getAttribute("uniInfo");
 				%>
+			<h2 style="text-align:center">商品詳細画面</h2>
+			<form action="<%=request.getContextPath()%>/insertCart" method="get">
+				<table style="margin: 0 auto; width: 500px; table-layout: fixed ">
+				
 					<tr>
 						<td style="text-align: center"rowspan="4">
 							<h1>
@@ -53,7 +60,9 @@
 				<div style="text-align:center;">
 					<table style="margin: 0 auto;">
 						<tr>
-							<td><input type="submit" value="カートに入れる"></td>
+							<td>
+							<input type="hidden" name="unino" value="<%=uni.getUnino()%>">
+							<input type="submit" value="カートに入れる"></td>
 						</tr>
 					</table>
 				</div>

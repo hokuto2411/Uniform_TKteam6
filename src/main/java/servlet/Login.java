@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("message", "入力データが間違っています。");
 
 				//login.jspにフォワード
-				request.getRequestDispatcher("/view/Login.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 			}
 		} catch (IllegalStateException e) {
 
