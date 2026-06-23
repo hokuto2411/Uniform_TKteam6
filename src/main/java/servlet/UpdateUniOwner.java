@@ -1,7 +1,12 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -16,99 +21,131 @@ import dao.UniformDAO;
 
 @WebServlet("/updateUni")
 @MultipartConfig
-public class UpdateUniOwner extends HttpServlet{
+public class UpdateUni extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-		
+
+		//エンコーディングしたときの言語の設定をUTF-8にする
+		request.setCharacterEncoding("UTF-8");
+
 		//エラー処理用の変数の宣言と初期化
 		String error = "";
-		
+		String cmd = "";
+
 		try {
-			
-			//エンコーディングしたときの言語の設定をUTF-8にする
-			request.setCharacterEncoding("UTF-8");
-			
 			//変数を置くためのコンストラクタと
 			//メソッドを置くためのオブジェクトを生成する
 			Uniform uni = new Uniform();
 			UniformDAO uniDao = new UniformDAO();
-			
+
 			//各値を受け取る
+			int unino = Integer.parseInt(request.getParameter("unino"));
 			String uniname = request.getParameter("uniname");
-			String image = request.getParameter("pict");
-			String unino = request.getParameter("unino");
-			
-			//name属性がpictのファイルをPartオブジェクトとして取得
-			Part part=request.getPart("pict");
-			
-			//ファイル名を取得
-			//String filename=part.getSubmittedFileName();//ie対応が不要な場合
-			String filename=Paths.get(part.getSubmittedFileName()).getFileName().toString();
-			//アップロードするフォルダ
-			String path=getServletContext().getRealPath("/upload");
-			//実際にファイルが保存されるパス確認
-			System.out.println(path);
-			
-		//エラー処理
-				
-			//商品名が未入力
-			if(uniname.equals("")){
-				error = "商品名が未入力の為、商品登録は行えませんでした。";
-				
-			//価格が未入力
-			}else if(request.getParameter("price") == "") {
-				error = "価格が未入力の為、商品登録は行えませんでした。";
-				
-			//在庫数が未入力
-			}else if(request.getParameter("stock") == ""){
-				error = "在庫数が未入力の為、商品登録は行えませんでした。";
-			
-			//商品画像が未挿入
-			}else if(filename.equals("")) {
-				error  = "商品画像が未挿入のため、商品登録は行えませんでした。";
-				
-			//エラーがない場合
-			}else {
-				
+			String priceAsString = request.getParameter("price");
+			String stockAsString = request.getParameter("stock");
+
+			//写真用の情報を受け取る
+			Part filePart = request.getPart("image");
+			String uploadDir = "";
+			String filePath = "";
+
+			//ファイルサイズを元にファイルの有無を確認
+			if (filePart.getSize() != 0) {
+				String contentDisposition = filePart.getHeader("content-disposition");
+				String fileName = "";
+				Pattern pattern = Pattern.compile("filename=\"(.*)\"");
+				Matcher matcher = pattern.matcher(contentDisposition);
+				//抽出したファイル名が存在していれば抽出、なければ空白
+				if (matcher.find()) {
+					fileName = matcher.group(1);					
+				}else {
+					fileName = "";
+				}
+
+				File file_name = new File(fileName);
+
+				// ファイル保存先のディレクトリ
+				uploadDir = getServletContext().getRealPath("/file").replace("\\", "/");
+				//アップロード先のフォルダがなければ作成
+				File uploadDirectory = new File(uploadDir);
+				if (!uploadDirectory.exists()) {
+					uploadDirectory.mkdirs();
+				}
+
+				// ファイルを指定されたディレクトリに保存
+				// （具体的には以下の階層に保存される）
+				// C:\ usr\kis_java_pkg_2023\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps 
+				filePath = uploadDir + "/" + file_name.getName();
+				try (InputStream inputStream = filePart.getInputStream()) {
+					Files.copy(inputStream, new File(filePath).toPath(),StandardCopyOption.REPLACE_EXISTING);
+				}
+
+				//エラー処理
+				//タイトルが未入力かどうか判断するエラー処理
+				if(uniname == null || uniname.trim().equals("")) {
+					error = "商品名が未入力の為、変更処理は行えませんでした。";
+					cmd = "uninameNull";
+					return;			
+					//タイトルが入力されていた時
+				}else {
+					uniname = uniname.trim();
+				}
+
+				//価格が未入力かどうか判断するエラー処理
+				if(priceAsString == null || priceAsString.trim().equals("")) {
+					error = "価格が未入力の為、変更処理は行えませんでした。";
+					cmd = "priceNull";
+					return;			
+					//価格が入力されていた時
+				}else {
+					priceAsString = priceAsString.trim();
+				}
+
+				//在庫が未入力かどうか判断するエラー処理
+				if(stockAsString == null || stockAsString.trim().equals("")) {
+					error = "価格が未入力の為、変更処理は行えませんでした。";
+					cmd = "priceNull";
+					return;			
+					//価格が入力されていた時
+				}else {
+					stockAsString = stockAsString.trim();
+				}
+
+				//エラーがない場合
+				int price = Integer.parseInt(priceAsString);
+				int stock = Integer.parseInt(stockAsString);
+
 				//各変数に値を代入
-				uni.setUnino(Integer.parseInt(request.getParameter("unino")));
+				uni.setUnino(unino);
 				uni.setUniname(uniname);
-				uni.setPrice(Integer.parseInt(request.getParameter("price")));
-				uni.setStock(Integer.parseInt(request.getParameter("stock")));
-				uni.setImage(filename);
-				
-				//insertを使って、DBに登録する
-				uniDao.update(uni);
+				uni.setPrice(price);
+				uni.setStock(stock);
+				uni.setImage(file_name.getName());
+
+			}else {
+				error = "ファイルがありません";
+				cmd= "fileNull";
+				return;
 			}
-			
+
+			//insertを使ってDBに登録する
+			uniDao.update(uni);
+
 		}catch(IllegalStateException e) {
-			
 			error = "DB接続エラーの為、商品登録は行えませんでした。";
-			
-		//int型のところに文字列等をいれた場合
+			cmd = "dbError";
 		}catch(NumberFormatException e){
-			
 			error = "値が不正の為、商品登録は行えませんでした。";
-			
-		}catch(Exception e){
-			
-			error = "予期せぬエラーが発生しました。<br>" + e;
-			
+			cmd = "dataFail";
 		}finally {
-			
-			//errorをリクエストスコープに設定する
+			if(error == null || error.trim().equals("")) {
+				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
+			}else {
 			request.setAttribute("error", error);
-			
-			if(error.equals("")) {
-				
-				//エラーがない場合、listUniOwner.jspにフォワードする
-				request.getRequestDispatcher("/listUni").forward(request, response);
-				
-}else {
-				
-				//エラーがある場合、error.jspにフォワードする
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-			}
-		}
+			request.setAttribute("cmd", cmd);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}			
+		}		
 	}
+	
 }
