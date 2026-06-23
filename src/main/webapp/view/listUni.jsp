@@ -30,7 +30,7 @@
 				<%--ユーザー名 --%>
 				<% %>
 				<%--ログインしていない場合 --%>
-				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
+				<a href="<%=request.getContextPath()%>/view/Login.jsp">ログイン</a><br>
 				<%--ログインのリンク --%>
 				<% %>
 				<%--ログインしている場合 --%>
