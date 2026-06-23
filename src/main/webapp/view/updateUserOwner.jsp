@@ -28,7 +28,7 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 <br>
 <br>
 	
-	<%@include file="/common/sidebar_User.jsp"%>
+	<%@include file="/common/sidebar_Owner.jsp"%>
 
 	<div style="text-align:center;">
 
