@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import bean.User; 
 public class UserDAO {
@@ -73,21 +74,22 @@ public class UserDAO {
 			return user;
 		}
 		
-		public void insertUser(String userid,String password,String username,String address,String mailaddress,int authority) {
+		public void insertUser(User user) {
+			
 			Connection con = null;
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql="insert into user values ('"+"null"+",'"
-			+userid+"','"
-			+password+"','"
-			+username+"','"
-			+address+"','"
-			+mailaddress+"','"
-			+authority+"',1',(now()))";
+				String sql="insert into user values ("+"null"+",'"
+			+user.getUserid()+"','"
+			+user.getPassword()+"','"
+			+user.getUsername()+"','"
+			+user.getAddress()+"','"
+			+user.getMailaddress()+"','"
+			+user.getAuthority()+"',0,(now()));";
 				
 				
-				con = getConnection();
+				con=getConnection();
 				smt = con.createStatement();
 				
 				smt.executeUpdate(sql);
@@ -115,12 +117,7 @@ public class UserDAO {
 			Statement smt = null;
 			try {
 				
-				/*String sql = "UPDATE user SET userid='"
-						+ user.getUserid() + "',password="
-						+ user.getPassword() + "'username,="+ user.getUsername()+"'address,="+ user.getAddress()+
-						"'mailaddress,="+ user.getMailaddress()+"'authority,="+ user.getAuthority()+"userfrag=1,userupdatetime=now()"+
-						" WHERE userno='"
-						+ user.getUserno() + "'";*/
+				
 				
 				String sql = "UPDATE user SET " +
 			             "userid = '" + user.getUserid() + "', " +
@@ -129,7 +126,7 @@ public class UserDAO {
 			             "address = '" + user.getAddress() + "', " +
 			             "mailaddress = '" + user.getMailaddress() + "', " +
 			             "authority = " + user.getAuthority() + ", " +
-			             "userfrag = 1, " +
+			             "userfrag = 0, " +
 			             "userupdatetime = now() " +
 			             "WHERE userno = " + user.getUserno() + ";";
 				
@@ -163,6 +160,11 @@ public class UserDAO {
 			try {//ここに記述
 				String sql="update user set userfrag = 1 where userno"+user.getUserno()+";";
 				
+				con = getConnection();
+				smt = con.createStatement();
+				
+				smt.executeUpdate(sql);
+				
 			}catch (Exception e) {
 				throw new IllegalStateException(e);
 			} finally {
@@ -179,5 +181,48 @@ public class UserDAO {
 					}
 				}
 			}
+		}
+		public ArrayList<User> selectAll(){
+			Connection con = null;
+			Statement smt = null;
+			ArrayList<User> user=new ArrayList<User>();
+			try {//ここに記述
+				String sql="select*from user";
+				
+				con = getConnection();
+				smt = con.createStatement();
+				
+				//SQL文発行
+				ResultSet rs = smt.executeQuery(sql);
+				
+				while(rs.next()) {
+					User objuser =new User();
+					objuser.setUserid(rs.getString("userid"));
+					objuser.setPassword(rs.getString("password"));
+					objuser.setUsername(rs.getString("username"));
+					objuser.setAddress(rs.getNString("address"));
+					user.add(objuser);
+				}
+				
+				
+			}catch (Exception e) {
+				throw new IllegalStateException(e);
+			} finally {
+				if (smt != null) {
+					try {
+						smt.close();
+					} catch (SQLException ignore) {
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (SQLException ignore) {
+					}
+				}
+			}return user;
+			
+			
+			
 		}
 }
