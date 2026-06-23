@@ -10,11 +10,16 @@
 </head>
 
 <body>
+	<!-- ヘッダー -->
   	<%@include file="/common/header_User.jsp"%>
-  
+  	
+  	<!-- コンテナ -->
   	<div class="container">
+  	
+  	<!-- サイドバー -->
 	<%@include file="/common/sidebar_User.jsp"%>	
-  
+	
+	<!-- メイン -->
 	<main>
 		<div style="position: sticky; 
 			top: 150px; 
@@ -30,9 +35,9 @@
 				<%--ユーザー名 --%>
 				<% %>
 				<%--ログインしていない場合 --%>
-				<form action="<%=request.getContextPath()%>/login" method="post">
-					<input type="submit" value="ログイン">
-				</form>
+				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
+				<%--ログインのリンク --%>
+				<% %>
 				<%--ログインしている場合 --%>
 				<a href="">ログアウト</a><br>
 				<%--ログアウト --%>
@@ -61,7 +66,7 @@
 				<!-- 商品画像 -->
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
-					 style="height:150px;width:100%;border:1px brack;">
+					 style="height:150px;border:1px brack;">
 				</div>
 			
 			<%
