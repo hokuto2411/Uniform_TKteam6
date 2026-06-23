@@ -29,7 +29,6 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 
 			<h3 style="text-align: center">下記のユニフォームをカートに追加しました。</h3>
 
-			<form action="" method="get">
 				<table style="margin: auto">
 					<%
 					if (order != null) {
@@ -58,7 +57,7 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 					%>
 				</table> <br>
 				<div style="text-align: center;">
-					<form action="<%=request.getContextPath()%>/buyConfirm"
+					<form action="<%=request.getContextPath()%>/showCart"
 						method="get">
 						<table style="margin: 0 auto;">
 							<tr>

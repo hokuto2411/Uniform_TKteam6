@@ -6,9 +6,10 @@
 <%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,dao.UniformDAO"%>
 <%
+UniformDAO UniformDaoObj = new UniformDAO();
 MyFormat fmt = new MyFormat();
 ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
-ArrayList<Uniform> uni_list = (ArrayList<Uniform>) session.getAttribute("uni_list");
+ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 %>
 <!DOCTYPE html>
 <html>

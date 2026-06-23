@@ -32,7 +32,7 @@ public class OrderDetailDAO {
 		int count = 0;
 
 		try {
-			String sql = "INSERT INTO orderdetailinfo VALUES('"
+			String sql = "INSERT INTO orderdetail VALUES('"
 					+ orderDetail.getOrderno() + "','"
 					+ orderDetail.getUnino() + "','"
 					+ orderDetail.getQuantity() + "')";
@@ -68,7 +68,7 @@ public class OrderDetailDAO {
 		ArrayList<OrderDetail> detail_list = new ArrayList<OrderDetail>();
 		try {
 			
-			String sql = "SELECT * FROM orderdetailinfo WHERE orderno ='"+orderno+"'";
+			String sql = "SELECT * FROM orderdetail WHERE orderno ='"+orderno+"'";
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -110,7 +110,7 @@ public class OrderDetailDAO {
 		try {
 			con = getConnection();
 			smt = con.createStatement();
-			String sql = "SELECT * FROM orderdetailinfo";
+			String sql = "SELECT * FROM orderdetail";
 			ResultSet rs = smt.executeQuery(sql);
 
 			while (rs.next()) {

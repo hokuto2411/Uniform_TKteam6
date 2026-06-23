@@ -33,7 +33,7 @@ String message = (String) request.getAttribute("error");
 	<p style="text-align: center"><%=message%></p>
 	<br>
 	<p style="text-align: center">
-		<a href="<%=request.getContextPath()%>/view/Login.jsp">ログインに戻る</a>
+		<a href="<%=request.getContextPath()%>/view/login.jsp">ログインに戻る</a>
 	</p>
 
 

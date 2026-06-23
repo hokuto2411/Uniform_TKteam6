@@ -19,7 +19,7 @@
 				text-align:center;">
 	
 			<h2 style="text-align:center">商品詳細画面</h2>
-			<form action="<%=request.getContextPath()%>/insertCart" method="get">
+			
 			
 				<table style="margin: 0 auto; width: 1000px; table-layout: fixed ">
 				<%
@@ -49,11 +49,13 @@
 
 			<br>
 			<br>
-
+			<form action="<%=request.getContextPath()%>/insertCart" method="get">
 				<div style="text-align:center;">
 					<table style="margin: 0 auto;">
 						<tr>
-							<td><input type="submit" value="カートに入れる"></td>
+							<td>
+							<input type="hidden" name="unino" value="<%=uni.getUnino() %>">
+							<input type="submit" value="カートに入れる"></td>
 						</tr>
 					</table>
 				</div>
