@@ -72,17 +72,20 @@
 			<tr style="height: 150px;">
 				<td>
 					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+					width="60%" height="60%">
 					</p>
 				</td>
 				<td>
 					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+					width="60%" height="60%">
 					</p>
 				</td>
 				<td>
 					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+					width="60%" height="60%">
 					</p>
 				</td>
 			</tr>
