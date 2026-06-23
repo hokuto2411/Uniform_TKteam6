@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 			response.addCookie(PasswdCookie);
 
 			//menu.jspにフォワード
-			request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
 
 		} else {
 
