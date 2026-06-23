@@ -27,6 +27,8 @@ main h1{
 main table{
 	margin:auto;
 	width:50%;
+	height:70%;
+	padding-top: 20px;
 	table-layout: fixed;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
