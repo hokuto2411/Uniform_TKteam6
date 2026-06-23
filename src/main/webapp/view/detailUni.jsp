@@ -1,67 +1,71 @@
 <!--ユーザー：商品詳細 detailUni-->
 <!DOCTYPE html>
 <html>
+
 <head>
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Uniform,util.MyFormat"%>
-<title>商品詳細（ユーザー）</title>
-<link rel="stylesheet"  href="<%=request.getContextPath() %>/css/User.css">
+
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.ArrayList,bean.Uniform,
+				util.MyFormat"%>
+
+<title>商品詳細</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/User.css">
 </head>
 
+<%
+	MyFormat objFormat = new MyFormat();
+				
+	Uniform uni = (Uniform)request.getAttribute("uniInfo");
+%>
+
 <body>
+	<!-- ヘッダー -->
 	<%@ include file="/common/header_User.jsp"%>
 	
+	<!-- コンテナ -->
 	<div class="container">
+	
+	<!-- サイドバー -->
 	<%@include file="/common/sidebar_User.jsp"%>
 	
-	<main style="margin-top: 100px;
-				padding-left:10%;
-				text-align:center;">
-	
-			<h2 style="text-align:center">商品詳細画面</h2>
-			
-			
-				<table style="margin: 0 auto; width: 1000px; table-layout: fixed ">
-				<%
-				MyFormat objFormat = new MyFormat();
-				
-				Uniform uni = (Uniform)request.getAttribute("uniInfo");
-				%>
-					<tr>
-						<td style="text-align: center"rowspan="4">
-							<h1>
-							<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
-							width="60%" height="60%">
-							</h1>
-						</td>
-						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">商品名</th>
-						<td style="text-align: center; vertical-align: middle;"><%=uni.getUniname()%></td>
-					</tr>
-					<tr>
-						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
-						<td style="text-align: center; vertical-align: middle;"><%=objFormat.moneyFormat(uni.getPrice())%></td>
-					</tr>
-					<tr>
-						<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">在庫状況</th>
-						<td style="text-align: center; vertical-align: middle;"><%=uni.getStock()%></td>
-					</tr>
-				</table>
+	<!-- メイン -->
+	<main>
+		<!-- サブタイトル -->
+		<h1>
+			商品詳細画面
+		</h1>
+		
+		<form action="" method="get">
+		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
+			<tr>
+				<td rowspan="4">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+								width="100%" height="100%">
+				</td>
+				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">商品名</th>
+				<td style="text-align: center; vertical-align: middle;"><%=uni.getUniname()%></td>
+			</tr>
+			<tr>
+				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
+				<td style="text-align: center; vertical-align: middle;"><%=objFormat.moneyFormat(uni.getPrice())%></td>
+			</tr>
+			<tr>
+				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">在庫状況</th>
+				<td style="text-align: center; vertical-align: middle;"><%=uni.getStock()%></td>
+			</tr>
+		</table>
+		
+		</form>
 
-			<br>
-			<br>
-			<form action="<%=request.getContextPath()%>/insertCart" method="get">
-				<div style="text-align:center;">
-					<table style="margin: 0 auto;">
-						<tr>
-							<td>
-							<input type="hidden" name="unino" value="<%=uni.getUnino() %>">
-							<input type="submit" value="カートに入れる"></td>
-						</tr>
-					</table>
-				</div>
-			</form>
+		<div style="margin-top:20px">	
+			<div style="float:left; margin-left:50%">
+				<form action="<%=request.getContextPath()%>" method="get">
+				<input type="hidden" name="unino" value=<%=uni.getUnino()%>> 
+				<input type="submit" name="change" value="カートに入れる">
+				</form>
+			</div>
+		</div>
+		
 		</main>
 	</div>
-	<%@include file="/common/footer.jsp"%>
 </body>
-</html>
