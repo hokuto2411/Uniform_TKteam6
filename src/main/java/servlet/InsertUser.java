@@ -39,7 +39,7 @@ public class InsertUser extends HttpServlet {
 			
 			UserDAO userdao=new UserDAO();
 			
-			//書籍管理のdaoに飛ぶ
+			
 			userdao.insertUser(user);
 			
 			
@@ -58,7 +58,7 @@ public class InsertUser extends HttpServlet {
 				System.out.println(error);
 				request.setAttribute("cmd", cmd);
 				request.setAttribute("error",error );
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/insertUser.jsp").forward(request, response);
 			}
 			
 		}
