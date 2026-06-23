@@ -25,21 +25,18 @@
 	<main>
 	
 		<div style="padding-top:20px">
-		<form action="<%=request.getContextPath()%>/insertUni" method="post" name="pict" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath()%>/insertUni" method="post" enctype="multipart/form-data">
 			<div style="float:left;
 						padding-top: 20px;
 						padding: 15%;
 						margin-bottom: 15%;
 						border: 1px solid #333333;
-						border-radius: 10px;
-						">
-						<input type="file" name="pict">
-			
+						border-radius: 10px">
+						
+			<input type="file" name="image">
 			</div>
 			
-			<h2 style="text-align:center;">
-			商品登録画面</h2>
-			
+			<h2 style="text-align:center;">商品登録画面</h2>
 			<table style="margin:auto;
 							width:50%;
 							height:70%;
@@ -48,27 +45,24 @@
 							border-collapse: collapse;
 							border: 1px solid #ccc;">
 							
-				
 				<tr>
 					<th>商品名</th>
-						<td><input type="text" name="uniname" value="test"></td>
+						<td><input type="text" name="uniname"></td>
 				</tr>
 				
 				<tr>
 					<th>値段</th>
-						<td><input type="text" name="price" value=123></td>
+						<td><input type="text" name="price"></td>
 				</tr>
 				
 				<tr>
 					<th>在庫</th>
-						<td><input type="text" name="stock" value=123></td>
+						<td><input type="text" name="stock"></td>
 				</tr>
 				
 			</table>
-			
-			<input type="submit" name="insert" value="登録"
-					style = "margin:20px; text-align:left;">
-		</form>
+			<input type="submit" value="登録" style = "margin:20px; text-align:left;">
+			</form>
 		</div>
 	</main>
 </div>
