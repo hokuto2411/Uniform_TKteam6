@@ -17,14 +17,9 @@
 	<main style="margin-top: 100px;
 				padding-left:10%;
 				text-align:center;">
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hokuto2411/Uniform_TKteam6
-				
+	
 			<h2 style="text-align:center">商品詳細画面</h2>
-			<form action="<%=request.getContextPath()%>/InssertCart" method="get">
-=======
-					<h2 style="text-align:center">商品詳細画面</h2>
 			<form action="<%=request.getContextPath()%>/insertCart" method="get">
->>>>>>> ee3965e r
 			
 				<table style="margin: 0 auto; width: 1000px; table-layout: fixed ">
 				<%
