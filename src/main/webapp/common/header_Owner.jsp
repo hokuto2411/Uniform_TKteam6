@@ -17,18 +17,6 @@
 			</tr>
 		</table>
 	</div>
-	<img src="../file/logo.png" style="width:20%; margin:5px auto" alt="ゆにふぉ～むのホーム">
+	<img src="<%=request.getContextPath() %>/file/logo.png" style="width:20%; margin:5px auto" alt="ゆにふぉ～むのホーム">
 	<hr style="height: 5px; background-color: white;">
 </header>
-
-<!--あとでけすメモ
-	header {
-	  position: fixed; /* 画面に固定 */
-	  top: 0;          /* 画面の最上部に配置 */
-	  left: 0;         /* 画面の左端に配置 */
-	  width: 100%;     /* 横幅を画面いっぱいに広げる */
-	  z-index: 1000;   /* 他の要素より手前に表示させる */
-	  background-color:#00bfff;
-	}
-	
--->
