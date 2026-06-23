@@ -36,6 +36,7 @@ public class ListOrderOwner extends HttpServlet {
 			
 		} catch(IllegalStateException e) {
 			System.out.println(e);
+			e.printStackTrace(); 
 			error = "DB接続エラー";
 			request.setAttribute("error",error);
 			request.setAttribute("cmd","logout");

@@ -162,10 +162,14 @@ public class OrderDAO {
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
 			
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(rs.getDate("orderdate"));
-			month = calendar.get(Calendar.MONTH) + 1;
-			
+			if (rs.next()) {
+	            Calendar calendar = Calendar.getInstance();
+	            calendar.setTime(rs.getDate("orderdate"));
+	            month = calendar.get(Calendar.MONTH) + 1; // 0〜11で返るため+1で正しい
+	        } else {
+	            // データが1件もなかった場合のデフォルト値（例: 0 や現在の月など）
+	            month = 0; 
+	        }
 			
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -201,7 +205,10 @@ public class OrderDAO {
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
 			
-			sum = rs.getInt("total_price");
+			if(rs.next()) {
+				sum = rs.getInt("total_price");
+			}
+			
 			
 			
 		} catch (Exception e) {

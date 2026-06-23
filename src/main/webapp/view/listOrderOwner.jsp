@@ -20,17 +20,20 @@ OrderDAO orderDaoObj = new OrderDAO();
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/Owner.css" />
 <title>listOrder</title>
 </head>
 <body>
 	<%@include file="/common/header_Owner.jsp"%>
+	<div class="container">
 	<%@include file="/common/sidebar_Owner.jsp"%>
 
 	<h1>注文履歴一覧画面(オーナー)</h1>
 	<hr class="black">
-
-
+	
+	<%
+	if (list != null || list.size() != 0) {
+	%>
 	<div>
 		<p><%=lastmonth%>月の売り上げ（発送完了分）
 			<%=fmt.moneyFormat(orderDaoObj.sumPriceByMonth(lastmonth))%></p>
@@ -40,8 +43,6 @@ OrderDAO orderDaoObj = new OrderDAO();
 
 
 	<%
-	
-	if (list != null) {
 		for (int i = 0; i < list.size(); i++) {
 			Order order = (Order) list.get(i);
 			String depoSta = "";
@@ -77,22 +78,11 @@ OrderDAO orderDaoObj = new OrderDAO();
 	</table>
 	<%
 	}
-	} else {
+	}else{
 	%>
-	<tr>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 200px">&nbsp;</td>
-		<td style="text-align: center; width: 250px" colspan="2">&nbsp;</td>
-		<td style="text-align: center; width: 250px" colspan="2">&nbsp;</td>
-	</tr>
-	<%
-	}
-	%>
-
+	<h1>まだ何も注文していません。</h1>
+	<%}%>
+	</div>
 	<%@include file="../common/footer.jsp"%>
 </body>
 </html>
