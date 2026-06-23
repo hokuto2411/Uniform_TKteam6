@@ -7,7 +7,7 @@
 <aside>
 	<div class="side-item">
 		<br>
-		<a href="">メニュー</a><br>
+		<a href="<%=request.getContextPath()%>/view/menuOwner.jsp">メニュー</a><br>
 		<a href="">商品一覧</a><br>
 		<a href="">注文一覧</a><br>
 		<a href="">売上確認</a><br>
