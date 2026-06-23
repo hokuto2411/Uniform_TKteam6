@@ -1,144 +1,125 @@
-<!--管理者：注文詳細 detailOrderedItemOwner-->
+<!-- 管理者　注文詳細　23 -->
 
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="bean.Order,bean.User" %>
+
+<%@page contentType="text/html; charset=UTF-8"%>
+
+<%@page import="bean.Order"%>
+<%@page import="bean.OrderDetail"%>
+<%@page import="bean.Uniform"%>
+<%@page import="bean.User"%>
 
 <%
-Order order = (Order)request.getAttribute("order");
-User user = (User)request.getAttribute("user");
+Order order = (Order) request.getAttribute("order");
 
-int orderno = 0;
-int send = 0;
+OrderDetail orderDetail = (OrderDetail) request.getAttribute("orderDetail");
 
-String userid = "";
-String username = "";
-String address = "";
-String mailaddress = "";
+Uniform uniform = (Uniform) request.getAttribute("uniform");
 
-if(order != null){
-
-    orderno = order.getOrderno();
-    send = order.getSend();
-
-}
-
-if(user != null){
-
-    userid = user.getUserid();
-    username = user.getUsername();
-    address = user.getAddress();
-    mailaddress = user.getMailaddress();
-
-}
+User user = (User) request.getAttribute("user");
 %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
+
 <meta charset="UTF-8">
+
 <title>注文詳細画面</title>
-<link rel="stylesheet" href="NewFile.css">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/Owner.css">
+
 </head>
 
 <body>
-<header>
-    <h1 style="text-align:center">
-        注文詳細画面
-    </h1>
 
-    <hr style="height:5px; background-color:#00FFFF;">
-</header>
+	<%@ include file="/common/header_Owner.jsp"%>
 
-<div class="wrapper">
+	<div class="container">
 
-<main>
+		<%@include file="/common/sidebar_Owner.jsp"%>
 
-<table class="detail-table">
+		<main>
 
-    <tr>
-        <th>注文番号 :</th>
-        <td><%= orderno %></td>
-    </tr>
+			<h2 style="text-align: center">注文詳細画</h2>
 
-    <tr>
-        <th>発送状況 :</th>
+			<table style="margin: auto; width: 60%;">
 
-        <td>
+				<tr>
+					<th>注文番号 : </th>
+					<td><%=order.getOrderno()%></td>
+				</tr>
 
-        <%
-        if(send == 0){
-        %>
+				<tr>
+					<th>注文日 : </th>
+					<td><%=order.getOrderdate()%></td>
+				</tr>
 
-            未発送
+				<tr>
+					<th>発送状況 : </th>
+					<td><%=order.getSend()%></td>
+				</tr>
 
-        <%
-        }else{
-        %>
+				<tr>
+					<th>備考 : </th>
+					<td><%=order.getOrdercomment()%></td>
+				</tr>
 
-            発送済
+				<tr>
+					<th>ユニフォーム名 : </th>
+					<td><%=uniform.getUniname()%></td>
+				</tr>
 
-        <%
-        }
-        %>
+				<tr>
+					<th>価格 : </th>
+					<td>¥<%=uniform.getPrice()%></td>
+				</tr>
 
-        </td>
+				<tr>
+					<th>数量 : </th>
+					<td><%=orderDetail.getQuantity()%></td>
+				</tr>
 
-    </tr>
+				<tr>
+					<th>ユーザーID : </th>
+					<td><%=user.getUserid()%></td>
+				</tr>
 
-    <tr>
-        <th colspan="2">注文者情報</th>
-    </tr>
+				<tr>
+					<th>氏名 : </th>
+					<td><%=user.getUsername()%></td>
+				</tr>
 
-    <tr>
-        <th>ユーザーID :</th>
-        <td><%= userid %></td>
-    </tr>
+				<tr>
+					<th>住所 :  </th>
+					<td><%=user.getAddress()%></td>
+				</tr>
 
-    <tr>
-        <th>名前 :</th>
-        <td><%= username %></td>
-    </tr>
+				<tr>
+					<th>メールアドレス : </th>
+					<td><%=user.getMailaddress()%></td>
+				</tr>
 
-    <tr>
-        <th>住所 :</th>
-        <td><%= address %></td>
-    </tr>
+			</table>
 
-    <tr>
-        <th>メールアドレス :</th>
-        <td><%= mailaddress %></td>
-    </tr>
+			<br>
 
-</table>
+			<div style="text-align: center">
 
-<br>
+				[<a href="<%=request.getContextPath()%>/showOrderedItemOwner">
 
-<form action="<%= request.getContextPath() %>/updateOrderStatus"
-      method="post">
+					注文一覧へ戻る </a>]
 
-    <input type="hidden"
-           name="orderno"
-           value="<%= orderno %>">
+			</div>
 
-    <select name="send">
+		</main>
 
-        <option value="0">未発送</option>
-        <option value="1">発送済</option>
+	</div>
 
-    </select>
+</body>
 
-    <input type="submit" value="変更">
-
-</form>
-
-<br><br>
-
-<div style="text-align:center">
-
-    [<a href="<%= request.getContextPath() %>/showOrderedItemOwner">注文一覧
-    </a>]
-
+</html>
 </div>
 
 </main>
