@@ -29,7 +29,7 @@ public class SendMail {
 						protected PasswordAuthentication getPasswordAuthentication() {
 							//メールサーバにログインするメールアドレスとパスワードを設定
 							return new PasswordAuthentication("test.sender@kanda-it-school-system.com",
-									"kandaSender-2025");
+									"kandaSender-2026");
 						}
 					});
 
