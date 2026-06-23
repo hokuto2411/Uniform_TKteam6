@@ -17,6 +17,7 @@
 	<br>
 	<br>
 	<br>
+<h2 style="text-align: center">管理者メインメニュー</h2>
 
 	<div style="margin-bottom: 350px">
 		<table style="margin: auto; border: 0;">
