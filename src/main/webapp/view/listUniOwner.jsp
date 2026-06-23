@@ -23,9 +23,9 @@
 
 	<main>
 		<!-- サブタイトル -->
-		<h2 style="text-align:left; width:20%">
+		<h1>
 				商品一覧画面
-		</h2>		
+		</h1>		
 		<div style="position:sticky;
 					top:150px;
 					width:150px;
