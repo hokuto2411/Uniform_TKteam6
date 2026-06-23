@@ -36,7 +36,6 @@
 		<br>
 		
 		<div style="text-align: center;">
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hokuto2411/Uniform_TKteam6
 		<input type="submit"  value="ログイン">
 		</div>
 		
@@ -50,18 +49,3 @@
 
 </body>
 </html>
-=======
-		<input type="submit" name="login" value="ログイン">
-		</div>
-		
-		<br>
-		<br>
-		
-		<div style="text-align: center;">
-			<a href="<%=request.getContextPath()%>/view/insertUser.jsp">会員登録はこちら</a>
-		</div>
-	</form>
-
-</body>
-</html>
->>>>>>> a0b4050 sa
