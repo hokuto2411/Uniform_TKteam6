@@ -30,11 +30,11 @@
 				<%--ユーザー名 --%>
 				<% %>
 				<%--ログインしていない場合 --%>
-				<a href="<%=request.getContextPath()%>/view/login.jsp">ログイン</a><br>
+				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
 				<%--ログインのリンク --%>
 				<% %>
 				<%--ログインしている場合 --%>
-				<a href="<%=request.getContextPath()%>/logout">ログアウト</a><br>
+				<a href="">ログアウト</a><br>
 				<%--ログアウト --%>
 				<br>
 		</div>
@@ -72,15 +72,18 @@
 			<tr style="height: 150px;">
 				<td>
 					<p>
-					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
-					width="60%" height="60%">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
 					</p>
 				</td>
 				<td>
-					<p>写真</p>
+					<p>
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					</p>
 				</td>
 				<td>
-					<p>写真</p>
+					<p>
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					</p>
 				</td>
 			</tr>
 			
@@ -94,3 +97,4 @@
 	</main>
 </div>
 </body>
+</html>
