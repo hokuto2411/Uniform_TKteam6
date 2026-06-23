@@ -1,3 +1,5 @@
+<!--管理者：注文詳細 detailOrderedItemOwner-->
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="bean.Order,bean.User" %>
 
