@@ -15,7 +15,7 @@ import dao.UniformDAO;
 
 @WebServlet("/listUni")
 public class ListUni extends HttpServlet {
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException ,IOException{
 
 		//文字エンコード
@@ -62,5 +62,7 @@ public class ListUni extends HttpServlet {
 			}
 		}
 	}
+
+}
 
 }
