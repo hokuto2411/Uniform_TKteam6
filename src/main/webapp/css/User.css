@@ -12,9 +12,15 @@ th{
 }
 
 main {
-  margin-top: 130px; /* ヘッダーの高さに合わせて数値を調整 */
+  margin-top: 50px;
   padding-left:2%;
   text-align:center;
+}
+
+main h1{
+	max-width:80%;
+	text-align:left;
+	border-bottom: 3px dotted #0000ff;
 }
 
 .title{
@@ -24,7 +30,7 @@ main {
 .side-item {
   position: sticky;
   top: 150px;
-  width: 130px;
+  width: 160px;
   padding-left: 20px; 
   background-color:#ffff00;
   float:left;
@@ -32,7 +38,7 @@ main {
 
 .container {
   display: flex;
-  padding-top: 60px;
+  padding-top: 10%;
 }
 
 .usertable{
