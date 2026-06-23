@@ -1,3 +1,5 @@
+<!--ユーザー：購入確認 buyConfirm-->
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="bean.Uni,bean.User"%>
