@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 		UserDAO objDao = new UserDAO();
 
 		//データベースのuserinfoより引数のuserデータを取得するメソッド
-		User objUser=null;
+		User objUser = null;
 		try {
 
 			objUser = objDao.selectByUser(userid, password);
@@ -38,8 +38,12 @@ public class Login extends HttpServlet {
 
 		}
 
+		//ユーザーか管理者かを判別する変数
+		int Authority;
+		Authority = objUser.getAuthority();
+
 		//User情報がある場合(useridとpasswordが合っていた場合)
-		if (objUser.getUserid() != null) {
+		if (Authority == 1) {
 
 			//セッションスコープに登録
 			HttpSession session = request.getSession();
@@ -56,15 +60,23 @@ public class Login extends HttpServlet {
 			response.addCookie(PasswdCookie);
 
 			//menu.jspにフォワード
+			request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+
+		} else if (Authority == 2) {
+
+			//セッションスコープに登録
+			HttpSession session = request.getSession();
+			session.setAttribute("user", objUser);
+
+			//MenuOwner.jspにフォワード
 			request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
 
 		} else {
-
 			//リクエストスコープにエラーメッセージ登録
 			request.setAttribute("message", "入力データが間違っています。");
 
 			//login.jspにフォワード
-			request.getRequestDispatcher("/view/Login.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 		}
 
 	}
