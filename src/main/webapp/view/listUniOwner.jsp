@@ -1,8 +1,13 @@
 <!--オーナー：商品一覧 listUniOwner-->
+<!DOCTYPE html>
+<html>
 
+<head>
 <%@page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet"
-		href="<%=request.getContextPath() %>/css/Owner.css">
+<%@page import="java.util.ArrayList,bean.Uniform"%>
+<title>商品一覧（管理者）</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/Owner.css">
+</head>
 
 <body>
 	<%@ include file="/common/header_Owner.jsp"%>
@@ -20,6 +25,7 @@
 					padding-left:10px;
 					border: 1px solid #333333;
 					border-radius: 10px; ">
+					
 			<p>ユーザー名<% %><br>		<%--ユーザー名 --%>
 			<% %>			<%--ログインしていない場合 --%>
 			<a href="">ログイン</a><br>	<%--ログインのリンク --%>
@@ -33,69 +39,61 @@
 		<div style="text-align:right;
 					padding-right:400px;
 					margin-bottom: 20px;">
-			<a href="">新規作成</a> / <a href="">変更</a>
+			<a href="<%=request.getContextPath()%>/view/insertUniOwner.jsp">新規登録</a>
+			<a href="<%=request.getContextPath()%>/view/updateUniOwner.jsp">変更</a>
 		</div>
+		
+		<table 
+			style="text-align:right;
+				width: 80%;
+				table-layout: fixed;
+				border-collapse: separate;
+  				border-spacing: 10px;
+  				border:0px;">
+  						
+  				<%
+				//ユニフォーム情報の取得
+				ArrayList<Uniform> list = (ArrayList<Uniform>) request.getAttribute("uniList");
+			
+				//ユニフォーム情報を獲得した分格納
+				if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					Uniform uni = (Uniform) list.get(i);
+				%>
+			<tr>
+				<td>
+				<a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>&cmdSwitch=owner">
+					<%=uni.getUniname()%></a></td>
+				<td>
+				<a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>&cmdSwitch=owner">
+					<%=uni.getUniname()%></a></td>
+				<td><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>&cmdSwitch=owner">
+					<%=uni.getUniname()%></a></td>
+			</tr>
+			<tr style="height: 150px;">
+				<td>
+					<p>
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">						</p>
+				</td>
+				<td>
+					<p>
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					</p>					<
+				</td>
+				<td>
+					<p>
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>">
+					</p>
+				</td>
+			</tr>
+				<%
+				}
 
-
-
-		<table style="
-						text-align:right;
-						width: 80%;
-						table-layout: fixed;
-						border-collapse: separate;
-  						border-spacing: 10px;
-  						border:0px;">
-
-				<tr>
-					<td>商品A</td>
-					<td>商品B</td>
-					<td>商品C</td>
-				</tr>
-				<tr style="height: 150px;">
-					<td>
-						<p>写真A</p>
-					</td>
-					<td>
-						<p>写真B</p>
-					</td>
-					<td>
-						<p>写真C</p>
-					</td>
-				</tr>
-				<tr>
-					<td>商品D</td>
-					<td>商品E</td>
-					<td>商品F</td>
-				</tr>
-				<tr style="height: 150px;">
-					<td>
-						<p>写真D</p>
-					</td>
-					<td>
-						<p>写真E</p>
-					</td>
-					<td>
-						<p>写真F</p>
-					</td>
-				</tr>
-				<tr>
-					<td>商品G</td>
-					<td>商品H</td>
-					<td></td>
-				</tr>
-				<tr style="height: 150px;">
-					<td>
-						<p>写真</p>
-					</td>
-					<td>
-						<p>写真</p>
-					</td>
-					<td>
-						<p>写真</p>
-					</td>
-				</tr>
-			</table>
+				}
+				%>
+		</table>
 
 		</main>
 	</div>
 </body>
+</html>
