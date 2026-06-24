@@ -2,7 +2,7 @@
 
 <%
 String error = (String) request.getAttribute("error");
-String cmd = (String)requset.getAttribute("cmd");
+String cmd = (String)request.getAttribute("cmd");
 %>
 
 <html>
