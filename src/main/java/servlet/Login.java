@@ -25,7 +25,6 @@ public class Login extends HttpServlet {
 		UserDAO userdao = new UserDAO();
 		try {
 			if(password.equals("") && userid.equals("")) {
-				
 				message="ユーザーとパスワードを入力してください";
 				request.setAttribute("cmd", "login");
 				request.setAttribute("error", message);
@@ -44,6 +43,8 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 				
 			}
+
+			
 			user = userdao.selectByUser(userid, password);
 			
 			if(user.getUserid()==null) {
@@ -72,10 +73,6 @@ public class Login extends HttpServlet {
 				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
 
 			}
-
-		
-
-	}
-	
+	  }
 }
 
