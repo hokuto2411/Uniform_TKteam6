@@ -26,7 +26,7 @@ User user =(User)request.getAttribute("user");
 	<hr style="height:5px; background-color: #00FFFF;">
   </header>
     
-     <div class="container">
+     <div >
        
   <table style="margin:auto; padding-top: 50px; width:500px">
     <tr>
@@ -65,7 +65,7 @@ User user =(User)request.getAttribute("user");
 	</table>
 	    </div> 
 	
-		<div style="margin: auto; text-align: center; padding-top: 200px; height:50px; width:200px">
+		<div style="margin: auto; text-align: center;  height:50px; width:200px">
 		<form action="<%= request.getContextPath()%>/insertUser" method="post">
 		<input type="hidden" name="userid" value="<%=user.getUserid()%>">
 		<input type="hidden" name="password" value="<%=user.getPassword()%>">
