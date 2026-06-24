@@ -1,0 +1,116 @@
+/*管理者css*/
+
+th, td{
+  text-align:left;
+  border: 1px solid #000000;
+}
+
+th{
+  background-color:#00FFFF;
+  background-color: #6ff;
+
+}
+
+main {
+  margin-top: 0px; /* ヘッダーの高さに合わせて数値を調整 */
+  padding-left:2%;
+  text-align:center;
+  width:100%;
+}
+
+main h1{
+	max-width:80%;
+	text-align:left;
+	border-bottom: 3px dotted #ffff00;
+}
+
+main table{
+	margin:auto;
+	width:50%;
+	height:70%;
+	padding-top: 20px;
+	table-layout: fixed;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+}
+
+.title{
+  padding-left:120;
+}
+
+.title2{
+ padding-right:55%;
+}
+
+.side-item {
+  position: sticky;
+  top: 150px;
+  width: 130px;
+  padding-left: 20px; 
+  background-color:#00bfff;
+  float:left;
+}
+
+.container {
+  display: flex;
+  padding-top: 10%;
+  width:100%;
+}
+
+.usertable{
+  width:130%;
+  height:50%;
+  border-spacing:10
+}
+
+.usertable td{
+  border:0px;
+}
+
+.tarea{
+  height:100
+}
+
+.buttom{
+  margin:20;
+  
+}
+
+.ornermenutitle{
+	text-align:center ;
+	padding-top: 10%;
+	padding-bottom: 3%;
+}
+
+.ornermenu{
+  text-align:center;
+}
+
+.orderlist1{
+  width:130%;
+  margin:2%
+}
+
+.orderlist1 td{
+  border:0px;
+}
+
+.orderlist2{
+  margin:auto;
+  width:100%;
+  table-layout: fixed;
+}
+
+.Otd3{
+	width:10%;
+	padding-right: 50%;
+}
+
+.status{
+  text-align:left;
+}
+
+.picture{
+	width: 40%;
+	height:40%;
+}
