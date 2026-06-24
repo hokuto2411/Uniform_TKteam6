@@ -19,36 +19,41 @@
 		<hr style="height: 5px; background-color: #00FFFF;">
 	</header>
 
-	<div class="container">
+
+
+	<div style="text-align: center">
 		<form action="<%=request.getContextPath()%>/inputCheck"method="post">
-			<table style="margin: auto; padding-top: 50px; width: 500px">
+			<table style="margin: auto; padding-top: 50px; width: 500px;">
 				<tr>
-					<th>ユーザーID</th>
-					<td><input type=text size="30" name="userid"></td>
+					<th style="border: none">ユーザーID</th>
+					<td style="border: none"><input type=text size="30" name="userid"></td>
 
 				</tr>
 				<tr>
-					<th>パスワード</th>
-					<td><input type=text size="30" name="password"></td>
+					<th style="border: none">パスワード</th>
+					<td style="border: none"><input type=text size="30" name="password"></td>
 				</tr>
 				<tr>
-					<th>名前</th>
-					<td><input type=text size="30" name="username"></td>
+					<th style="border: none">名前</th>
+					<td style="border: none"><input type=text size="30" name="username"></td>
 				</tr>
 				<tr>
-					<th>住所</th>
-					<td><input type=text size="30" name="address"></td>
+					<th style="border: none">住所</th>
+					<td style="border: none"><input type=text size="30" name="address"></td>
 				</tr>
 				<tr>
-					<th>メールアドレス</th>
-					<td><input type=text size="30" name="mailaddress"></td>
+					<th style="border: none">メールアドレス</th>
+					<td style="border: none"><input type=text size="30" name="mailaddress"></td>
 				</tr>
 				<tr>
-				<th>権限<th>
-				<select name="authority">
+				<th style="border: none">権限</th>
+				<td style="border: none">
+				<select name="authority" >
 				<option value="0">一般ユーザー</option>
 				<option value="1">管理者</option>
+				
 				</select>
+				</td>
 			</table>
 			
 			<div style="text-align: center">
