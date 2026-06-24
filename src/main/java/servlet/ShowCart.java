@@ -69,6 +69,12 @@ public class ShowCart extends HttpServlet {
 			request.setAttribute("error",error);
 			request.setAttribute("cmd","logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error",error);
+			request.setAttribute("cmd","logout");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 		
 	}
