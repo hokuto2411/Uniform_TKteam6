@@ -2,10 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@page import="util.MyFormat"%>
 <%@page import="java.util.ArrayList,bean.Order"%>
+<%@page import="java.util.ArrayList,bean.OrderDetail"%>
+<%@page import="java.util.ArrayList,bean.Uniform"%>
+<%@page import="java.util.ArrayList,dao.OrderDetailDAO"%>
+<%@page import="java.util.ArrayList,dao.UniformDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%
 MyFormat fmt = new MyFormat();
-ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
+ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
+OrderDetailDAO detailDao = new OrderDetailDAO();
 
 %>
 <!DOCTYPE html>
@@ -16,8 +21,8 @@ ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-		<%@include file="/common/header_Owner.jsp"%>
-	<%@include file="/common/sidebar_Owner.jsp"%>
+		<%@include file="/common/header_User.jsp"%>
+	<%@include file="/common/sidebar_User.jsp"%>
 
 	<h1>注文履歴一覧画面</h1>
 	<hr class="black">
@@ -31,20 +36,33 @@ ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
 		</tr>
 		
 		<%
-		if(list != null){
-			for(int i=0; i<list.size(); i++){
-				Order order = list.get(i);
+		if(order_list != null){
+			for(int i=0; i<order_list.size(); i++){
+				Order order = order_list.get(i);
 		%>
 		
 		<tr>
-			<td><%=order.getOrderno() %></td>
-			<td><%=fmt.moneyFormat(order.getSumprice()) %>
-			<td><%=order.getSend() %>
-			<td><%=order.getOrderdate() %>
+			<th><%=order.getOrderno() %></td>
+			<th><%=fmt.moneyFormat(order.getSumprice()) %>
+			<th><%=order.getSend() %>
+			<th><%=order.getOrderdate() %>
 		</tr>
 		
 		<%
-		}}
+		ArrayList<OrderDetail> detail_list = detailDao.selectByOrder(order.getOrderno());
+		UniformDAO UniDao = new UniformDAO();
+		for (int j=0; j< detail_list.size(); j++){
+			OrderDetail detail = detail_list.get(j);
+			Uniform uni = UniDao.selectByUnino(detail.getUnino());
+		%>
+		<tr>
+			<td><%=uni.getUniname() %></td>
+			<td><%=detail.getQuantity() %></td>
+			<td> </td>
+			<td><%=(detail.getQuantity() * uni.getPrice()) %></td>
+		</tr>
+		<%
+		}}}
 		%>
 	</table>
 	

@@ -10,7 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import bean.Order;
+import bean.OrderDetail;
 import dao.OrderDAO;
+import dao.OrderDetailDAO;
 
 @WebServlet("/listOrder")
 public class ListOrder extends HttpServlet {
@@ -20,8 +22,12 @@ public class ListOrder extends HttpServlet {
 		String error = "";		
 		try {
 			OrderDAO OrderDaoObj = new OrderDAO();
-			ArrayList<Order> list = OrderDaoObj.selectAll();
-			request.setAttribute("order_list",list);			
+			OrderDetailDAO DetailDaoObj = new OrderDetailDAO();
+			ArrayList<Order> order_list = OrderDaoObj.selectAll();
+			ArrayList<OrderDetail> detail_list = DetailDaoObj.selectAll();
+			
+			request.setAttribute("detail_list",detail_list);
+			request.setAttribute("order_list",order_list);
 			
 			request.getRequestDispatcher("/view/listOrder.jsp").forward(request, response);
 			
