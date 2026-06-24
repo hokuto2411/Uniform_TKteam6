@@ -41,7 +41,7 @@ public class ChangeUser extends HttpServlet {
 			
 			
 		}catch(IllegalStateException e) {
-			error = "DB接続エラーのため会員登録できませんでした";
+			error = "DB接続エラーのため会員情報を更新できませんでした";
 		}catch(Exception e) {
 			error = "予期せぬエラーが発生しました";
 		}finally {
