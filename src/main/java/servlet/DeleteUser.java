@@ -27,7 +27,7 @@ public class DeleteUser extends HttpServlet {
 			 objUser = objUserDAO.selectByUser(userid,password);
 			 System.out.println(objUser);
 			if (objUser.getUsername() == null) {
-				String message = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
+				String message = "削除対象が存在しない為、ユーザーを削除できませんでした。";
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
 
@@ -39,7 +39,7 @@ public class DeleteUser extends HttpServlet {
 
 			} catch (IllegalStateException e) {
 
-				String message = "DB接続エラーの為、削除は行えませんでした。";
+				String message = "DB接続エラーの為、ユーザーを削除できませんでした。";
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
 
