@@ -1,5 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%String message=(String)request.getAttribute("message");
+if(message==null){
+	message="";
+}
+%>
 <html>
 <head>
 <title>ログイン</title>
@@ -36,6 +40,9 @@
 		<br>
 		
 		<div style="text-align: center;">
+<br>
+<%=message %>
+<br>
 		<input type="submit"  value="ログイン">
 		</div>
 		
