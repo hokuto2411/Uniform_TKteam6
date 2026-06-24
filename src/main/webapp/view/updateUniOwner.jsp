@@ -3,7 +3,7 @@
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="bean.Uniform,
-				servlet.UpdateUniOwner,
+				servlet.UpdateUni,
 				util.MyFormat"  %>
 <%
 MyFormat objFormat = new MyFormat();
@@ -34,7 +34,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 		<!-- サブタイトル -->
 		<h1>商品変更画面</h1>
 		
-		<form>
+		<form action="<%=request.getContextPath() %>/detailUni">
 		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 			
 		<%
@@ -71,6 +71,8 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 		<%
 			}
 		%>
+		<input type="hidden" name ="cmdSwitch" value="owner">
+		<input type="hidden" name ="unino" value="<%=uni.getUnino() %>">
 		<input type="submit" value="変更完了"
 				style="margin:50px auto">
 		</form>

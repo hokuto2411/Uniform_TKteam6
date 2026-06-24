@@ -24,7 +24,7 @@
 	<main>
 		<!-- サブタイトル -->
 		<h1>
-				商品一覧画面
+				商品一覧画面(オーナー)
 		</h1>		
 		<div style="position:sticky;
 					top:150px;
