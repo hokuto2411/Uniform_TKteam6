@@ -13,8 +13,7 @@ import dao.UserDAO;
 
 @WebServlet("/deleteUser")
 public class DeleteUser extends HttpServlet {
-	public class Login extends HttpServlet {
-		protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
 				throws ServletException, IOException {
 
 			UserDAO objUserDAO = new UserDAO();
@@ -22,15 +21,18 @@ public class DeleteUser extends HttpServlet {
 
 			String userid = request.getParameter("userid");
 			String password = request.getParameter("password");
-
-			objUser = objUserDAO.selectByUser(userid, password);
+			System.out.println(request.getParameter("userid"));
+			
+			
+			 objUser = objUserDAO.selectByUser(userid,password);
+			 System.out.println(objUser);
 			if (objUser.getUsername() == null) {
-				String message = "削除対象のユーザーが存在しない為、削除処理は行えませんでした。";
+				String message = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
 
 			}
-			//deleteメソッドを利用してユーザー情報を削除
+			//deleteメソッドを利用して書籍情報を削除
 			try {
 
 				objUserDAO.deleteUser(objUser);
@@ -41,15 +43,10 @@ public class DeleteUser extends HttpServlet {
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
 
-			}catch(Exception e){
-				String message = "予期せぬエラーが発生しました。";
-				request.setAttribute("message",message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
-
 			} finally {
 				//ログイン画面へフォワード
-				request.getRequestDispatcher("/view/login,jsp").forward(request, response);
+				request.getRequestDispatcher("/updateUserOwner").forward(request, response);
 			}
 		}
 	}
-}
+
