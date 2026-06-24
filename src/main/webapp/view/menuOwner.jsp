@@ -52,7 +52,7 @@
 				<td style="font-size: 20px; border: none;"><br></td>
 			<tr>
 				<td style="font-size: 20px; border: none;">
-					<a href="<%=request.getContextPath()%>/view/updateUserOwner.jsp">【ユーザー管理】</a>
+					<a href="<%=request.getContextPath()%>/updateUserOwner">【ユーザー管理】</a>
 				</td>
 			</tr>
 			<tr>
