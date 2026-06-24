@@ -35,7 +35,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 	<!-- サブタイトル -->
 	<h1>商品登録画面</h1>
 	
-	<form action="<%=request.getContextPath()%>/">
+	<form action="<%=request.getContextPath()%>/insertUni" method="post" enctype="multipart/form-data">
 	<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 		<tr>
 			<td rowspan="4" style="width:400px; height:400px; border:1px solid brack; text-align:center">
