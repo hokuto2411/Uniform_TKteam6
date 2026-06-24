@@ -43,7 +43,7 @@ public class DeleteUni extends HttpServlet{
 			uniDao.delete(unino);
 
 		}catch(IllegalStateException e){
-			error = "DB接続エラーの為、削除できませんでした。";
+			error = "DB接続エラーのため、削除できませんでした。";
 			cmd="omenu";
 
 		}catch(Exception e) {	
