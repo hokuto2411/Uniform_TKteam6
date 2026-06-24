@@ -20,7 +20,7 @@ public class UpdateUserOwner extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//  BookDAOをインスタンス化する
+		// UserDAOをインスタンス化する
 		UserDAO objDao = new UserDAO();
 
 		
@@ -28,14 +28,22 @@ public class UpdateUserOwner extends HttpServlet {
 			
 		try{
 			
-			// selectAllメソッドを呼び出し、戻り値としてBookオブジェクトのリストを取得する
+			// selectAllメソッドを呼び出し、戻り値としてUserオブジェクトのリストを取得する
 			user_list = objDao.selectAll();
 
 		}catch(IllegalStateException e) {
-			
-			String	message="DB接続エラーの為、一覧表示は行えませんでした。";
-			request.setAttribute("message", message);
-			request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+			String cmd = "omenu";
+			String	error="DB接続エラーの為、ユーザー一覧表示を表示できませんでした。";
+			request.setAttribute("error", error);
+			request.setAttribute("cmd", cmd);
+			request.getRequestDispatcher("/view/error.jsp).forward(request, response);
+
+		}catch(Exception e){
+			String cmd = "omenu";
+			String	error="予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error", error);
+			request.setAttribute("cmd", cmd);
+			request.getRequestDispatcher("/view/error.jsp).forward(request, response);
 		
 		}
 		

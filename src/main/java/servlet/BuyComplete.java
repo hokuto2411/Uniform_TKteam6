@@ -28,20 +28,22 @@ public class BuyComplete extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String error = "";
+		String cmd = "";
 		try {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 			if(user == null) {
-				error = "セッション切れの為、購入完了処理は出来ません。";
+				error = "セッション切れのため、購入できませんでした";
+				cmd = "logout";
 				request.setAttribute("error",error);
-				request.setAttribute("cmd","logout");
+				request.setAttribute("cmd",cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 				return;
 			}
 			
 			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
 			if(detail_list == null || detail_list.isEmpty()) {
-				error = "カートが空のため、購入完了処理は出来ません。すでに購入が完了している可能性があります。";
+				error = "カートが空のため、購入できませんでした。すでに購入が完了している可能性があります。";
 				request.setAttribute("error",error);
 				request.setAttribute("cmd","menu");
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
@@ -91,7 +93,7 @@ public class BuyComplete extends HttpServlet {
 			if(!TFMail) {
 				error = "注文確認メールの送信に失敗しました。";
 				request.setAttribute("error",error);
-				request.setAttribute("cmd","logout");
+				request.setAttribute("cmd","menu");
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 				return;
 			}
@@ -116,9 +118,9 @@ public class BuyComplete extends HttpServlet {
 		} catch(Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
-			error = "システムエラーの為、購入完了処理を行えませんでした。";
+			error = "予期せぬエラーが発生しました。";
 			request.setAttribute("error",error);
-			request.setAttribute("cmd","menu");
+			request.setAttribute("cmd","logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}

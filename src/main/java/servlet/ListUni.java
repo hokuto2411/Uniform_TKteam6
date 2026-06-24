@@ -43,7 +43,11 @@ public class ListUni extends HttpServlet {
 
 		}catch(IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示は行えませんでした。";
-			cmd = "dbError";
+			cmd = "logout";
+
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました<br>" + e;
+			cmd = "logout";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				if(cmdSwitch == null || cmdSwitch.trim().equals("")) {

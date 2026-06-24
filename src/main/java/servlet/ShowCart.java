@@ -65,9 +65,15 @@ public class ShowCart extends HttpServlet {
 			
 		} catch(IllegalStateException e) {
 			System.out.println(e);
-			error = "DB接続エラー";
+			error = "DB接続エラーのため、カートを表示できませんでした。";
 			request.setAttribute("error",error);
-			request.setAttribute("cmd","logout");
+			request.setAttribute("cmd","menu");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error",error);
+			request.setAttribute("cmd","menu");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 		

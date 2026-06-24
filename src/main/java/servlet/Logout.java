@@ -11,20 +11,24 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/logout")
 public class Logout extends HttpServlet {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		HttpSession session=request.getSession();
-		
-		//セッションがある場合、セッションを削除
-		if(session!=null) {
-			
-			//セッション削除
-			session.invalidate();
-			
-		}
-		
-		request.getRequestDispatcher("/view/login.jsp").forward(request, response);
-		
-	}
+
+    // ★これを追加！
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
+        if (session != null) {
+            session.invalidate();
+        }
+        
+        request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+    }
 }

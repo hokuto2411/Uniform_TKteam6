@@ -21,13 +21,25 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
+<<<<<<< HEAD
 		<%@include file="/common/header_User.jsp"%>
+=======
+	<%@include file="/common/header_User.jsp"%>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+>>>>>>> branch 'master' of https://github.com/hokuto2411/Uniform_TKteam6
 	<%@include file="/common/sidebar_User.jsp"%>
 
-	<h1>注文履歴一覧画面</h1>
+	<h1 style="text-align: center">注文履歴一覧画面</h1>
 	<hr class="black">
 	
-	<table>
+	<table style="margin: auto">
 		<tr>
 			<th>注文No.</th>
 			<th>合計金額</th>

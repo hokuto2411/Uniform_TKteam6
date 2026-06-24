@@ -43,8 +43,12 @@ public class DetailUni extends HttpServlet {
 
 			
 		}catch(IllegalStateException e) {
-				error = "DB接続エラーの為、ユニフォーム詳細は表示できませんでした。";
-				cmd = "dbError";
+				error = "DB接続エラーのため、商品詳細は表示できませんでした。";
+				cmd = "menu";
+
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				if(cmdSwitch == null || cmdSwitch.trim().equals("")) {

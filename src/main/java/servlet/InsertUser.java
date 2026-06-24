@@ -45,18 +45,17 @@ public class InsertUser extends HttpServlet {
 			
 			
 		}catch(IllegalStateException e) {
-			error="DB接続エラーのため会員登録できませんでした";
+			error="DB接続エラーのため、会員登録できませんでした";
 			
 		}catch (Exception e) {
-			error = "予期せぬエラーが発生しました";
+			error = "予期せぬエラーが発生しました<br>" + e;
 			
 		}finally {
 			if(error.equals("")) {
 				request.setAttribute("user", user);
 				request.getRequestDispatcher("/view/userComplete.jsp").forward(request, response);
 			}else {
-				System.out.println(error);
-				request.setAttribute("cmd", cmd);
+				request.setAttribute("cmd", "insert");
 				request.setAttribute("error",error );
 				request.getRequestDispatcher("/view/insertUser.jsp").forward(request, response);
 			}

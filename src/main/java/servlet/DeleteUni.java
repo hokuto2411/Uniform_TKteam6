@@ -34,8 +34,8 @@ public class DeleteUni extends HttpServlet{
 
 			//uninoがない場合
 			if(strunino.equals("")) {
-				error = "削除対象の商品が存在しない為、削除処理は行えませんでした。";
-				cmd = "uninoNull";
+				error = "対象の商品が存在しないため、削除できませんでした。";
+				cmd = "omenu";	
 				return;
 			}
 
@@ -43,12 +43,12 @@ public class DeleteUni extends HttpServlet{
 			uniDao.delete(unino);
 
 		}catch(IllegalStateException e){
-			error = "DB接続エラーの為、削除処理は行えませんでした。";
-			cmd="error";
+			error = "DB接続エラーのため、削除できませんでした。";
+			cmd="omenu";
 
 		}catch(Exception e) {	
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			cmd = "error";
+			cmd = "omenu";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);

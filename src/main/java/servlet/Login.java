@@ -32,7 +32,8 @@ public class Login extends HttpServlet {
 			objUser = objDao.selectByUser(userid, password);
 		} catch (IllegalStateException e) {
 
-			String message = "DB接続エラーの為、ログインは出来ません。";
+			String message = "DB接続エラーのため、ログインできませんでした。";
+			request.setAttribute("cmd", "login");
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
 
@@ -73,7 +74,8 @@ public class Login extends HttpServlet {
 
 		} else {
 			//リクエストスコープにエラーメッセージ登録
-			request.setAttribute("message", "入力データが間違っています。");
+			request.setAttribute("error", "入力データが間違っています。");
+			request.setAttribute("cmd", "login");
 
 			//login.jspにフォワード
 			request.getRequestDispatcher("/view/login.jsp").forward(request, response);
