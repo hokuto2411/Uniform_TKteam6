@@ -42,6 +42,10 @@ public class DeleteUni extends HttpServlet{
 			//削除実行
 			uniDao.delete(unino);
 
+		}catch(IlleglStateException e){
+			error = "DB接続エラーの為、削除処理は行えませんでした。";
+			cmd="error";
+
 		}catch(Exception e) {	
 			error = "予期せぬエラーが発生しました。<br>" + e;
 			cmd = "error";
