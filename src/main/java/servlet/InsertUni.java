@@ -121,7 +121,7 @@ public class InsertUni extends HttpServlet{
 			error = "DB接続エラーの為、登録できませんでした。";
 			cmd = "dbError";
 		}catch(NumberFormatException e) {
-			error = "価格の値が不正の為、書籍登録処理は行えませんでした。";
+			error = "価格の値が不正の為、登録処理は行えませんでした。";
 			cmd = "priceFail";
 		}finally {
 			if(error == null || error.trim().equals("")) {
