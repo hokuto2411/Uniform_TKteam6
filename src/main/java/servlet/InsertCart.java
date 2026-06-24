@@ -68,9 +68,9 @@ public class InsertCart extends HttpServlet {
 		} catch(Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
-			error = "カート追加処理でエラーが発生しました。";
+			error = "予期せぬエラーが発生しました。";
 			request.setAttribute("error", error);
-			request.setAttribute("cmd", "logout");
+			request.setAttribute("cmd", "menu");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
