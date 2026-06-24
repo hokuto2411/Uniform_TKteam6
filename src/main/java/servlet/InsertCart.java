@@ -26,13 +26,6 @@ public class InsertCart extends HttpServlet {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 			
-			if (user == null) {
-				error = "セッション切れの為、カートに追加できません。";
-				request.setAttribute("error", error);
-				request.setAttribute("cmd", "logout");
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-				return;
-			}
 
 			request.setCharacterEncoding("UTF-8");
 			int unino = Integer.parseInt(request.getParameter("unino"));

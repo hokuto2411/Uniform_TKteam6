@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,40 +28,46 @@ public class OrderDAO {
 		}
 	}
 	
-	public void insert(Order order) {
+	public int insert(Order order) {
 		Connection con = null;
-		Statement smt = null;
-		int count = 0;
+		PreparedStatement pstmt = null; // 💡 安全なPreparedStatementに変更
+		ResultSet rs = null;
+		int generatedId = 0;
 
 		try {
-			String sql = "INSERT INTO orderinfo VALUES('"
-					+ order.getOrderno() + "','"
-					+ order.getUserno() + "','"
-					+ order.getSumprice() + "','"
-					+ order.getOrderdate() + "','"
-					+ order.getDeposit() + "','"
-					+ order.getOrdercomment() + "')";
+			String sql = "INSERT INTO orderinfo (userno, sumprice, orderdate, deposit, send, ordercomment) VALUES (?, ?, ?, ?, ?, ?)";
 
 			con = getConnection();
-			smt = con.createStatement();
-			count = smt.executeUpdate(sql);
+			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			pstmt.setInt(1, order.getUserno());
+			pstmt.setInt(2, order.getSumprice());
+			pstmt.setTime(3, new java.sql.Time(order.getOrderdate().getTime()));
+			pstmt.setInt(4, order.getDeposit()); // 入金状況（0:未入金など）
+			pstmt.setInt(5, 0);                 // 発送状況（0:未発送）
+			pstmt.setString(6, order.getOrdercomment());
+
+			pstmt.executeUpdate();
+			
+			rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				generatedId = rs.getInt(1);
+			}
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		} finally {
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
+			if (rs != null) {
+				try { rs.close(); } catch (SQLException ignore) {}
+			}
+			if (pstmt != null) {
+				try { pstmt.close(); } catch (SQLException ignore) {}
 			}
 			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
+				try { con.close(); } catch (SQLException ignore) {}
 			}
 		}
+		return generatedId;
 	}
 	
 	

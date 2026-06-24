@@ -83,7 +83,7 @@ ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 			</div>
 			<br>
 
-			<form action="" method="get">
+			<form action="<%=request.getContextPath() %>/buyConfirm" method="get">
 
 				<div style="text-align: center;">
 					<input type="submit" name="Payment" value="購入に進む"></input>

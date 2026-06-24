@@ -11,8 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import bean.OrderDetail;
+import bean.Uniform;
 import bean.User;
-import dao.OrderDetailDAO;
+import dao.UniformDAO;
 
 @WebServlet("/showCart")
 public class ShowCart extends HttpServlet {
@@ -22,28 +23,44 @@ public class ShowCart extends HttpServlet {
 		String error = "";		
 		try {
 			
-			// Orderを表示する
-			// Orderno, U.uniname, OD.quantity, (U.price x OD.quan.)
-			
-			
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
-			if(user == null) {
-				error = "セッション切れの為、購入は出来ません。 ";
-				request.setAttribute("error",error);
-				request.setAttribute("cmd","logout");
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			
+			
+			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
+			if (detail_list == null) {
+				detail_list = new ArrayList<OrderDetail>();
 			}
 			
-			OrderDetailDAO DetailDaoObj = new OrderDetailDAO();
-			ArrayList<OrderDetail> detail_list = DetailDaoObj.selectAll();
-			
-			String delunino = request.getParameter("delunino");
-			if(delunino != null) {
-				detail_list.remove(Integer.parseInt(delunino));
+			String deluninoStr = request.getParameter("delunino");
+			if (deluninoStr != null) {
+				int delunino = Integer.parseInt(deluninoStr);
+				
+				for (int i = 0; i < detail_list.size(); i++) {
+					if (detail_list.get(i).getUnino() == delunino) {
+						detail_list.remove(i);
+						break; // 削除したらループを抜ける
+					}
+				}
+				session.setAttribute("detail_list", detail_list);
 			}
-						
-			request.setAttribute("detail_list",detail_list);
+
+			UniformDAO uniDao = new UniformDAO();
+			ArrayList<Uniform> uni_list = new ArrayList<Uniform>();
+			int total_price = 0; // 合計金額の計算用
+			
+			for (OrderDetail detail : detail_list) {
+				Uniform uni = uniDao.selectByUnino(detail.getUnino()); // 💡商品情報を1件ずつ取得
+				uni_list.add(uni);
+				
+				if (uni != null) {
+					total_price += uni.getPrice() * detail.getQuantity();
+				}
+			}
+			request.setAttribute("detail_list", detail_list);
+			request.setAttribute("uni_list", uni_list);
+			request.setAttribute("total_price", total_price);
+			
 			request.getRequestDispatcher("/view/showCart.jsp").forward(request, response);
 			
 		} catch(IllegalStateException e) {
