@@ -17,6 +17,14 @@ ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
 </head>
 <body>
 	<%@include file="/common/header_User.jsp"%>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 	<%@include file="/common/sidebar_User.jsp"%>
 
 	<h1>注文履歴一覧画面</h1>
