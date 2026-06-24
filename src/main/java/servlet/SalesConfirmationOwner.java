@@ -36,6 +36,12 @@ public class SalesConfirmationOwner extends HttpServlet {
 			request.setAttribute("error",error);
 			request.setAttribute("cmd","omenu");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error",error);
+			request.setAttribute("cmd","omenu");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
 }
