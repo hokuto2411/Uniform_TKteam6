@@ -25,12 +25,12 @@ public class DeleteUser extends HttpServlet {
 
 			objUser = objUserDAO.selectByUser(userid, password);
 			if (objUser.getUsername() == null) {
-				String message = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
+				String message = "削除対象のユーザーが存在しない為、削除処理は行えませんでした。";
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
 
 			}
-			//deleteメソッドを利用して書籍情報を削除
+			//deleteメソッドを利用してユーザー情報を削除
 			try {
 
 				objUserDAO.deleteUser(objUser);
