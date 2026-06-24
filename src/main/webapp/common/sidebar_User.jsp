@@ -12,7 +12,7 @@
 		<a href="<%=request.getContextPath()%>/listOrder">注文履歴</a><br>
 		<a href="<%=request.getContextPath()%>/view/changeUser.jsp">ユーザー情報変更</a><br>
 		<a href="https://www.e-typing.ne.jp/">？？？？？</a><br>
-		<a href="https://kanda-it-school.com/feature/">？？？？？</a><br>
+		<a href="https://kanda-it-school.com/feature/">下までみてね</a><br>
 
 		<br>
 	</div>
