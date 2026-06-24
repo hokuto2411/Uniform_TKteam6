@@ -32,9 +32,9 @@ public class SalesConfirmationOwner extends HttpServlet {
 		} catch(IllegalStateException e) {
 			System.out.println(e);
 			e.printStackTrace(); 
-			error = "DB接続エラー";
+			error = "DB接続エラーのため、売り上げを表示できませんでした。";
 			request.setAttribute("error",error);
-			request.setAttribute("cmd","logout");
+			request.setAttribute("cmd","omenu");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
