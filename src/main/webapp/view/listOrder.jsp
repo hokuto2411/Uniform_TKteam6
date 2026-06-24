@@ -27,10 +27,10 @@ ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
 		<br>
 	<%@include file="/common/sidebar_User.jsp"%>
 
-	<h1>注文履歴一覧画面</h1>
+	<h1 style="text-align: center">注文履歴一覧画面</h1>
 	<hr class="black">
 	
-	<table>
+	<table style="margin: auto">
 		<tr>
 			<th>注文No.</th>
 			<th>合計金額</th>
