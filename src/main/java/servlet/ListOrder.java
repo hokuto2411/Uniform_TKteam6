@@ -27,7 +27,14 @@ public class ListOrder extends HttpServlet {
 			
 		} catch(IllegalStateException e) {
 			System.out.println(e);
-			error = "DB接続エラー";
+			error = "DB接続エラーのため、注文一覧を表示できませんでした。";
+			request.setAttribute("error",error);
+			request.setAttribute("cmd","logout");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+
+		}catch(Exception e){
+			System.out.println(e);
+			error = "予期せぬエラーのため、注文一覧を表示できませんでした。";
 			request.setAttribute("error",error);
 			request.setAttribute("cmd","logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
