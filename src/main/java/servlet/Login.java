@@ -24,37 +24,44 @@ public class Login extends HttpServlet {
 		User user = new User();
 		UserDAO userdao = new UserDAO();
 		try {
-			if (userid.equals("")){
-				message = "ユーザーIDを入力してください";
-				request.setAttribute("error", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+			if(password.equals("") && userid.equals("")) {
 				
+				message="ユーザーとパスワードを入力してください";
+				request.setAttribute("cmd", "login");
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
+			
 			}else if(password.equals("")) {
 				message = "パスワードを入力してください";
+				request.setAttribute("cmd", "login");
 				request.setAttribute("error", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
+				
+			}else if(userid.equals("")) {
+				message = "ユーザーIDを入力してください";
+				request.setAttribute("cmd", "login");
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 				
 			}
-
 			user = userdao.selectByUser(userid, password);
 			
 			if(user.getUserid()==null) {
 				
 				message="入力したデータが間違っています。";
+				request.setAttribute("cmd", "login");
 				request.setAttribute("error", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 			}
 
 		} catch (IllegalStateException e) {
 			message = "DB接続エラーの為、ログインは出来ません。";
 			request.setAttribute("cmd", "login");
 			request.setAttribute("error", message);
-			request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+			request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 		} finally {
-			if (!message.equals("")) {
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
-			} else if (user.getAuthority() == 0) {
+			
+			} if (user.getAuthority() == 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 
@@ -66,7 +73,9 @@ public class Login extends HttpServlet {
 
 			}
 
-		}
+		
 
 	}
+	
 }
+
