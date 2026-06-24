@@ -6,8 +6,6 @@
 
 <aside>
 	<div class="side-item">
-		<div style="padding-top:150px">
-		</div>
 		<br>
 		<a href="<%=request.getContextPath()%>/listUni">商品一覧</a><br>
 		<a href="<%=request.getContextPath()%>/listOrder">注文履歴</a><br>
