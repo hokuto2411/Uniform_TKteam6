@@ -35,7 +35,7 @@
 			商品詳細画面
 		</h1>
 		
-		<form action="<%=request.getContextPath()%>/InsertCart" method="get">
+		<form action="<%=request.getContextPath()%>/insertCart" method="get">
 		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 			<tr>
 				<td rowspan="4">
@@ -55,16 +55,16 @@
 			</tr>
 		</table>
 		
-		</form>
+		
 
 		<div style="margin-top:20px">	
 			<div style="float:left; margin-left:50%">
-				<form action="<%=request.getContextPath()%>" method="get">
 				<input type="hidden" name="unino" value=<%=uni.getUnino()%>> 
 				<input type="submit" name="change" value="カートに入れる">
-				</form>
+				
 			</div>
 		</div>
+		</form>
 		
 		</main>
 	</div>
