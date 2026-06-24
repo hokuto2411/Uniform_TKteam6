@@ -24,13 +24,26 @@ public class Login extends HttpServlet {
 		User user = new User();
 		UserDAO userdao = new UserDAO();
 		try {
-			if (userid.equals("") || password.equals("")) {
-				message = "入力データが間違っています";
-				return;
-
+			if (userid.equals("")){
+				message = "ユーザーIDを入力してください";
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+				
+			}else if(password.equals("")) {
+				message = "パスワードを入力してください";
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+				
 			}
 
 			user = userdao.selectByUser(userid, password);
+			
+			if(user.getUserid()==null) {
+				
+				message="入力したデータが間違っています。";
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+			}
 
 		} catch (IllegalStateException e) {
 			message = "DB接続エラーの為、ログインは出来ません。";
