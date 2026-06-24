@@ -22,16 +22,6 @@ public class ArartStock extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException{
 		
-		String error = "";
-		String cmd = "";
-		
-		try {
-			
-		/*selectAllでストックの数を取得する
-		 * ストックの数が5より少ない場合
-		 * ストックの数がない場合
-		 * メールで通知する
-		 */
 			
 			//DAOクラスのインスタンス化
 			UniformDAO uniDao = new UniformDAO();
@@ -63,29 +53,10 @@ public class ArartStock extends HttpServlet{
 						//メール送信
 						SendMail mail = new SendMail();
 						boolean TFmail = mail.sendMail(msg);
-						if(TFmail == false) {
-							error = "メール失敗";
-						}	
 					}
 				}
-			}
-			
-			}catch(Exception e) {
-				error = "予期せぬエラーが発生したため、在庫通知が出来ませんでした。<br>" + e;
-				cmd = "error";
-			
-			}finally {
-				if(error == null || error.trim().equals("")) {
-					request.getRequestDispatcher("").forward(request, response);
-					
-				}else {
-					request.setAttribute("error", error);
-					request.setAttribute("cmd", cmd);
-					request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-					
-				}
-			
 			}
 	}
 
 }
+
