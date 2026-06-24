@@ -26,13 +26,13 @@ public class ShowOrderedItemOwner extends HttpServlet {
 		String cmd = null;
 
 		try {	
-			//ユニフォーム情報管理を管理するクラスのインスタンス化
+			//注文情報管理を管理するクラスのインスタンス化
 			OrderDAO orderDao = new OrderDAO();
 			
-			//メソッドを利用しデータベースから書籍情報を取得
+			//メソッドを利用しデータベースから注文情報を取得
 			ArrayList<Order> list = orderDao.selectAll();
 
-			//取得したユニフォーム情報をリクエストスコープに格納
+			//取得した注文情報をリクエストスコープに格納
 			request.setAttribute("orderList", list);
 
 		}catch(IllegalStateException e) {
