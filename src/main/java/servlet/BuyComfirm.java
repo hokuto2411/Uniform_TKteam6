@@ -102,6 +102,13 @@ public class BuyComfirm {
 			OrderDaoObj.insert(order);
 			session.setAttribute("detail_list",null);
 			request.getRequestDispatcher("/view/buyConfirm.jsp").forward(request, response);
+
+		}catch(IllegalStateException e){
+			System.out.println(e);
+			error = "DB接続エラーの為、購入はできません。";
+			request.setAttribute("error",error);
+			request.setAttribute("cmd","menu");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			
 		}catch(Exception e) {
 			System.out.println(e);
