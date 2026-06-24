@@ -93,7 +93,7 @@ public class BuyComplete extends HttpServlet {
 			if(!TFMail) {
 				error = "注文確認メールの送信に失敗しました。";
 				request.setAttribute("error",error);
-				request.setAttribute("cmd","logout");
+				request.setAttribute("cmd","menu");
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 				return;
 			}
@@ -118,9 +118,9 @@ public class BuyComplete extends HttpServlet {
 		} catch(Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
-			error = "システムエラーの為、購入完了処理を行えませんでした。";
+			error = "予期せぬエラーが発生しました。";
 			request.setAttribute("error",error);
-			request.setAttribute("cmd","menu");
+			request.setAttribute("cmd","logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
