@@ -29,7 +29,7 @@ String cmd = (String)request.getAttribute("cmd");
 
 	<h1 style="text-align: center">●●エラー●●</h1>
 
-	<p style="text-align: center"><%=error%></p>
+	<h2 style="text-align: center"><%=error%></h2>
 	<br>
 	<p style="text-align: center">
 	<% if(cmd.equals("login")){ %>
