@@ -83,8 +83,8 @@ public class UpdateUni extends HttpServlet{
 				//エラー処理
 				//タイトルが未入力かどうか判断するエラー処理
 				if(uniname == null || uniname.trim().equals("")) {
-					error = "商品名が未入力の為、変更できませんでした。";
-					cmd = "uninameNull";
+					error = "商品名が未入力のため、変更できませんでした。";
+					cmd = "omenu";
 					return;			
 					//タイトルが入力されていた時
 				}else {
@@ -93,8 +93,8 @@ public class UpdateUni extends HttpServlet{
 
 				//価格が未入力かどうか判断するエラー処理
 				if(priceAsString == null || priceAsString.trim().equals("")) {
-					error = "価格が未入力の為、変更できませんでした。";
-					cmd = "priceNull";
+					error = "価格が未入力のため、変更できませんでした。";
+					cmd = "omenu";
 					return;			
 					//価格が入力されていた時
 				}else {
@@ -103,8 +103,8 @@ public class UpdateUni extends HttpServlet{
 
 				//在庫が未入力かどうか判断するエラー処理
 				if(stockAsString == null || stockAsString.trim().equals("")) {
-					error = "価格が未入力の為、変更できませんでした。";
-					cmd = "priceNull";
+					error = "価格が未入力のため、変更できませんでした。";
+					cmd = "omenu";
 					return;			
 					//価格が入力されていた時
 				}else {
@@ -123,8 +123,8 @@ public class UpdateUni extends HttpServlet{
 				uni.setImage(file_name.getName());
 
 			}else {
-				error = "ファイルがありません";
-				cmd= "fileNull";
+				error = "ファイルがないため、変更できませんでした。";
+				cmd= "omenu";
 				return;
 			}
 
@@ -132,14 +132,14 @@ public class UpdateUni extends HttpServlet{
 			uniDao.update(uni);
 
 		}catch(IllegalStateException e) {
-			error = "DB接続エラーの為、変更できませんでした。";
-			cmd = "dbError";
+			error = "DB接続エラーのため、変更できませんでした。";
+			cmd = "omenu";
 		}catch(NumberFormatException e){
-			error = "値が不正の為、変更できませんでした。";
-			cmd = "dataFail";
+			error = "値が不正のため、変更できませんでした。";
+			cmd = "omenu";
 		}catch(Exception e){
 			error = "予期せぬエラーが発生しました<br>" + e;
-			cmd = "";
+			cmd = "omenu";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
