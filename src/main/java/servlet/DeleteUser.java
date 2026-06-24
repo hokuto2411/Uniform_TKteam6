@@ -41,6 +41,11 @@ public class DeleteUser extends HttpServlet {
 				request.setAttribute("message", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
 
+			}catch(Exception e){
+				String message = "予期せぬエラーが発生しました。";
+				request.setAttribute("message",message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+
 			} finally {
 				//ログイン画面へフォワード
 				request.getRequestDispatcher("/view/login,jsp").forward(request, response);
