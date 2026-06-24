@@ -42,8 +42,10 @@ public class ChangeUser extends HttpServlet {
 			
 		}catch(IllegalStateException e) {
 			error = "DB接続エラーのため会員情報を更新できませんでした";
+			cmd = "menu";
 		}catch(Exception e) {
 			error = "予期せぬエラーが発生しました";
+			cmd = "menu";
 		}finally {
 			if(error.equals("")) {
 				request.setAttribute("user", user);
