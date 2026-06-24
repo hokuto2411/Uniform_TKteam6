@@ -5,7 +5,7 @@
 <%--ユーザー情報の表示のみ --%>
 
 <%
-ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
+ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 
 %>
 
@@ -35,8 +35,7 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 		<main>
 			<h2 style="text-align: center">ユーザー一覧</h2>
 
-			<form action="">
-
+			
 			
 
 
@@ -47,22 +46,25 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 						<th style="text-align: center">住所</th>
 						<th style="text-align: center">ID</th>
 						<th style="text-align: center">パスワード</th>
+						<th style="text-align: center">有効(0)</th>
 						<th style="text-align: center">削除</th>
 					</tr>
 					
 						<%
+						System.out.println(user);
 					if (user != null) {
 						for (int i = 0; i < user.size(); i++) {
-						User objUser = user.get(i);
+						
 				%>
 
 					
 					<tr>
-						<td><input type="text" name="username" value=<%=objUser.getUsername()%>></td>
-						<td><input type="text" name="address" value=<%=objUser.getAddress()%>></td>
-						<td><input type="text" name="userid" value=<%=objUser.getUserid()%>></td>
-						<td><input type="text" name="password" value=<%=objUser.getPassword()%>></td>
-						<td><a href="<%=request.getContextPath()%>/deleteUser?userid=<%=objUser.getUserid()%>&password=<%=objUser.getPassword()%>">削除</a><br></td>
+						<td style="text-align: center"><%=user.get(i).getUsername()%></td>
+						<td style="text-align: center"><%=user.get(i).getAddress()%></td>
+						<td style="text-align: center"><%=user.get(i).getUserid()%></td>
+						<td style="text-align: center"><%=user.get(i).getPassword()%></td>
+						<td style="text-align: center"><%=user.get(i).getUserfrag()%></td>
+						<td style="text-align: center"><a href="<%=request.getContextPath()%>/deleteUser?userid=<%=user.get(i).getUserid()%>&password=<%=user.get(i).getPassword()%>">削除</a><br></td>
 					</tr>
 					<%
 					}
@@ -72,7 +74,7 @@ ArrayList<User> user = (ArrayList<User>) session.getAttribute("user_list");
 					%>
 
 				</table>
-			</form>
+			
 
 		</main>
 	</div>
