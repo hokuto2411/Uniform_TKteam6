@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import bean.Order;
 import bean.OrderDetail;
 import bean.User;
+import dao.OrderDetailDAO;
 
 @WebServlet("/insertCart")
 public class InsertCart extends HttpServlet {
@@ -29,16 +30,33 @@ public class InsertCart extends HttpServlet {
 			Order order = new Order();
 			order.setUserno(user.getUserno());
 			
-			OrderDetail orderD = new OrderDetail();
-			orderD.setUnino(unino);		    
+			OrderDetail detail = new OrderDetail();
+			OrderDetailDAO detailDao = new OrderDetailDAO();
+			detail.setOrderno();
+			detail.setUnino(unino);
+			detail.setQuantit);
 			
-			ArrayList<Order> order_list = (ArrayList<Order>)session.getAttribute("order_list");
-			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
-			if(order_list == null){
-				order_list = new ArrayList<Order>();
+			boolean isExist = false;
+			for (OrderDetail detail : detail_list) {
+			    if (detail.getUnino() == unino) {
+			        // 💡 すでにカートにある商品なら、現在の個数に +1 する
+			        detail.setQuantity(detail.getQuantity() + 1);
+			        isExist = true;
+			        break;
+			    }
 			}
-			order_list.add(order);
-			session.setAttribute("order_list",order_list);
+			if (!isExist) {
+			    // 新しくカートに入れる処理（数量は 1 ）
+			    OrderDetail newDetail = new OrderDetail();
+			    newDetail.setOrderno(0);
+			    newDetail.setUnino(unino);
+			    newDetail.setQuantity(1);
+			    detail_list.add(newDetail);
+			}
+			
+			
+			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
+			detail_list.add(detail);
 			session.setAttribute("detail_list",detail_list);
 			
 			

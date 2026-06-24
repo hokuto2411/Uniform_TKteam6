@@ -44,7 +44,7 @@ public class ShowCart extends HttpServlet {
 			}
 						
 			request.setAttribute("detail_list",detail_list);
-			request.getRequestDispatcher("/view/insertCart.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/showCart.jsp").forward(request, response);
 			
 		} catch(IllegalStateException e) {
 			System.out.println(e);

@@ -5,6 +5,7 @@
 <head>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
+<%@page import="java.util.ArrayList,bean.User"%>
 <title>商品一覧</title>
 <link rel="stylesheet"  href="<%=request.getContextPath() %>/css/User.css">
 </head>
@@ -33,13 +34,19 @@
 			<p>
 				ユーザー名<% %><br>
 				<%--ユーザー名 --%>
-				<% %>
+				<%User user=(User)session.getAttribute("user"); %>
+				<%if(user==null){ %>
 				<%--ログインしていない場合 --%>
-				<a href="<%=request.getContextPath()%>/login">ログイン</a><br>
-				<%--ログインのリンク --%>
-				<% %>
+				<form action="<%=request.getContextPath()%>/login" method="post">
+					<input type="submit" value="ログイン">
+				</form>
 				<%--ログインしている場合 --%>
-				<a href="">ログアウト</a><br>
+				<%}else{ %>
+				<%=user.getUsername()%><br>
+				<form action="<%=request.getContextPath()%>/logout" method="post">
+					<input type="submit" value="ログアウト">
+				</form>
+				<%} %>
 				<%--ログアウト --%>
 				<br>
 		</div>
