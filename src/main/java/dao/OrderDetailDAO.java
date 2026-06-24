@@ -26,38 +26,36 @@ public class OrderDetailDAO {
 		}
 	}
 	
-	public void insert(OrderDetail orderDetail) {
-		Connection con = null;
-		Statement smt = null;
-		int count = 0;
+	public void insert(OrderDetail detail) {
+	    Connection con = null;
+	    java.sql.PreparedStatement pstmt = null; // 安全なPreparedStatementを使用
 
-		try {
-			String sql = "INSERT INTO orderdetail VALUES('"
-					+ orderDetail.getOrderno() + "','"
-					+ orderDetail.getUnino() + "','"
-					+ orderDetail.getQuantity() + "')";
+	    try {
+	        // 💡 最初に提示いただいた設計図（orderno, unino, quantity）に完璧に合わせたSQLです
+	        String sql = "INSERT INTO orderdetail (orderno, unino, quantity) VALUES (?, ?, ?)";
 
-			con = getConnection();
-			smt = con.createStatement();
-			count = smt.executeUpdate(sql);
+	        con = getConnection(); // ※既存のコネクション取得メソッドを呼び出します
+	        pstmt = con.prepareStatement(sql);
+	        
+	        pstmt.setInt(1, detail.getOrderno());
+	        pstmt.setInt(2, detail.getUnino());
+	        pstmt.setInt(3, detail.getQuantity());
 
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		} finally {
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
+	        // SQLを実行してデータベースに登録
+	        pstmt.executeUpdate();
+
+	    } catch (Exception e) {
+	        throw new IllegalStateException(e); // エラーが起きた場合はサーブレットのcatchに知らせる
+	    } finally {
+	        if (pstmt != null) {
+	            try { pstmt.close(); } catch (java.sql.SQLException ignore) {}
+	        }
+	        if (con != null) {
+	            try { con.close(); } catch (java.sql.SQLException ignore) {}
+	        }
+	    }
 	}
+
 	
 	
 	public ArrayList<OrderDetail> selectByOrder(int orderno) {

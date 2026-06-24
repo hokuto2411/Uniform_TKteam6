@@ -90,7 +90,7 @@ if (request.getAttribute("total_price") != null) {
 				</h3>
 
 				<div style="text-align: center; margin-bottom: 20px;">
-					<form action="<%= request.getContextPath() %>/buyConfirm" method="get">
+					<form action="<%= request.getContextPath() %>/buyComplete" method="get">
 						<p>ご要望・コメント：<br>
 						<input type="text" name="comment" size="50" placeholder="配送時間のご希望などがあれば入力してください"></p>
 						

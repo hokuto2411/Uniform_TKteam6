@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 
 public class SendMail {
-	public boolean sendMail(String msg) {
+	public boolean sendMail(String msg, String Email) {
 		try {
 			Properties props = System.getProperties();
 
@@ -40,7 +40,7 @@ public class SendMail {
 					new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
 
 			// 送信先メールアドレスを指定（ご自分のメールアドレスに変更）
-			mimeMessage.setRecipients(Message.RecipientType.TO, "system.project.team25@kanda-it-school-system.com");
+			mimeMessage.setRecipients(Message.RecipientType.TO, Email);
 
 			// メールのタイトルを指定
 			mimeMessage.setSubject("Hello World", "iso-2022-jp");
