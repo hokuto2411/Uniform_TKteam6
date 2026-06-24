@@ -21,7 +21,7 @@ public class ShowOrderedItemOwner extends HttpServlet {
 		//文字エンコード
 		request.setCharacterEncoding("UTF-8");
 
-		//エラー処理を管理する変数
+		//エラー処理管理用変数
 		String error = null;
 		String cmd = null;
 
