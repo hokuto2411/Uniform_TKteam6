@@ -35,7 +35,7 @@
 			商品詳細画面
 		</h1>
 		
-		<form action="" method="get">
+		<form action="<%=request.getContextPath()%>/InsertCart" method="get">
 		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 			<tr>
 				<td rowspan="4">
