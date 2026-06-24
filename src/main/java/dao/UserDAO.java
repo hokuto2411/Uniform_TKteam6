@@ -158,7 +158,7 @@ public class UserDAO {
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql="update user set userfrag = 1 where userno"+user.getUserno()+";";
+				String sql="update user set userfrag = 1 where userno ="+user.getUserno()+";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -187,7 +187,7 @@ public class UserDAO {
 			Statement smt = null;
 			ArrayList<User> user=new ArrayList<User>();
 			try {//ここに記述
-				String sql="select*from user";
+				String sql="SELECT userid,password,username,address,userfrag FROM user ORDER BY userno"+";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -201,6 +201,7 @@ public class UserDAO {
 					objuser.setPassword(rs.getString("password"));
 					objuser.setUsername(rs.getString("username"));
 					objuser.setAddress(rs.getNString("address"));
+					objuser.setUserfrag(rs.getInt("userfrag"));
 					user.add(objuser);
 				}
 				
