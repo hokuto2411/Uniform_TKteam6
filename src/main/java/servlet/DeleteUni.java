@@ -8,56 +8,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.UniformDAO;
+import bean.User;
+import dao.UserDAO;
 
-@WebServlet("/deleteUni")
-public class DeleteUni extends HttpServlet{
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+@WebServlet("/deleteUser")
+public class DeleteUser extends HttpServlet {
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
 
-		//エラー処理用の変数の宣言と初期化
-		String error = "";
-		String cmd = "";
+			UserDAO objUserDAO = new UserDAO();
+			User objUser = new User();
 
-		try {
-			//必要クラスのインスタンス化
-			UniformDAO uniDao = new UniformDAO();
-
-			//パラメータの受け取り
-			int unino =Integer.parseInt(request.getParameter("unino"));
+			String userid = request.getParameter("userid");
+			String password = request.getParameter("password");
+			System.out.println(request.getParameter("userid"));
 			
-			//削除対象の有無を確認
-			int e_unino = uniDao.selectByUnino(unino).getUnino();
-			String strunino = Integer.toString(e_unino);
+			
+			 objUser = objUserDAO.selectByUser(userid,password);
+			 System.out.println(objUser);
+			if (objUser.getUsername() == null) {
+				String message = "削除対象のユーザーが存在しない為、削除処理は行えませんでした。";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
 
-			//エラー処理
-
-			//uninoがない場合
-			if(strunino.equals("")) {
-				error = "対象の商品が存在しないため、削除できませんでした。";
-				cmd = "omenu";	
-				return;
 			}
+			//deleteメソッドを利用して書籍情報を削除
+			try {
 
-			//削除実行
-			uniDao.delete(unino);
+				objUserDAO.deleteUser(objUser);
 
-		}catch(IllegalStateException e){
-			error = "DB接続エラーのため、削除できませんでした。";
-			cmd="omenu";
+			} catch (IllegalStateException e) {
 
-		}catch(Exception e) {	
-			error = "予期せぬエラーが発生しました。<br>" + e;
-			cmd = "omenu";
-		}finally {
-			if(error == null || error.trim().equals("")) {
-				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
-			}else {
-				request.setAttribute("error", error);
-				request.setAttribute("cmd", cmd);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				String message = "DB接続エラーの為、削除は行えませんでした。";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+
+			} finally {
+				//ユーザー管理画面へフォワード
+				request.getRequestDispatcher("/updateUserOwner").forward(request, response);
 			}
 		}
 	}
 
-}
