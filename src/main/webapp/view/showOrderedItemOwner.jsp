@@ -1,11 +1,11 @@
-<!--ユーザー：注文一覧 -->
+<!--ユーザー：注文一覧（管理者） -->
 <!DOCTYPE html>
 <html>
 
 <head>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Order,bean.User"%>
-<title>注文一覧</title>
+<title>注文一覧（管理者）</title>
 <link rel="stylesheet"  href="<%=request.getContextPath() %>/css/User.css">
 </head>
 
