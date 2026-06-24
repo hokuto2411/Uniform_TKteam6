@@ -72,7 +72,6 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 			}
 		%>
 		<input type="hidden" name ="cmdSwitch" value="owner">
-		<input type="hidden" name ="unino" value="<%=uni.getUnino() %>">
 		<input type="submit" value="変更完了"
 				style="margin:50px auto">
 		</form>

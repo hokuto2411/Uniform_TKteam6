@@ -4,6 +4,7 @@
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
+<%@page import="java.util.ArrayList,bean.User"%>
 
 <head>
 	<title>管理者：商品一覧</title>
@@ -36,19 +37,30 @@
 					border: 1px solid #333333;
 					border-radius: 10px; ">
 						
-			<p>ユーザー名<% %><br>		<%--ユーザー名 --%>
-			<% %>			<%--ログインしていない場合 --%>
-			<a href="">ログイン</a><br>	<%--ログインのリンク --%>
-			<% %>			<%--ログインしている場合 --%>
-			<a href="">ログアウト</a><br>	<%--ログアウト --%>
-			<br>
+			<p>
+				ユーザー名<% %><br>
+				<%--ユーザー名 --%>
+				<%User user=(User)session.getAttribute("user"); %>
+				<%if(user==null){ %>
+				<%--ログインしていない場合 --%>
+				<form action="<%=request.getContextPath()%>/login" method="post">
+					<input type="submit" value="ログイン">
+				</form>
+				<%--ログインしている場合 --%>
+				<%}else{ %>
+				<%=user.getUsername()%><br>
+				<form action="<%=request.getContextPath()%>/logout" method="post">
+					<input type="submit" value="ログアウト">
+				</form>
+				<%} %>
+				<%--ログアウト --%>
+				<br>
 		</div>
 
 		<div style="text-align:right;
 					padding-right:400px;
 					margin-bottom: 20px;">
 			<a href="<%=request.getContextPath()%>/view/insertUniOwner.jsp">新規登録</a>
-			<a href="<%=request.getContextPath()%>/view/updateUniOwner.jsp">変更</a>
 		</div>
 		
 		<div style="display:flex; gap:15px;flex-wrap: wrap;justify-content: gap;">
