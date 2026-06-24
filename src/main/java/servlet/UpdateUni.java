@@ -83,7 +83,7 @@ public class UpdateUni extends HttpServlet{
 				//エラー処理
 				//タイトルが未入力かどうか判断するエラー処理
 				if(uniname == null || uniname.trim().equals("")) {
-					error = "商品名が未入力の為、変更処理は行えませんでした。";
+					error = "商品名が未入力の為、変更できませんでした。";
 					cmd = "uninameNull";
 					return;			
 					//タイトルが入力されていた時
@@ -93,7 +93,7 @@ public class UpdateUni extends HttpServlet{
 
 				//価格が未入力かどうか判断するエラー処理
 				if(priceAsString == null || priceAsString.trim().equals("")) {
-					error = "価格が未入力の為、変更処理は行えませんでした。";
+					error = "価格が未入力の為、変更できませんでした。";
 					cmd = "priceNull";
 					return;			
 					//価格が入力されていた時
@@ -103,7 +103,7 @@ public class UpdateUni extends HttpServlet{
 
 				//在庫が未入力かどうか判断するエラー処理
 				if(stockAsString == null || stockAsString.trim().equals("")) {
-					error = "価格が未入力の為、変更処理は行えませんでした。";
+					error = "価格が未入力の為、変更できませんでした。";
 					cmd = "priceNull";
 					return;			
 					//価格が入力されていた時
@@ -132,11 +132,14 @@ public class UpdateUni extends HttpServlet{
 			uniDao.update(uni);
 
 		}catch(IllegalStateException e) {
-			error = "DB接続エラーの為、商品登録は行えませんでした。";
+			error = "DB接続エラーの為、変更できませんでした。";
 			cmd = "dbError";
 		}catch(NumberFormatException e){
-			error = "値が不正の為、商品登録は行えませんでした。";
+			error = "値が不正の為、変更できませんでした。";
 			cmd = "dataFail";
+		}catch(Exception e){
+			error = "予期せぬエラーが発生しました<br>" + e;
+			cmd = "";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
