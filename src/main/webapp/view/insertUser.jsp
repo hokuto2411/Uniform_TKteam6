@@ -25,28 +25,28 @@
 		<form action="<%=request.getContextPath()%>/inputCheck"method="post">
 			<table style="margin: auto; padding-top: 50px; width: 500px;">
 				<tr>
-					<th style="border: none">ユーザーID</th>
+					<th style="border: none; text-align: center">ユーザーID</th>
 					<td style="border: none"><input type=text size="30" name="userid"></td>
 
 				</tr>
 				<tr>
-					<th style="border: none">パスワード</th>
+					<th style="border: none; text-align: center">パスワード</th>
 					<td style="border: none"><input type=text size="30" name="password"></td>
 				</tr>
 				<tr>
-					<th style="border: none">名前</th>
+					<th style="border: none; text-align: center">名前</th>
 					<td style="border: none"><input type=text size="30" name="username"></td>
 				</tr>
 				<tr>
-					<th style="border: none">住所</th>
+					<th style="border: none; text-align: center">住所</th>
 					<td style="border: none"><input type=text size="30" name="address"></td>
 				</tr>
 				<tr>
-					<th style="border: none">メールアドレス</th>
+					<th style="border: none; text-align: center">メールアドレス</th>
 					<td style="border: none"><input type=text size="30" name="mailaddress"></td>
 				</tr>
 				<tr>
-				<th style="border: none">権限</th>
+				<th style="border: none; text-align: center">権限</th>
 				<td style="border: none">
 				<select name="authority" >
 				<option value="0">一般ユーザー</option>
