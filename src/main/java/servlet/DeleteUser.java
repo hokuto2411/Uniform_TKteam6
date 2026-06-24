@@ -28,23 +28,26 @@ public class DeleteUser extends HttpServlet {
 			 System.out.println(objUser);
 			if (objUser.getUsername() == null) {
 				String message = "削除対象が存在しない為、ユーザーを削除できませんでした。";
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
+				String cmd = "omenu";
+				request.setAttribute("error", message);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 
 			}
-			//deleteメソッドを利用して書籍情報を削除
+			//deleteメソッドを利用してユーザー情報を削除
 			try {
 
 				objUserDAO.deleteUser(objUser);
 
 			} catch (IllegalStateException e) {
 
-				String message = "DB接続エラーの為、ユーザーを削除できませんでした。";
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
+				String error = "DB接続エラーの為、ユーザーを削除できませんでした。";
+				String cmd = "omenu";
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 
 			} finally {
-				//ログイン画面へフォワード
 				request.getRequestDispatcher("/updateUserOwner").forward(request, response);
 			}
 		}
