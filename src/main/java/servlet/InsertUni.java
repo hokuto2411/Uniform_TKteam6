@@ -82,22 +82,22 @@ public class InsertUni extends HttpServlet{
 				//85~104行で各種エラー処理	
 				//商品名が未入力
 				if(uniname.equals("") || uniname.trim().equals("")){
-					error = "商品名が未入力の為、商品登録は行えませんでした。";
-					cmd = "nameNull";
+					error = "商品名が未入力のため、登録できませんでした。";
+					cmd = "omenu";
 					return;
 				}
 
 				//価格が未入力
 				if(request.getParameter("price") == "" ) {
-					error = "価格が未入力の為、商品登録は行えませんでした。";
-					cmd = "priceNull";
+					error = "価格が未入力のため、登録できませんでした。";
+					cmd = "omenu";
 					return;
 				}
 
 				//在庫数が未入力
 				if(request.getParameter("stock") == ""){
-					error = "在庫数が未入力の為、商品登録は行えませんでした。";
-					cmd = "stockNull";
+					error = "在庫数が未入力のため、登録できませんでした。";
+					cmd = "omenu";
 					return;
 				}
 
@@ -109,8 +109,8 @@ public class InsertUni extends HttpServlet{
 				uni.setImage(file_name.getName());
 
 			}else {
-				error = "ファイルがありません";
-				cmd= "fileNull";
+				error = "写真が未挿入のため、登録できませんでした。";
+				cmd= "omenu";
 				return;
 			}
 
@@ -118,10 +118,10 @@ public class InsertUni extends HttpServlet{
 			uniDao.insert(uni);
 
 		}catch(IllegalStateException e) {
-			error = "DB接続エラーの為、登録できませんでした。";
-			cmd = "dbError";
+			error = "DB接続エラーのため、登録できませんでした。";
+			cmd = "omenu";
 		}catch(NumberFormatException e) {
-			error = "価格の値が不正の為、登録処理は行えませんでした。";
+			error = "価格または在庫の値が不正だったため、登録できませんでした。";
 			cmd = "priceFail";
 		}finally {
 			if(error == null || error.trim().equals("")) {
