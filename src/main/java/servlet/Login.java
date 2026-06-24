@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 		} catch (IllegalStateException e) {
 
 			String message = "DB接続エラーのため、ログインできませんでした。";
-			request.setAttribute("cmd", "menu");
+			request.setAttribute("cmd", "login");
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
 
