@@ -16,8 +16,8 @@ ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-		<%@include file="/common/header_Owner.jsp"%>
-	<%@include file="/common/sidebar_Owner.jsp"%>
+	<%@include file="/common/header_User.jsp"%>
+	<%@include file="/common/sidebar_User.jsp"%>
 
 	<h1>注文履歴一覧画面</h1>
 	<hr class="black">
