@@ -25,49 +25,44 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 	<div class="container">
 		<%@include file="/common/sidebar_User.jsp"%>
 
-		<main style="width: 100%;">
+		<main>
 
-			<h3 style="text-align: center">下記のユニフォームをカートに追加しました。</h3>
+			<h1>
+			下記のユニフォームをカートに追加しました。
+			</h1>
 
-				<table style="margin: auto">
-					<%
-					if (order != null) {
-						if (uni != null) {
-					%>
-					<tr>
-						<th
-						style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">
-							No</th>
-						<td style="text-align: center; vertical-align: middle;"><%=order.getOrderno()%></td>
-				</tr>
-					<tr>
-						<th
-						style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">
-							種類</th>
-						<td style="text-align: center; vertical-align: middle;"><%=uni.getUnino()%></td>
-				</tr>
-					<tr>
-						<th
-						style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
-						<td style="text-align: center; vertical-align: middle;"><%=fmt.moneyFormat(uni.getPrice())%></td>
-				</tr>
+			<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
+			<%
+				if (order != null) {
+					if (uni != null) {
+			%>
+				<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
+			<tr>
+				<td rowspan="2">
+					<img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
+								width="100%" height="100%">
+				</td>
+				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">商品名</th>
+				<td style="text-align: center; vertical-align: middle;"><%=uni.getUniname()%></td>
+			</tr>
+			<tr>
+				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
+				<td style="text-align: center; vertical-align: middle;"><%=fmt.moneyFormat(uni.getPrice())%></td>
+			</tr>
+		</table>
 					<%
 					}
 					}
 					%>
-				</table> <br>
-				<div style="text-align: center;">
-					<form action="<%=request.getContextPath()%>/showCart" method="get">
-						<table style="margin: 0 auto;">
-							<tr>
-								<td>
-								<input type="submit" value="カート確認"></td>
-						</tr>
-						</table>
-					</form>
-
+				</table>
+				
+				<div style="margin-top:20px">	
+					<div style="float:left; margin-left:50%">
+						<form action="<%=request.getContextPath()%>/showCart" method="get">
+						<input type="submit" value="カート確認" class="color-change">
+						</form>
+					</div>
 				</div>
-
 		</main>
 	</div>
 </body>
