@@ -17,8 +17,7 @@ String cmd = (String) request.getAttribute("cmd");
 	
 	<!-- コンテンツ -->
 	<div style = "margin-top:50px; padding-top:10%;text-align: center">
-		<h1 style="border-bottom: 3px dotted #0000ff;">
-			●●エラー●●</h1>
+			<h1>●●エラー●●</h1>
 <br>
 		<h2><%=message%></h2>
 		<br>
