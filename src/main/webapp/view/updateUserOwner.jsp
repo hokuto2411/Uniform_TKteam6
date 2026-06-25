@@ -17,32 +17,27 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 
 </head>
 <body>
-
-	<%@include file="/common/header_Owner.jsp"%>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
+<%@include file="/common/header_Owner.jsp"%>
+	
+	<!-- コンテナ -->
+  	<div class="container">
+  	
+  	<!-- サイドバー -->
 	<%@include file="/common/sidebar_Owner.jsp"%>
-
-
-
+	
+	<!-- メイン -->
 	<main>
-		<h2 style="text-align: center">ユーザー一覧</h2>
 
-		<table style="margin: auto;">
+		<h1>ユーザー一覧</h1>
 
-			<tr style="height: 10px">
+		<table style="margin: auto; width:100%;  ">
+
+			<tr style="height: 50px">
 				<th style="text-align: center">名前</th>
 				<th style="text-align: center">住所</th>
 				<th style="text-align: center">ID</th>
 				<th style="text-align: center">パスワード</th>
-				<th style="text-align: center">資格</th>
+				<th style="text-align: center">有効(0)</th>
 				<th style="text-align: center">削除</th>
 			</tr>
 
@@ -87,8 +82,7 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 		</table>
 
 
-	</main>
-
-</body>
+</main>
+</div>
 </body>
 </html>
