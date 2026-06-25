@@ -17,6 +17,8 @@
 			</tr>
 		</table>
 	</div>
+	<a href="<%=request.getContextPath()%>/view/menuOwner.jsp">
 	<img src="<%=request.getContextPath() %>/file/logo.png" style="width:20%; margin:5px auto" alt="ゆにふぉ～むのホーム">
+	</a>
 	<hr style="height: 5px; background-color: white;">
 </header>
