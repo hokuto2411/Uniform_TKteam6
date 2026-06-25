@@ -63,8 +63,8 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				if (user.get(i).getUserfrag() == 0) {
 				%>
 				<td style="text-align: center">有効</td>
-				<td style="text-align: center"><a
-					href="<%=request.getContextPath()%>/deleteUser?userid=<%=user.get(i).getUserid()%>&password=<%=user.get(i).getPassword()%>">削除</a><br></td>
+				<td style="text-align: center">
+				<a href="<%=request.getContextPath()%>/deleteUser?userno=<%=user.get(i).getUserno()%>">削除</a>
 
 				<%
 				}
