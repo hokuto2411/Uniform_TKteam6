@@ -25,7 +25,7 @@ public class BuyConfirm extends HttpServlet { // 💡クラス名のタイポも
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 			if(user == null) {
-				error = "セッション切れの為、購入は出来ません。";
+				error = "ログインしていないため、購入は出来ません。";
 				request.setAttribute("error",error);
 				request.setAttribute("cmd","logout");
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);

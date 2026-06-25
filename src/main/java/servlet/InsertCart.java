@@ -10,10 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import bean.Order;
 import bean.OrderDetail;
 import bean.Uniform;
-import bean.User;
 import dao.UniformDAO; 
 
 @WebServlet("/insertCart")
@@ -24,7 +22,7 @@ public class InsertCart extends HttpServlet {
 		String error = "";		
 		try {
 			HttpSession session = request.getSession();
-			User user = (User)session.getAttribute("user");
+			
 			
 
 			request.setCharacterEncoding("UTF-8");
@@ -57,11 +55,6 @@ public class InsertCart extends HttpServlet {
 			}
 			
 			session.setAttribute("detail_list", detail_list);
-			
-			Order order = new Order();
-			order.setUserno(user.getUserno());
-			request.setAttribute("order", order);
-			request.setAttribute("uni", uni);
 			
 			request.getRequestDispatcher("/view/insertCart.jsp").forward(request, response);
 			
