@@ -5,10 +5,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,bean.User,util.MyFormat"%>
-<%@page import="dao.UniformDAO"%>
-<%@page import="util.ArartStock"%>
-<%
-User user = (User)session.getAttribute("user");
 UniformDAO uniDao = new UniformDAO();
 ArartStock arart = new ArartStock();
 ArrayList<Uniform> uni_list = uniDao.selectAll();
@@ -21,6 +17,7 @@ if(uni_list != null){
 	}
 }
 %>
+
 <head>
 	<title>管理者：商品一覧</title>
 	<link rel="stylesheet"
@@ -31,7 +28,6 @@ MyFormat mft = new MyFormat();
 %>
 
 <body>
-
 	<!-- ヘッダー -->
 	<%@ include file="/common/header_Owner.jsp"%>
 	
@@ -54,21 +50,20 @@ MyFormat mft = new MyFormat();
 					text-align:right;
 					padding-left:10px;
 					border: 1px solid #333333;
-					border-radius: 10px; ">
-						
-			<p>
-				ユーザー名<% %><br>
+					border-radius: 10px; ">		
+				<p style="text-align:left; padding-left:10px">ようこそ♪<br>
 				<%--ユーザー名 --%>
+				<%User user=(User)session.getAttribute("user"); %>
 				<%if(user==null){ %>
 				<%--ログインしていない場合 --%>
 				<form action="<%=request.getContextPath()%>/login" method="post">
-					<input type="submit" value="ログイン">
+					<input type="submit" value="ログイン" class="color-change">
 				</form>
 				<%--ログインしている場合 --%>
 				<%}else{ %>
-				<%=user.getUsername()%><br>
+				<p><%=user.getUsername()%>　様<br>
 				<form action="<%=request.getContextPath()%>/logout" method="post">
-					<input type="submit" value="ログアウト">
+					<input type="submit" value="ログアウト" class="color-change">
 				</form>
 				<%} %>
 				<%--ログアウト --%>
@@ -76,9 +71,11 @@ MyFormat mft = new MyFormat();
 		</div>
 
 		<div style="text-align:right;
-					padding-right:400px;
-					margin-bottom: 20px;">
-			<a href="<%=request.getContextPath()%>/view/insertUniOwner.jsp">新規登録</a>
+					padding-right:300px;
+					margin-bottom: 20px;
+					">
+			<h3><a href="<%=request.getContextPath()%>/view/insertUniOwner.jsp">▶商品を新規登録</a>
+			</h3>
 		</div>
 		
 		<div style="display:flex; gap:15px;flex-wrap: wrap;justify-content: gap;">
@@ -93,8 +90,7 @@ MyFormat mft = new MyFormat();
 				Uniform uni = (Uniform) list.get(i);
 		%>
 			
-			<div style="padding: 15px;
- 						flex: 100 100 200px;">
+			<div class="color-change3">
 				<!-- 商品名 -->
 				<p><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>&cmdSwitch=owner">
 						<%=uni.getUniname()%></a>
@@ -273,4 +269,3 @@ function clearAllErrors() {
 	</div>
 </body>
 </html>
-
