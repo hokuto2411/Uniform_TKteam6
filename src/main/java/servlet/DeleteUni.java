@@ -8,45 +8,56 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import bean.User;
-import dao.UserDAO;
+import dao.UniformDAO;
 
-@WebServlet("/deleteUser")
-public class DeleteUser extends HttpServlet {
-		protected void doGet(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
+@WebServlet("/deleteUni")
+public class DeleteUni extends HttpServlet{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
 
-			UserDAO objUserDAO = new UserDAO();
-			User objUser = new User();
+		//エラー処理用の変数の宣言と初期化
+		String error = "";
+		String cmd = "";
 
-			String userid = request.getParameter("userid");
-			String password = request.getParameter("password");
-			System.out.println(request.getParameter("userid"));
+		try {
+			//必要クラスのインスタンス化
+			UniformDAO uniDao = new UniformDAO();
+
+			//パラメータの受け取り
+			int unino =Integer.parseInt(request.getParameter("unino"));
 			
-			
-			 objUser = objUserDAO.selectByUser(userid,password);
-			 System.out.println(objUser);
-			if (objUser.getUsername() == null) {
-				String message = "削除対象のユーザーが存在しない為、削除処理は行えませんでした。";
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=list").forward(request, response);
+			//削除対象の有無を確認
+			int e_unino = uniDao.selectByUnino(unino).getUnino();
+			String strunino = Integer.toString(e_unino);
 
+			//エラー処理
+
+			//uninoがない場合
+			if(strunino.equals("")) {
+				error = "削除対象の商品が存在しない為、削除処理は行えませんでした。";
+				cmd = "uninoNull";
+				return;
 			}
-			//deleteメソッドを利用して書籍情報を削除
-			try {
 
-				objUserDAO.deleteUser(objUser);
+			//削除実行
+			uniDao.delete(unino);
 
-			} catch (IllegalStateException e) {
+		}catch(IllegalStateException e){
+			error = "DB接続エラーの為、削除処理は行えませんでした。";
+			cmd="error";
 
-				String message = "DB接続エラーの為、削除は行えませんでした。";
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/view/error.jsp?cmd=logout").forward(request, response);
-
-			} finally {
-				//ユーザー管理画面へフォワード
-				request.getRequestDispatcher("/updateUserOwner").forward(request, response);
+		}catch(Exception e) {	
+			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "error";
+		}finally {
+			if(error == null || error.trim().equals("")) {
+				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
+			}else {
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}
 	}
 
+}

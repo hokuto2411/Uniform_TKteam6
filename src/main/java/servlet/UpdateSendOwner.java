@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,8 +12,8 @@ import bean.Order;
 import dao.OrderDAO;
 
 
-@WebServlet("/showOrderedItemOwner")
-public class ShowOrderedItemOwner extends HttpServlet {
+@WebServlet("/updateSendOwner")
+public class UpdateSendOwner extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException ,IOException{
 
@@ -29,11 +28,17 @@ public class ShowOrderedItemOwner extends HttpServlet {
 			//オーダー情報管理を管理するクラスのインスタンス化
 			OrderDAO orderDao = new OrderDAO();
 			
-			//メソッドを利用しデータベースからオーダー情報を取得
-			ArrayList<Order> list = orderDao.selectAll();
-
-			//取得したオーダー情報をリクエストスコープに格納
-			request.setAttribute("orderList", list);
+			//リンクからの情報を取得
+			int send = Integer.parseInt(request.getParameter("send"));
+			int orderno = Integer.parseInt(request.getParameter("orderno"));
+		
+			//該当オーダー情報を取得
+			Order order = orderDao.selectByOrder(orderno);
+					
+			order.setSend(send);
+			
+			//insertメソッドを使ってDBに登録する
+			orderDao.update(order);
 
 		}catch(IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示は行えませんでした。";
@@ -42,7 +47,7 @@ public class ShowOrderedItemOwner extends HttpServlet {
 			if(error == null || error.trim().equals("")) 
 			{
 				//注文画面（管理者）にフォワード
-				request.getRequestDispatcher("/view/showOrderedItemOwner.jsp").forward(request, response);	
+				request.getRequestDispatcher("/view/sendComplete.jsp").forward(request, response);	
 			}
 			else 
 			{

@@ -239,5 +239,35 @@ public class OrderDAO {
 		
 		return sum;
 	}
-	
+		public void updateDeposit(Order order) {
+		Connection con = null;
+		Statement smt = null;
+		
+		try {
+			
+			String sql="update orderinfo set deposit = 1 where orderno="+order.getOrderno()+";";
+			
+			con = getConnection();
+			smt = con.createStatement();
+			
+			smt.executeUpdate(sql);
+			
+		}catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		
+	}
 }
