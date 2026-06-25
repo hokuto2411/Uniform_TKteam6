@@ -71,8 +71,7 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				else{
 				%>
 				<td style="text-align: center"><%=user.get(i).getUserfrag()%></td>
-				<td style="text-align: center"><a
-					href="<%=request.getContextPath()%>/deleteUser?userid=<%=user.get(i).getUserid()%>&password=<%=user.get(i).getPassword()%>">削除</a><br></td>
+				<td</td>
 				<%
 				}
 				%>
