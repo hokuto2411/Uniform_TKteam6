@@ -268,6 +268,35 @@ public class OrderDAO {
 				}
 			}
 		}
+
+		//指定された注文データを更新するメソッド
+		public void update(Order order){
+	
+		Connection con = null;
+		Statement smt = null;
+	
+		try{
+			//SQL文作成
+			String sql = "UPDATE orderinfo SET send='"+order.getSend()+"'"
+				+" WHERE orderno="+order.getOrderno();
+			
+			//DBに接続
+			con = getConnection();
+			smt = con.createStatement();
+	
+			//SQL文発行
+			smt.executeUpdate(sql);
+	
+			}catch(Exception e){
+				throw new IllegalStateException(e);
+			}finally{
+				if( smt != null ){
+					try{smt.close();}catch(SQLException ignore){}
+				}
+				if( con != null ){
+					try{con.close();}catch(SQLException ignore){}
+				}
+			}
+		}
 		
-	}
 }
