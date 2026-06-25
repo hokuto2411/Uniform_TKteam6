@@ -6,6 +6,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,bean.User"%>
+<%@page import="util.MyFormat"%>
+<%
+MyFormat fmt = new MyFormat();
+%>
 <title>商品一覧</title>
 <link rel="stylesheet"  href="<%=request.getContextPath() %>/css/User.css">
 </head>
@@ -74,6 +78,7 @@
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
 					 style="height:150px;border:1px brack;">
+				<p><%=fmt.moneyFormat(uni.getPrice()) %>
 				</div>
 			
 			<%

@@ -49,7 +49,7 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 					<tr>
 						<th
 						style="background-color: #00FFFF; text-align: center; vertical-align: middle;">価格</th>
-						<td style="text-align: center; vertical-align: middle;"><%=uni.getPrice()%></td>
+						<td style="text-align: center; vertical-align: middle;"><%=fmt.moneyFormat(uni.getPrice())%></td>
 				</tr>
 					<%
 					}

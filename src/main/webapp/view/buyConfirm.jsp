@@ -52,7 +52,7 @@ if (request.getAttribute("total_price") != null) {
 		if (user != null) {
 		%>
 		
-		<!-- 商品情報 -->		
+		<!-- 商品情報 -->
 		<h3 style="text-align:left;">■商品情報</h3>
 				<table style="margin-left:0; width: 80%; border-collapse: collapse; margin-bottom: 20px;" border="1">
 					<tr style="background-color: #f2f2f2;">
