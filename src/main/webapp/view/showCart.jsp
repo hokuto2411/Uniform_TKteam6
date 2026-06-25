@@ -26,15 +26,15 @@ ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 	<div class="container">
 		<%@include file="/common/sidebar_User.jsp"%>
 
-		<main style="width: 100%;">
-			<table style="margin: auto">
+		<main>
+		
+		<h1>カート内容確認</h1>
+		
+			<table style="margin: auto; width:100%">
 
-				<tr>
+				<tr style="height:50px;">
 					<th
-					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">No
-				</th>
-					<th
-					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">種類
+					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">商品名
 				</th>
 					<th
 					style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px">個数
@@ -57,12 +57,11 @@ ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 							Uniform uni = UniDao.selectByUnino(detail.getUnino());
 							total += uni.getPrice();
 				%>
-				<tr>
-					<td style="text-align: center; width: 400px"><%=detail.getOrderno() %></td>
-					<td style="text-align: center; width: 400px"><%=uni.getUniname() %></td>
-					<td style="text-align: center; width: 400px"><%=detail.getQuantity() %></td>
-					<td style="text-align: center; width: 400px"><%=fmt.moneyFormat(uni.getPrice()) %></td>
-					<td style="text-align: center; width: 400px"><a
+				<tr style="height:50px;">
+					<td style="text-align: center; width: 400px; border:none"><%=uni.getUniname() %></td>
+					<td style="text-align: center; width: 400px; border:none"><%=detail.getQuantity() %></td>
+					<td style="text-align: center; width: 400px; border:none"><%=fmt.moneyFormat(uni.getPrice()) %></td>
+					<td style="text-align: center; width: 400px; border:none"><a
 						href="<%=request.getContextPath()%>/showCart?delunino=<%=uni.getUnino()%>">削除</a>
 				</td>
 			</tr>
@@ -70,23 +69,23 @@ ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 				}}}
 				%>
 			</table> <br> <br>
-			<hr style="height: 1px; background-color: black;">
-			<hr style="height: 1px; background-color: black;">
+			<hr style="height: 0.5px; margin-bottom:0.5px; background-color: black;">
+			<hr style="height: 0.5px; margin-top:0.5px; background-color: black;">
 
-			<div style="text-align: center;">
-				<table style="margin: 0 auto;">
-					<tr>
-						<th style="background-color: #00FFFF">合計</th>
-						<td><%=fmt.moneyFormat(total) %></td>
+			<table style="float:right; width:30%">
+				<tr>
+					<th style="background-color: #00FFFF; border:2; text-align:center">合計</th>
+					<td style=" border:none; text-align:center"><%=fmt.moneyFormat(total) %></td>
 				</tr>
 				</table>
-			</div>
+			
 			<br>
 
 			<form action="<%=request.getContextPath() %>/buyConfirm" method="get">
 
-				<div style="text-align: center;">
-					<input type="submit" name="Payment" value="購入に進む"></input>
+				<div style="text-align: center; margin-top:50px;">
+					<input type="submit" name="Payment" size="30px" value="購入に進む"
+							class="color-change"></input>
 				</div>
 
 			</form>
