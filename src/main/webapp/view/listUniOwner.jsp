@@ -4,13 +4,16 @@
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
-<%@page import="java.util.ArrayList,bean.User"%>
+<%@page import="java.util.ArrayList,bean.User,util.MyFormat"%>
 
 <head>
 	<title>管理者：商品一覧</title>
 	<link rel="stylesheet"
 	href="<%=request.getContextPath() %>/css/Owner.css">
 </head>
+<%
+MyFormat mft = new MyFormat();
+%>
 
 <body>
 	<!-- ヘッダー -->
@@ -84,6 +87,10 @@
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
 					 style="height:150px;;border:1px brack;">
+				<!-- 価格 -->
+				<p><%=mft.moneyFormat(uni.getPrice())%>
+				<!-- 在庫 -->
+				<p>残り<%=uni.getStock()%>点
 				</div>
 		<%
 				}
@@ -96,3 +103,4 @@
 	</div>
 </body>
 </html>
+
