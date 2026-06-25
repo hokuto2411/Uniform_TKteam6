@@ -14,7 +14,7 @@
 
 <%
 ArrayList<Uniform> uniList = (ArrayList<Uniform>) request.getAttribute("uni_list");
-ArrayList<OrderDetail> detailList = (ArrayList<OrderDetail>) session.getAttribute("detail_list");
+ArrayList<OrderDetail> detailList = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
 User user = (User) session.getAttribute("user");
 MyFormat myFormat = new MyFormat();
 int total = 0;
@@ -33,9 +33,6 @@ if (request.getAttribute("total_price") != null) {
 	
 	<!-- サイドバー -->
 	<%@ include file="/common/sidebar_User.jsp"%>
-
-	<!-- ラッパー -->
-	<div class="wrapper">
 	
 	<!-- メイン -->
 	<main>
@@ -52,9 +49,9 @@ if (request.getAttribute("total_price") != null) {
 		if (user != null) {
 		%>
 		
-		<!-- 商品情報 -->
+		<!-- 商品情報 -->		
 		<h3 style="text-align:left;">■商品情報</h3>
-				<table style="margin-left:0; width: 80%; border-collapse: collapse; margin-bottom: 20px;" border="1">
+		<table style="margin-left:0; width: 80%; border-collapse: collapse; margin-bottom: 20px; width:50%;" border="1";>
 					<tr style="background-color: #f2f2f2;">
 						<th>商品名</th>
 						<th>数量</th>
@@ -63,7 +60,7 @@ if (request.getAttribute("total_price") != null) {
 		
 				<%
 					if (uniList != null && detailList != null) {
-						for (int i = 0; i < detailList.size(); i++) {
+						for (int i = 0; i < uniList.size(); i++) {
 							Uniform uni = uniList.get(i);
 							OrderDetail detail = detailList.get(i);
 				%>
@@ -78,8 +75,8 @@ if (request.getAttribute("total_price") != null) {
 				%>
 				</table>
 				
-		<h2 style="text-align: right; color: red; margin: 20px 200px;">
-			合計金額：<%=myFormat.moneyFormat(total)%>円
+		<h2 style="float: right; color: red; margin: 20px 200px;">
+			合計金額：<%=myFormat.moneyFormat(total)%>
 		</h2>
 
 		<h3  style="text-align:left;">■お客様情報</h3>
@@ -97,6 +94,7 @@ if (request.getAttribute("total_price") != null) {
 						<td><%=user.getMailaddress()%></td>
 					</tr>
 				</table>
+				
 
 		<form action="<%= request.getContextPath() %>/buyComplete" method="get">
 		<div style="text-align: left; margin-bottom: 20px;">
@@ -104,7 +102,7 @@ if (request.getAttribute("total_price") != null) {
 			<input type="text" name="comment" size="50" style="height:50px" placeholder="配送時間のご希望などがあれば入力してください"></p>
 		</div>
 		<div style="text-align:right; margin-right: 200px; margin-bottom:30px">
-		<input type="submit" value="購入を確定する" style="padding: 10px 30px; font-size: 16px; background-color: #00FFFF; cursor: pointer;">
+		<input type="submit" value="購入を確定する" class="color-change">
 		</div>
 		</form>
 
@@ -112,7 +110,7 @@ if (request.getAttribute("total_price") != null) {
 				<p style="color: red; text-align: center;">ユーザー情報が確認できません。再度ログインしてください。</p>
 				<% } %>
 			</main>
-		</div>
+	
 	</div>
 </body>
 </html>

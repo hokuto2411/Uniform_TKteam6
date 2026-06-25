@@ -7,16 +7,15 @@
 <%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,bean.User"%>
 <%@page import="util.MyFormat"%>
-<%
-MyFormat fmt = new MyFormat();
-%>
 <title>商品一覧</title>
 <link rel="stylesheet"  href="<%=request.getContextPath() %>/css/User.css">
 </head>
 
-<body>
+<%
+MyFormat fmt = new MyFormat();
+%>
 
-<!-- ==================== 画面中央ポップアップ広告（手作り版） ==================== -->
+<body>
 <style>
 /* 画面全体を暗くするグレーの背景 */
 .my-ad-bg {
@@ -96,8 +95,6 @@ function closeAd() {
     document.getElementById('popupAd').style.display = 'none';
 }
 </script>
-<!-- ================================================================== -->
-
 	<!-- ヘッダー -->
   	<%@include file="/common/header_User.jsp"%>
   	
@@ -118,20 +115,20 @@ function closeAd() {
 			padding-left: 10px; 
 			border: 1px solid #333333; 
 			border-radius: 10px;">
-			<p>
-				ユーザー名<% %><br>
+			<p style="text-align:left; padding-left:10px">ようこそ♪<br>
 				<%--ユーザー名 --%>
 				<%User user=(User)session.getAttribute("user"); %>
 				<%if(user==null){ %>
 				<%--ログインしていない場合 --%>
+				<p style="text-align:center">ゲスト　様
 				<form action="<%=request.getContextPath()%>/view/login.jsp" method="post">
-					<input type="submit" value="ログイン">
+					<input type="submit" value="ログイン" class="color-change">
 				</form>
 				<%--ログインしている場合 --%>
 				<%}else{ %>
-				<%=user.getUsername()%><br>
+				<p><%=user.getUsername()%>　様<br>
 				<form action="<%=request.getContextPath()%>/logout" method="post">
-					<input type="submit" value="ログアウト">
+					<input type="submit" value="ログアウト"class="color-change">
 				</form>
 				<%} %>
 				<%--ログアウト --%>
@@ -152,8 +149,7 @@ function closeAd() {
 					Uniform uni = (Uniform) list.get(i);
 			%>
 			
-			<div style="padding: 15px;
- 						flex: 100 100 200px;">
+			<div class="color-change3">
 				<!-- 商品名 -->
 				<p><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
 						<%=uni.getUniname()%></a>
@@ -161,12 +157,15 @@ function closeAd() {
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
 					 style="height:150px;border:1px brack;">
+				<!-- 価格 -->
 				<p><%=fmt.moneyFormat(uni.getPrice()) %>
 				</div>
+				
+				
 			
 			<%
 			}
-
+				
 			}
 			%>
 	</div>

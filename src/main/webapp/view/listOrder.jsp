@@ -21,27 +21,26 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-	<%@include file="/common/header_User.jsp"%>
+	<!-- ヘッダー -->
+  	<%@include file="/common/header_User.jsp"%>
+  	
+  	<!-- コンテナ -->
+  	<div class="container">
+  	
+  	<!-- サイドバー -->
+	<%@include file="/common/sidebar_User.jsp"%>	
+	
+	<!-- メイン -->
+	<main>
+	<h1>注文履歴一覧画面</h1>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<%@include file="/common/sidebar_User.jsp"%>
-
-	<h1 style="text-align: center">注文履歴一覧画面</h1>
-	<hr class="black">
-
-	<table style="margin: auto">
-		<tr>
-			<th>注文No.</th>
-			<th>合計金額</th>
-			<th>入金状況</th>
-			<th>発注状況</th>
-			<th>日付</th>
+	<table style="margin: auto; width:100%; table-layout:fixed;">
+		<tr style="height:50px;">
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">注文No.</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">合計金額</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">入金状況</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">発注状況</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">日付</th>
 		</tr>
 
 		<%
@@ -96,5 +95,8 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 	</table>
 
 	<%@include file="../common/footer.jsp"%>
+	
+	</main>
+	</div>
 </body>
 </html>

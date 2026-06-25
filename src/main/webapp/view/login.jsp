@@ -12,28 +12,16 @@ if(message==null){
 
 <body>
 	<%@include file="/common/header_User.jsp"%>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-	
-	
 	<form action="<%=request.getContextPath()%>/login" method="post">
 
-		<table style="margin: auto">
+	<table style="margin: auto; margin-top:250px; height:200px; width:30%; border-spacing:5px;">
 			<tr>
-				<th><label for="userid">ユーザーID</label></th>
-				<td><input type="text" name="userid"></td>
+				<th style="text-align:center"><label for="userid">ユーザーID</label></th>
+				<td><input type="text" name="userid" style="width:100%"></td>
 			</tr>
 			<tr>
-				<th><label for="password">パスワード</label></th>
-				<td><input type="password" name="password"></td>
+				<th style="text-align:center"><label for="password">パスワード</label></th>
+				<td><input type="password" name="password" style="width:100%;"></td>
 			</tr>
 		</table>
 		
@@ -43,14 +31,13 @@ if(message==null){
 <br>
 <%=message %>
 <br>
-		<input type="submit"  value="ログイン">
+		<input type="submit"  value="ログイン" class="color-change">
 		</div>
 		
 		<br>
 		<br>
 		
 		<div style="text-align: center;">
-			<a href="<%=request.getContextPath()%>/listUni">ユニフォーム一覧はこちら</a><br>
 				<a href="<%=request.getContextPath()%>/view/insertUser.jsp">会員登録はこちら</a>
 		</div>
 	</form>
