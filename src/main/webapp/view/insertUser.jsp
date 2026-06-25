@@ -12,12 +12,12 @@
 
 <body>
 	<!-- ヘッダー -->
-  	<%@include file="/common/header_insertUser.jsp"%>
+  	<%@include file="/common/header_User.jsp"%>
   	<!-- コンテナ -->
   	<div class="container">
   	
   	<!-- サイドバー -->
-	<%@include file="/common/sidebar_insertUser.jsp"%>	
+	<%@include file="/common/sidebar_User.jsp"%>	
 	
 	<!-- メイン -->
 	<main>
