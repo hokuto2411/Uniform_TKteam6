@@ -36,14 +36,14 @@ public class UpdateUserOwner extends HttpServlet {
 			String	error="DB接続エラーの為、ユーザー一覧表示を表示できませんでした。";
 			request.setAttribute("error", error);
 			request.setAttribute("cmd", cmd);
-			request.getRequestDispatcher("/view/error.jsp).forward(request, response);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 
 		}catch(Exception e){
 			String cmd = "omenu";
 			String	error="予期せぬエラーが発生しました。<br>" + e;
 			request.setAttribute("error", error);
 			request.setAttribute("cmd", cmd);
-			request.getRequestDispatcher("/view/error.jsp).forward(request, response);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		
 		}
 		
