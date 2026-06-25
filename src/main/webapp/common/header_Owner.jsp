@@ -11,9 +11,12 @@
 				z-index: 1000;
 				background-color: #00bfff;">
 	<div style="float: right;">
-		<table>
+			<table>
 			<tr>
 				<td style="padding: 5px">管理者用</td>
+			</tr>
+			<tr>
+			<td style="border: none"><a href="<%=request.getContextPath()%>/logout">ログアウト</a></td>
 			</tr>
 		</table>
 	</div>
