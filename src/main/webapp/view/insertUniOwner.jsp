@@ -59,7 +59,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 				<input type=text name="stock" style="width:90%;"></td>
 		</tr>
 		</table>
-		<input type="submit" value="登録" style = "margin:20px; text-align:left;">
+		<input type="submit" value="登録" class="color-change">
 	</form>
 	</main>
 	</div>
