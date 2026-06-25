@@ -22,7 +22,7 @@
 	<!-- メイン -->
 	<main>
 		<!-- サブタイトル -->
-		<h1>
+		<h1 style="text-align:center">
 			会員登録
 		</h1>
 		
