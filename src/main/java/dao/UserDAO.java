@@ -34,7 +34,7 @@ public class UserDAO {
 			User user = new User();
 			try {
 				//SQL文
-				String sql = "SELECT * FROM user WHERE userid ='" + userid + "' AND password='" + password + "';";
+				String sql = "SELECT * FROM userinfo WHERE userid ='" + userid + "' AND password='" + password + "';";
 
 				con = getConnection();
 				smt = con.createStatement();
@@ -80,7 +80,7 @@ public class UserDAO {
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql="insert into user values ("+"null"+",'"
+				String sql="insert into userinfo values ("+"null"+",'"
 			+user.getUserid()+"','"
 			+user.getPassword()+"','"
 			+user.getUsername()+"','"
@@ -119,7 +119,7 @@ public class UserDAO {
 				
 				
 				
-				String sql = "UPDATE user SET " +
+				String sql = "UPDATE userinfo SET " +
 			             "userid = '" + user.getUserid() + "', " +
 			             "password = '" + user.getPassword() + "', " +
 			             "username = '" + user.getUsername() + "', " +
@@ -158,7 +158,7 @@ public class UserDAO {
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql = "UPDATE user SET userfrag = 1 WHERE userno = " + userno + ";";
+				String sql = "UPDATE userinfo SET userfrag = 1 WHERE userno = " + userno + ";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -188,7 +188,7 @@ public void ComeBack(int userno) {
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql = "UPDATE user SET userfrag = 0 WHERE userno = " + userno + ";";
+				String sql = "UPDATE userinfo SET userfrag = 0 WHERE userno = " + userno + ";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -218,7 +218,7 @@ public void ComeBack(int userno) {
 			Statement smt = null;
 			ArrayList<User> user=new ArrayList<User>();
 			try {//ここに記述
-				String sql="SELECT userno,userid,password,username,address,userfrag FROM user ORDER BY userno"+";";
+				String sql="SELECT userno,userid,password,username,address,userfrag FROM userinfo ORDER BY userno"+";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -265,7 +265,7 @@ public void ComeBack(int userno) {
 		User user = new User();
 
 		try {//ここに記述
-			String sql="insert into user values (null,'guest','guest','name','address','mail',0,0,now());";
+			String sql="insert into userinfo values (null,'guest','guest','name','address','mail',0,0,now());";
 			
 			
 			con = getConnection();
@@ -297,7 +297,7 @@ public void ComeBack(int userno) {
 		Statement smt = null;
 
 		try {
-			String sql = "UPDATE user SET username = '" + user.getUsername()
+			String sql = "UPDATE userinfo SET username = '" + user.getUsername()
 			+ "', address = '" + user.getAddress()
 			+ "', mailaddress = '" + user.getMailaddress()
 			+ "' WHERE userno = " + user.getUserno();
