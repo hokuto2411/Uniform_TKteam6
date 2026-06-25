@@ -182,6 +182,37 @@ public class UserDAO {
 				}
 			}
 		}
+
+public void ComeBack(int userno) {
+			Connection con = null;
+			Statement smt = null;
+			
+			try {//ここに記述
+				String sql = "UPDATE user SET userfrag = 0 WHERE userno = " + userno + ";";
+				
+				con = getConnection();
+				smt = con.createStatement();
+				
+				smt.executeUpdate(sql);
+				
+			}catch (Exception e) {
+				throw new IllegalStateException(e);
+			} finally {
+				if (smt != null) {
+					try {
+						smt.close();
+					} catch (SQLException ignore) {
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (SQLException ignore) {
+					}
+				}
+			}
+		}
+	
 		public ArrayList<User> selectAll(){
 			Connection con = null;
 			Statement smt = null;
