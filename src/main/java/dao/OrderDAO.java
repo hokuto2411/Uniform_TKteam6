@@ -14,9 +14,9 @@ import bean.Order;
 public class OrderDAO {
 	private static String RDB_DRIVE = "com.mysql.cj.jdbc.Driver";
 	private static String URL = "jdbc:mysql://localhost/uniformdb";
-	private static String USER="root";
-	private static String PASSWD="root123";
-	
+	private static String USER = "root";
+	private static String PASSWD = "root123";
+
 	private static Connection getConnection() {
 		Connection con = null;
 		try {
@@ -27,7 +27,7 @@ public class OrderDAO {
 			throw new IllegalStateException(e);
 		}
 	}
-	
+
 	public int insert(Order order) {
 		Connection con = null;
 		PreparedStatement pstmt = null; // 💡 安全なPreparedStatementに変更
@@ -39,16 +39,16 @@ public class OrderDAO {
 
 			con = getConnection();
 			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			
+
 			pstmt.setInt(1, order.getUserno());
 			pstmt.setInt(2, order.getSumprice());
 			pstmt.setTime(3, new java.sql.Time(order.getOrderdate().getTime()));
 			pstmt.setInt(4, order.getDeposit()); // 入金状況（0:未入金など）
-			pstmt.setInt(5, 0);                 // 発送状況（0:未発送）
+			pstmt.setInt(5, 0); // 発送状況（0:未発送）
 			pstmt.setString(6, order.getOrdercomment());
 
 			pstmt.executeUpdate();
-			
+
 			rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				generatedId = rs.getInt(1);
@@ -58,19 +58,27 @@ public class OrderDAO {
 			throw new IllegalStateException(e);
 		} finally {
 			if (rs != null) {
-				try { rs.close(); } catch (SQLException ignore) {}
+				try {
+					rs.close();
+				} catch (SQLException ignore) {
+				}
 			}
 			if (pstmt != null) {
-				try { pstmt.close(); } catch (SQLException ignore) {}
+				try {
+					pstmt.close();
+				} catch (SQLException ignore) {
+				}
 			}
 			if (con != null) {
-				try { con.close(); } catch (SQLException ignore) {}
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
 			}
 		}
 		return generatedId;
 	}
-	
-	
+
 	public ArrayList<Order> selectAll() {
 		Connection con = null;
 		Statement smt = null;
@@ -111,7 +119,7 @@ public class OrderDAO {
 		}
 		return orderList;
 	}
-	
+
 	public Order selectByOrder(int orderno) {
 
 		Connection con = null;
@@ -119,8 +127,8 @@ public class OrderDAO {
 
 		Order order = new Order();
 		try {
-			
-			String sql = "SELECT * FROM orderinfo WHERE orderno ='"+orderno+"'";
+
+			String sql = "SELECT * FROM orderinfo WHERE orderno ='" + orderno + "'";
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -135,7 +143,7 @@ public class OrderDAO {
 				order.setSend(rs.getInt("send"));
 				order.setOrdercomment(rs.getString("ordercomment"));
 			}
-			
+
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		} finally {
@@ -154,30 +162,30 @@ public class OrderDAO {
 		}
 		return order;
 	}
-	
+
 	public int getLastMonth() {
 		int month = 0;
-		
+
 		Connection con = null;
 		Statement smt = null;
 
 		try {
-			
+
 			String sql = "SELECT * FROM orderinfo ORDER BY orderdate DESC LIMIT 1";
 
 			con = getConnection();
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
-			
+
 			if (rs.next()) {
-	            Calendar calendar = Calendar.getInstance();
-	            calendar.setTime(rs.getDate("orderdate"));
-	            month = calendar.get(Calendar.MONTH) + 1; // 0〜11で返るため+1で正しい
-	        } else {
-	            // データが1件もなかった場合のデフォルト値（例: 0 や現在の月など）
-	            month = 0; 
-	        }
-			
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(rs.getDate("orderdate"));
+				month = calendar.get(Calendar.MONTH) + 1; // 0〜11で返るため+1で正しい
+			} else {
+				// データが1件もなかった場合のデフォルト値（例: 0 や現在の月など）
+				month = 0;
+			}
+
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		} finally {
@@ -194,32 +202,30 @@ public class OrderDAO {
 				}
 			}
 		}
-		
+
 		return month;
 	}
-	
+
 	public int sumPriceByMonth(int month) {
 		int sum = 0;
-		
+
 		Connection con = null;
 		Statement smt = null;
 
 		try {
-			
+
 			//String sql = "SELECT SUM(sumprice) AS total_price FROM orderinfo WHERE orderdate >= "+month+" AND orderdate < " +month+ " + INTERVAL 1 MONTH";
 			String sql = "SELECT SUM(sumprice) AS total_price FROM orderinfo " +
-		             "WHERE YEAR(orderdate) = YEAR(NOW()) AND MONTH(orderdate) = " + month;
-			
+					"WHERE YEAR(orderdate) = YEAR(NOW()) AND MONTH(orderdate) = " + month;
+
 			con = getConnection();
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				sum = rs.getInt("total_price");
 			}
-			
-			
-			
+
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		} finally {
@@ -236,23 +242,61 @@ public class OrderDAO {
 				}
 			}
 		}
-		
+
 		return sum;
 	}
-		public void updateDeposit(Order order) {
+
+	public void updateDeposit(Order order) {
 		Connection con = null;
 		Statement smt = null;
-		
+
 		try {
-			
-			String sql="update orderinfo set deposit = 1 where orderno="+order.getOrderno()+";";
-			
+
+			String sql = "update orderinfo set deposit = 1 where orderno=" + order.getOrderno() + ";";
+
 			con = getConnection();
 			smt = con.createStatement();
-			
+
 			smt.executeUpdate(sql);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
+			}
+		}
+	}
+
+	//指定された注文データを更新するメソッド
+	public void update(Order order) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		try {
+			//SQL文作成
+			String sql = "UPDATE orderinfo SET send='" + order.getSend() + "'"
+					+ " WHERE orderno=" + order.getOrderno();
+
+			//DBに接続
+			con = getConnection();
+			smt = con.createStatement();
+
+			//SQL文発行
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		} finally {
 			if (smt != null) {
@@ -268,35 +312,6 @@ public class OrderDAO {
 				}
 			}
 		}
+	}
 
-		//指定された注文データを更新するメソッド
-		public void update(Order order){
-	
-		Connection con = null;
-		Statement smt = null;
-	
-		try{
-			//SQL文作成
-			String sql = "UPDATE orderinfo SET send='"+order.getSend()+"'"
-				+" WHERE orderno="+order.getOrderno();
-			
-			//DBに接続
-			con = getConnection();
-			smt = con.createStatement();
-	
-			//SQL文発行
-			smt.executeUpdate(sql);
-	
-			}catch(Exception e){
-				throw new IllegalStateException(e);
-			}finally{
-				if( smt != null ){
-					try{smt.close();}catch(SQLException ignore){}
-				}
-				if( con != null ){
-					try{con.close();}catch(SQLException ignore){}
-				}
-			}
-		}
-		
 }
