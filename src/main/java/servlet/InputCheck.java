@@ -22,7 +22,13 @@ public class InputCheck extends HttpServlet {
 			request.getParameter("username").equals("")||
 			request.getParameter("address").equals("")||
 			request.getParameter("mailaddress").equals("")){
+				
+				
 				error="すべて入力してください";
+				request.setAttribute("error", error);
+				cmd="insert";
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 			
 			user.setUserid(request.getParameter("userid"));
