@@ -36,23 +36,23 @@ if (user == null) {
 
 		<table style="margin: auto">
 			<tr>
-				<th><label for="userid">ユーザーID</label></th>
+				<th style="text-align: center"><label for="userid">ユーザーID</label></th>
 				<td><input type="text" name="userid"value="<%=user.getUserid()%>"></td>
 			</tr>
 			<tr>
-				<th><label for="password">パスワード</label></th>
+				<th style="text-align: center"><label for="password">パスワード</label></th>
 				<td><input type="password" name="password"value="<%=user.getPassword()%>"></td>
 			</tr>
 			<tr>
-				<th><label for="username">ユーザーネーム</label></th>
+				<th style="text-align: center"><label for="username">ユーザーネーム</label></th>
 				<td><input type="text" name="username"value="<%=user.getUsername()%>"></td>
 			</tr>
 			<tr>
-				<th><label for="address">住所</label></th>
+				<th style="text-align: center"><label for="address">住所</label></th>
 				<td><input type="text" name="address"value="<%=user.getAddress()%>"></td>
 			</tr>
 			<tr>
-				<th><label for="mailaddress">メールアドレス</label></th>
+				<th style="text-align: center"><label for="mailaddress">メールアドレス</label></th>
 				<td><input type="text" name="mailaddress"value="<%=user.getMailaddress()%>"></td>
 			</tr>
 		</table>
