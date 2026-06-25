@@ -34,7 +34,7 @@ public class UserDAO {
 			User user = new User();
 			try {
 				//SQL文
-				String sql = "SELECT * FROM user WHERE userid ='" + userid + "' AND password='" + password + "'";
+				String sql = "SELECT * FROM user WHERE userid ='" + userid + "' AND password='" + password + "';";
 
 				con = getConnection();
 				smt = con.createStatement();
@@ -153,12 +153,12 @@ public class UserDAO {
 			}
 		}
 		
-		public void deleteUser(User user) {
+		public void deleteUser(int userno) {
 			Connection con = null;
 			Statement smt = null;
 			
 			try {//ここに記述
-				String sql="update user set userfrag = 1 where userno ="+user.getUserno()+";";
+				String sql = "UPDATE user SET userfrag = 1 WHERE userno = " + userno + ";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -187,7 +187,7 @@ public class UserDAO {
 			Statement smt = null;
 			ArrayList<User> user=new ArrayList<User>();
 			try {//ここに記述
-				String sql="SELECT userid,password,username,address,userfrag FROM user ORDER BY userno"+";";
+				String sql="SELECT userno,userid,password,username,address,userfrag FROM user ORDER BY userno"+";";
 				
 				con = getConnection();
 				smt = con.createStatement();
@@ -197,11 +197,13 @@ public class UserDAO {
 				
 				while(rs.next()) {
 					User objuser =new User();
+					objuser.setUserno(rs.getInt("userno"));
 					objuser.setUserid(rs.getString("userid"));
 					objuser.setPassword(rs.getString("password"));
 					objuser.setUsername(rs.getString("username"));
 					objuser.setAddress(rs.getNString("address"));
 					objuser.setUserfrag(rs.getInt("userfrag"));
+					
 					user.add(objuser);
 				}
 				
