@@ -31,13 +31,14 @@ User user =(User)session.getAttribute("user");
 		<h1>☆★☆ゆにふぉ～むのホームへようこそ☆★☆</h1>
 		
 		<!-- コンテンツ -->
-		<div style="text-align:left;margin-top:50px;">
-		<a href="<%=request.getContextPath()%>/listUni" style="padding: 30px 50px; font-size: 16px; background-color: #00FFFF; cursor: pointer;">商品一覧へ</a>
-		
+		<div style="text-align:left;margin-top:50px; float:left;">
+		<a href="<%=request.getContextPath()%>/listUni" class="color-change2">商品一覧へ</a>
+		</div>
+		<div  style="text-align:left;margin-top:50px; float:left;  margin-left:50px;">
 		<%
 		if(user==null){
 		%>
-		<a href="<%=request.getContextPath()%>/view/login.jsp" style="padding: 30px 50px; font-size: 16px; background-color: #00FFFF; cursor: pointer;">ログイン画面へ</a>
+		<a href="<%=request.getContextPath()%>/view/login.jsp" class="color-change2">ログイン画面へ</a>
 		<%
 		}
 		%>
