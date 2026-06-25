@@ -13,9 +13,7 @@ String message = (String) request.getAttribute("error");
 String cmd = (String) request.getAttribute("cmd");
 %>
 
-<body>
-	<!-- ヘッダー -->
-	<%@include file="/common/header_User.jsp"%>
+<body style="background-color: black; color: white">
 	
 	<!-- コンテンツ -->
 	<div style = "margin-top:50px; padding-top:10%;text-align: center">
