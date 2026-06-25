@@ -38,7 +38,8 @@ if(message==null){
 		<br>
 		
 		<div style="text-align: center;">
-				<a href="<%=request.getContextPath()%>/view/insertUser.jsp">会員登録はこちら</a>
+			<a href="<%=request.getContextPath()%>/view/menu.jsp">メニューはこちら</a><br>
+			<a href="<%=request.getContextPath()%>/view/insertUser.jsp">会員登録はこちら</a>
 		</div>
 	</form>
 
