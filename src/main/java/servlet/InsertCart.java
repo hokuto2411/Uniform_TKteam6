@@ -21,11 +21,17 @@ public class InsertCart extends HttpServlet {
 		
 		String error = "";		
 		try {
-			HttpSession session = request.getSession();
-			
-			
-
 			request.setCharacterEncoding("UTF-8");
+			
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+			
+			if(user == null) {
+				//仮のゲスト情報をDBに登録する
+				UserDAO userDao = new UserDAO();
+				userDao.guestUser();	
+			}
+			
 			int unino = Integer.parseInt(request.getParameter("unino"));
 			
 			UniformDAO uniDao = new UniformDAO();
