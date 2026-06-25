@@ -36,7 +36,6 @@ public class InputCheck extends HttpServlet {
 			user.setUsername(request.getParameter("username"));
 			user.setAddress(request.getParameter("address"));
 			user.setMailaddress(request.getParameter("mailaddress"));
-			user.setAuthority(Integer.parseInt(request.getParameter("authority")));
 			
 		}catch(IllegalStateException e) {
 			 error = "DB接続エラーのため会員登録できませんでした";
