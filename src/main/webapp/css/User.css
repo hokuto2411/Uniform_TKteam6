@@ -24,6 +24,30 @@ main h1{
 	border-bottom: 3px dotted #0000ff;
 }
 
+.color-change{
+	padding: 10px 30px;
+	font-size: 16px;
+	background-color: #00FFFF;
+	cursor: pointer;
+	margin:3 auto;
+}
+
+.color-change:hover{
+	background-color: #ffff00;
+}
+
+.color-change2{
+	padding: 30px 50px;
+	font-size: 16px;
+	background-color: #00FFFF;
+	cursor: pointer;
+	margin:3 auto;
+}
+
+.color-change2:hover{
+	background-color: #ffff00;
+}
+
 .title{
   padding-left:120;
 }
