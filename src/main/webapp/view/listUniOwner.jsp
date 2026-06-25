@@ -58,7 +58,6 @@ MyFormat mft = new MyFormat();
 			<p>
 				ユーザー名<% %><br>
 				<%--ユーザー名 --%>
-				<%User user=(User)session.getAttribute("user"); %>
 				<%if(user==null){ %>
 				<%--ログインしていない場合 --%>
 				<form action="<%=request.getContextPath()%>/login" method="post">
