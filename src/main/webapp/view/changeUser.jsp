@@ -1,3 +1,5 @@
+<!-- ユーザー：会員情報変更 -->
+
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="bean.User"%>
 <%//セッションからユーザー情報を取得
@@ -19,55 +21,66 @@ if (user == null) {
 </head>
 
 <body>
-	<%@include file="/common/header_User.jsp"%>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<!-- ヘッダー -->
+  	<%@include file="/common/header_User.jsp"%>
+  	
+  	<!-- コンテナ -->
+  	<div class="container">
+  	
+  	<!-- サイドバー -->
+	<%@include file="/common/sidebar_User.jsp"%>	
 	
-	
+	<!-- メイン -->
+	<main>
+		<!-- サブタイトル -->
+		<h1>
+			会員情報変更
+		</h1>
 	
 	<form action="<%=request.getContextPath()%>/inputCheckUpdate" method="post">
 
-		<table style="margin: auto">
+		<table style="margin-left:0; width:50%; height:80% ">
 			<tr>
+				<th colspan = "2">ログインの際に使うIDとパスワードを設定してください</th>
+			</tr>
+			<tr>
+			
 				<th style="text-align: center"><label for="userid">ユーザーID</label></th>
-				<td><input type="text" name="userid"value="<%=user.getUserid()%>"></td>
+				<td><input type="text" name="userid"value="<%=user.getUserid()%> " style="width:100%"></td>
 			</tr>
 			<tr>
 				<th style="text-align: center"><label for="password">パスワード</label></th>
-				<td><input type="password" name="password"value="<%=user.getPassword()%>"></td>
+				<td><input type="password" name="password"value="<%=user.getPassword()%>" style="width:100%"></td>
 			</tr>
 			<tr>
-				<th style="text-align: center"><label for="username">ユーザーネーム</label></th>
-				<td><input type="text" name="username"value="<%=user.getUsername()%>"></td>
+				<th colspan = "2">配送などの際に使うお客様情報を記入してください</th>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center"><label for="username">氏名</label></th>
+				<td><input type="text" name="username"value="<%=user.getUsername()%> " style="width:100%"></td>
 			</tr>
 			<tr>
 				<th style="text-align: center"><label for="address">住所</label></th>
-				<td><input type="text" name="address"value="<%=user.getAddress()%>"></td>
+				<td><input type="text" name="address"value="<%=user.getAddress()%>" style="width:100%"></td>
 			</tr>
 			<tr>
-				<th style="text-align: center"><label for="mailaddress">メールアドレス</label></th>
-				<td><input type="text" name="mailaddress"value="<%=user.getMailaddress()%>"></td>
+				<th style="text-align: center"><label for="mailaddress" style="width:100%">メールアドレス</label></th>
+				<td><input type="text" name="mailaddress"value="<%=user.getMailaddress()%>" style="width:100%"></td>
 			</tr>
 		</table>
 		
 		<br>
 		
-		<div style="text-align: center;">
+		<div style="text-align:left; margin-left:20%">
 		<input type="hidden" value="<%=user.getUserno() %>" >
 		<input type="submit"  value="確認へ">
 		</div>
 		
 		<br>
-		<br>
-		
+		<br>	
 	</form>
-
+	</main>
+	</div>
 </body>
 </html>
