@@ -1,4 +1,4 @@
-<!-- ユーザー　購入完了　11 -->  
+<!-- ユーザー：購入完了 buyComplete.jsp -->  
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 
@@ -8,12 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>購入完了画面</title>
-<link rel="stylesheet" href="NewFile.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/User.css">
 </head>
 
 <body>
 
-	<header>
+	<header style="padding-top:150px">
 
 		<h2 style="text-align: center">購入完了</h2>
 
