@@ -16,12 +16,18 @@ public class InputCheckUpdete extends HttpServlet {
 		String cmd = "";
 		User user = new User();
 		try {
-			if (request.getParameter("userid").equals("") ||
-					request.getParameter("password").equals("") ||
-					request.getParameter("username").equals("") ||
-					request.getParameter("address").equals("") ||
-					request.getParameter("mailaddress").equals("")) {
-				error = "すべて入力してください";
+			if(request.getParameter("userid").equals("")||
+					request.getParameter("password").equals("")||
+					request.getParameter("username").equals("")||
+					request.getParameter("address").equals("")||
+					request.getParameter("mailaddress").equals("")){
+						
+						
+						error="すべて入力してください";
+						request.setAttribute("error", error);
+						cmd="insert";
+						request.setAttribute("cmd", cmd);
+						request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 			System.out.println(request.getParameter("userid"));
 			user.setUserid(request.getParameter("userid"));
