@@ -4,48 +4,41 @@
 User user =(User)request.getAttribute("user");
 
 %>
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>会員情報更新確認画面</title>
-	<link rel="stylesheet" href="<%= request.getContextPath()%>/css/NewFile.css">
-</head>
-  
-  <body>
-  <header>
-  	<h1 style="text-align:center">
-	  会員情報更新確認画面
-	</h1>
-	<hr style="height:5px; background-color: #00FFFF;">
-  </header>
-    
-     <div class="container">
+<html>
+	<head>
+		<title>会員情報変更確認画面</title>
+		<link rel="stylesheet" href="<%= request.getContextPath()%>/css/User.css">
+	</head> 
+<body>
+
+<%@include file="/common/header_User.jsp"%>
+
+<h1 style="padding-top: 200px; text-align: center">会員情報変更確認画面</h1>
        
-  <table style="margin:auto; padding-top: 50px; width:500px">
+  <table style="margin:auto; padding-top:50px; width:400px">
     <tr>
-      <th>ユーザーID</th>
+      <th style="text-align: center">ユーザーID</th>
       <td style="text-align: center; width: 200px"><%=user.getUserid() %></td>
     </tr>
     <tr>
-      <th>パスワード</th>
+     <th style="text-align: center">パスワード</th>
       <td style="text-align: center; width: 200px"><%=user.getPassword() %></td>
     </tr>
     <tr>
-      <th>名前</th>
+      <th style="text-align: center">名前</th>
       <td style="text-align: center; width: 200px"><%=user.getUsername() %></td>
     </tr>
     <tr>
-      <th>住所</th>
+      <th style="text-align: center">住所</th>
 	  <td style="text-align: center; width: 200px"><%=user.getAddress() %></td>
     </tr>
     <tr>
-      <th>メールアドレス</th>
+     <th style="text-align: center">メールアドレス</th>
 	  <td style="text-align: center; width: 200px"><%=user.getMailaddress() %></td>
     </tr>
 	<tr>
-      <th>権限</th>
+      <th style="text-align: center">権限</th>
       <%String s;
       if(user.getAuthority()==0){
       s = "一般ユーザー";
@@ -60,7 +53,7 @@ User user =(User)request.getAttribute("user");
 	</table>
 	    </div> 
 	
-		<div style="margin: auto; text-align: center; padding-top: 200px; height:50px; width:200px">
+		<div style="margin: auto; text-align: center; padding-top:20px; height:50px; width:200px">
 		<form action="<%= request.getContextPath()%>/changeUser" method="post">
 		<input type="hidden" name="userid" value="<%=user.getUserid()%>">
 		<input type="hidden" name="password" value="<%=user.getPassword()%>">
