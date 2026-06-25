@@ -259,4 +259,71 @@ public void ComeBack(int userno) {
 			
 			
 		}
+	public void guestUser() {
+		Connection con = null;
+		Statement smt = null;
+		User user = new User();
+
+		try {//ここに記述
+			String sql="insert into user values (null,'guest','guest','name','address','mail',0,0,now());";
+			
+			
+			con = getConnection();
+			smt = con.createStatement();
+
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+
+	}
+
+	public void guestUserUpdate(User user) {
+		Connection con = null;
+		Statement smt = null;
+
+		try {
+			String sql = "UPDATE user SET username = '" + user.getUsername()
+			+ "', address = '" + user.getAddress()
+			+ "', mailaddress = '" + user.getMailaddress()
+			+ "' WHERE userno = " + user.getUserno();
+
+			con = getConnection();
+			smt = con.createStatement();
+
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+
+	}
+
 }
