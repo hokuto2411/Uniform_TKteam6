@@ -15,16 +15,16 @@ import dao.UserDAO;
 
 @WebServlet("/guestBuy")
 public class GuestBuy extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String error="";
 		
 		try {
 			HttpSession session = request.getSession();
-			User user=(User)session.getAttribute("user");
 			UserDAO userdao =new UserDAO();
 			
 			
+			User user = new User();
 			user.setUsername(request.getParameter("username"));
 			user.setAddress(request.getParameter("address"));
 			user.setMailaddress(request.getParameter("mailaddress"));

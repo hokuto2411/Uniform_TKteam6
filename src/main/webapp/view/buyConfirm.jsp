@@ -14,7 +14,7 @@
 
 <%
 ArrayList<Uniform> uniList = (ArrayList<Uniform>) request.getAttribute("uni_list");
-ArrayList<OrderDetail> detailList = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
+ArrayList<OrderDetail> detailList = (ArrayList<OrderDetail>) session.getAttribute("detail_list");
 User user = (User) session.getAttribute("user");
 MyFormat myFormat = new MyFormat();
 int total = 0;
@@ -63,7 +63,7 @@ if (request.getAttribute("total_price") != null) {
 		
 				<%
 					if (uniList != null && detailList != null) {
-						for (int i = 0; i < uniList.size(); i++) {
+						for (int i = 0; i < detailList.size(); i++) {
 							Uniform uni = uniList.get(i);
 							OrderDetail detail = detailList.get(i);
 				%>

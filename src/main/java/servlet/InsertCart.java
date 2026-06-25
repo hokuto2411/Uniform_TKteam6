@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpSession;
 
 import bean.OrderDetail;
 import bean.Uniform;
-import dao.UniformDAO; 
+import bean.User;
+import dao.UniformDAO;
+import dao.UserDAO; 
 
 @WebServlet("/insertCart")
 public class InsertCart extends HttpServlet {
