@@ -24,13 +24,7 @@ public class BuyConfirm extends HttpServlet { // 💡クラス名のタイポも
 		try {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
-			if(user == null) {
-				error = "ログインしていないため、購入は出来ません。";
-				request.setAttribute("error",error);
-				request.setAttribute("cmd","logout");
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-				return;
-			}
+			
 			ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>)session.getAttribute("detail_list");
 			if(detail_list == null || detail_list.isEmpty()) {
 				error = "カートの中に何も無かったので購入は出来ません。";
@@ -53,6 +47,23 @@ public class BuyConfirm extends HttpServlet { // 💡クラス名のタイポも
 				if (uni != null) {
 					total += (uni.getPrice() * detail.getQuantity());
 				}
+			}
+
+			if(user == null) {
+				//ゲストの場合
+				session.setAttribute("uni_list", uni_list);
+				session.setAttribute("detail_list", detail_list);
+				session.setAttribute("total_price", total);
+				session.setAttribute("user_info", user);
+				request.getRequestDispatcher("/view/payment.jsp").forward(request, response);
+			}
+			else
+			{
+				//ログインしている場合
+				request.setAttribute("uni_list", uni_list);
+				request.setAttribute("detail_list", detail_list);
+				request.setAttribute("total_price", total);
+				request.getRequestDispatcher("/view/buyConfirm.jsp").forward(request, response);
 			}
 			
 			// 💡購入確認画面（JSP）で表示するためにリクエストスコープにセット
