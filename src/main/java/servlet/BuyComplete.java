@@ -80,6 +80,7 @@ public class BuyComplete extends HttpServlet {
 					total += (uni.getPrice() * detail.getQuantity());
 					msg += uni.getUniname() + " × " + detail.getQuantity() + "個 : "
 							+ fmt.moneyFormat(uni.getPrice() * detail.getQuantity()) + "円\n";
+					UniDaoObj.minusStock(uni);
 				}
 			}
 			
@@ -104,8 +105,8 @@ public class BuyComplete extends HttpServlet {
 			
 			// 💡 データベース保存処理（子明細テーブル）
 			for (OrderDetail detail : detail_list) {
-				detail.setOrderno(generatedOrderno); 
-				DetailDaoObj.insert(detail);        
+				detail.setOrderno(generatedOrderno);
+				DetailDaoObj.insert(detail);
 			}
 			
 			// 💡 表示用の合計金額をリクエストに詰め、カート（セッション）をクリアする

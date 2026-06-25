@@ -40,8 +40,7 @@ OrderDAO orderDaoObj = new OrderDAO();
 		<p><%=lastmonth2%>月の売り上げ（発送完了分）
 			<%=fmt.moneyFormat(orderDaoObj.sumPriceByMonth(lastmonth2))%></p>
 	</div>
-
-
+	<table>
 	<%
 		for (int i = 0; i < list.size(); i++) {
 			Order order = (Order) list.get(i);
@@ -58,7 +57,6 @@ OrderDAO orderDaoObj = new OrderDAO();
 				sendSta = "入金済";
 			}
 	%>
-	<table>
 		<tr>
 			<td style="text-align: center; width: 200px"><a
 				href="<%=request.getContextPath()%>/detail?orderno=<%=order.getOrderno()%>&cmd=detail"><%=order.getOrderno()%></a></td>
@@ -75,9 +73,9 @@ OrderDAO orderDaoObj = new OrderDAO();
 				href="<%=request.getContextPath()%>/delete?orderno=<%=order.getOrderno()%>&cmd=delete">削除</a>
 			</td>
 		</tr>
+		<%} %>
 	</table>
 	<%
-	}
 	}else{
 	%>
 	<h1>まだ何も注文していません。</h1>

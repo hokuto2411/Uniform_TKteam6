@@ -66,7 +66,7 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 
-				request.getRequestDispatcher("/view/listUni.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/menu.jsp").forward(request, response);
 			} else if (user.getAuthority() == 1) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);

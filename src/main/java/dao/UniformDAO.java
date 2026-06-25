@@ -193,5 +193,39 @@ public class UniformDAO {
 			}
 		}
 	}
+	
+	
+	public void minusStock(Uniform uni) {
+		Connection con = null;
+		Statement smt = null;
+		int count = 0;
+
+		try {
+			
+			String sql = "UPDATE uni SET stock = "
+					+ (uni.getStock() -1) + " where unino = "
+					+ uni.getUnino() + ";";
+
+			con = getConnection();
+			smt = con.createStatement();
+			count = smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+	}
 
 }
