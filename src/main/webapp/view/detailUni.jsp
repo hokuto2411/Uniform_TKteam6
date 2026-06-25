@@ -60,7 +60,7 @@
 		<div style="margin-top:20px">	
 			<div style="float:left; margin-left:50%">
 				<input type="hidden" name="unino" value=<%=uni.getUnino()%>> 
-				<input type="submit" name="change" value="カートに入れる">
+				<input type="submit" name="change" value="カートに入れる"  class="color-change">
 				
 			</div>
 		</div>
