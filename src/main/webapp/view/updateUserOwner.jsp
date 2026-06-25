@@ -71,7 +71,8 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				else{
 				%>
 				<td style="text-align: center"><%=user.get(i).getUserfrag()%></td>
-				<td></td>
+				<td style="text-align: center">
+				<a href="<%=request.getContextPath()%>/comeBack?userno=<%=user.get(i).getUserno()%>">復活</a>
 				<%
 				}
 				%>
