@@ -27,21 +27,31 @@ OrderDAO orderDaoObj = new OrderDAO();
 	<%@include file="/common/header_Owner.jsp"%>
 	<div class="container">
 	<%@include file="/common/sidebar_Owner.jsp"%>
-
+	<main>
 	<h1>注文履歴一覧画面(オーナー)</h1>
-	<hr class="black">
 	
 	<%
 	if (list != null || list.size() != 0) {
 	%>
-	<div>
+	<div style="margin-left:0px">
 		<p><%=lastmonth%>月の売り上げ（発送完了分）
 			<%=fmt.moneyFormat(orderDaoObj.sumPriceByMonth(lastmonth))%></p>
 		<p><%=lastmonth2%>月の売り上げ（発送完了分）
 			<%=fmt.moneyFormat(orderDaoObj.sumPriceByMonth(lastmonth2))%></p>
 	</div>
-	<table>
-	<%
+
+
+	<table style="margin: auto; width:100%; table-layout:fixed;">
+		<tr>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">注文No.</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">ユーザーID</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">合計金額</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">入金状況</th>
+			<th colspan="2" style="background-color: #00FFFF; text-align: center; vertical-align: middle;">コメント</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">変更</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle;">削除</th>
+		</tr>
+		<%
 		for (int i = 0; i < list.size(); i++) {
 			Order order = (Order) list.get(i);
 			String depoSta = "";
@@ -73,13 +83,14 @@ OrderDAO orderDaoObj = new OrderDAO();
 				href="<%=request.getContextPath()%>/delete?orderno=<%=order.getOrderno()%>&cmd=delete">削除</a>
 			</td>
 		</tr>
-		<%} %>
 	</table>
 	<%
+	}
 	}else{
 	%>
 	<h1>まだ何も注文していません。</h1>
 	<%}%>
+	</main>
 	</div>
 	<%@include file="../common/footer.jsp"%>
 </body>
