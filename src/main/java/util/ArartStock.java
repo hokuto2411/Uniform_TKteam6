@@ -2,27 +2,18 @@
  * 在庫数を通知するサーブレット
  */
 
-package servlet;
+package util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import bean.Uniform;
+import bean.User;
 import dao.UniformDAO;
-import util.SendMail;
 
-@WebServlet("/arartStock")
-public class ArartStock extends HttpServlet{
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException{
+public class ArartStock{
+	public void sendArart(User user){
 		
-			
+		try {
 			//DAOクラスのインスタンス化
 			UniformDAO uniDao = new UniformDAO();
 			Uniform uni = new Uniform();
@@ -52,10 +43,15 @@ public class ArartStock extends HttpServlet{
 						
 						//メール送信
 						SendMail mail = new SendMail();
-						boolean TFmail = mail.sendMail(msg);
+						boolean TFmail = mail.sendMail(msg, user.getMailaddress());
 					}
 				}
 			}
+		} catch(Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+			
 	}
 
 }

@@ -37,7 +37,7 @@
 				<%User user=(User)session.getAttribute("user"); %>
 				<%if(user==null){ %>
 				<%--ログインしていない場合 --%>
-				<form action="<%=request.getContextPath()%>/login" method="post">
+				<form action="<%=request.getContextPath()%>/view/login.jsp" method="post">
 					<input type="submit" value="ログイン">
 				</form>
 				<%--ログインしている場合 --%>

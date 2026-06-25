@@ -1,5 +1,6 @@
 package util;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Properties;
 
@@ -72,7 +73,8 @@ public class SendMail {
 			Transport.send(mimeMessage);
 
 			// 送信成功
-			System.out.println("送信に成功しました。");
+			LocalDateTime now = LocalDateTime.now();
+			System.out.println(Email + " に送信に成功しました。   " + now);
 			return true;
 
 		} catch (Exception e) {
