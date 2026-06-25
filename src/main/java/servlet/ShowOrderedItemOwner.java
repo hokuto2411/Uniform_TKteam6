@@ -21,18 +21,18 @@ public class ShowOrderedItemOwner extends HttpServlet {
 		//文字エンコード
 		request.setCharacterEncoding("UTF-8");
 
-		//エラー処理管理用変数
+		//エラー処理を管理する変数
 		String error = null;
 		String cmd = null;
 
 		try {	
-			//注文情報管理を管理するクラスのインスタンス化
+			//オーダー情報管理を管理するクラスのインスタンス化
 			OrderDAO orderDao = new OrderDAO();
 			
-			//メソッドを利用しデータベースから注文情報を取得
+			//メソッドを利用しデータベースからオーダー情報を取得
 			ArrayList<Order> list = orderDao.selectAll();
 
-			//取得した注文情報をリクエストスコープに格納
+			//取得したオーダー情報をリクエストスコープに格納
 			request.setAttribute("orderList", list);
 
 		}catch(IllegalStateException e) {
