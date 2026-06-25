@@ -16,111 +16,87 @@ MyFormat fmt = new MyFormat();
 
 <body>
 
-<!-- ==================== 画面中央ポップアップ広告 ==================== -->
+<!-- ==================== 画面中央ポップアップ広告（手作り版） ==================== -->
 <style>
-/* 💡 画面全体を暗くするスモーク背景 */
-.ad-overlay {
+/* 画面全体を暗くするグレーの背景 */
+.my-ad-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.65); /* 暗さの度合い */
-    z-index: 99999; /* 他のどの要素よりも一番手前に表示 */
+    background-color: rgba(0, 0, 0, 0.5); /* 普通の半透明 */
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 💡 中央の広告白い箱 */
-.ad-box {
+/* 中央の普通の白い四角枠 */
+.my-ad-container {
     position: relative;
-    width: 420px;
+    width: 380px;
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
+    padding: 20px;
+    border: 3px solid #000000; /* あえて普通の黒い太線 */
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    font-family: "Consolas", "Courier New", "Meiryo", sans-serif; /* 文字崩れ防止 */
-    border: 3px solid #00FFFF;
 }
 
-/* 💡 右上の「×」閉じるボタン */
-.ad-close-btn {
+/* 右上のバツ文字ボタン */
+.my-ad-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 5px;
+    right: 10px;
     background: none;
     border: none;
-    font-size: 28px;
-    font-weight: bold;
-    color: #999;
+    font-size: 24px;
     cursor: pointer;
-}
-.ad-close-btn:hover {
-    color: #333;
 }
 
-/* 💡 下部の「買い物を続ける」ボタン */
-.ad-submit-btn {
-    background-color: #00FFFF;
-    color: #333;
-    border: none;
-    padding: 12px 35px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 6px;
+/* 普通のボタン */
+.my-ad-btn {
+    padding: 8px 20px;
+    font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: 0.2s;
-}
-.ad-submit-btn:hover {
-    background-color: #00cccc;
-    transform: translateY(-2px);
+    background-color: #f0f0f0;
+    border: 1px solid #777;
 }
 </style>
 
-<!-- 広告の本体（HTML） -->
-<div id="popupAd" class="ad-overlay">
-    <div class="ad-box">
-        <!-- 右上のバツボタン -->
-        <button class="ad-close-btn" onclick="destroyAd()">&times;</button>
+<!-- 広告のHTML部分 -->
+<div id="popupAd" class="my-ad-bg">
+    <div class="my-ad-container">
+        <!-- 閉じるバツボタン -->
+        <button class="my-ad-close" onclick="closeAd()">×</button>
         
-        <!-- 広告のタイトル -->
-        <span style="font-size: 12px; color: #008080; font-weight: bold; letter-spacing: 2px;">SPECIAL CAMPAIGN</span>
-        <h3 style="margin: 10px 0 20px 0; color: #333; font-size: 22px;">本日限定クーポン配布中！</h3>
+        <p style="font-size: 14px; color: #ff0000; font-weight: bold; margin: 0;">★お得なキャンペーン情報★</p>
+        <h3 style="margin: 10px 0;">限定クーポンをプレゼント！</h3>
         
-        <!-- 広告の中身 -->
-        <div style="background-color: #f7f9fa; padding: 20px; border-radius: 8px; border: 1px dashed #00FFFF; margin-bottom: 25px;">
-            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.6;">
-                購入確認画面の「ご要望・コメント欄」に<br>
-                下記のコードを入力すると…
+        <!-- クーポンの中身 -->
+        <div style="border: 2px dashed #000000; padding: 15px; margin-bottom: 15px; background-color: #ffffcc;">
+            <p style="margin: 0; font-size: 13px;">
+                購入確認のとき、コメント欄に<br>
+                「T6TEAM6」と入力してください。
             </p>
-            <p style="font-size: 24px; font-weight: bold; color: #ff3366; letter-spacing: 3px; margin: 5px 0;">
-                T6TEAM6
+            <p style="font-size: 20px; font-weight: bold; margin: 10px 0; color: #0000ff;">
+                代金から 500円引き！
             </p>
-            <p style="margin: 10px 0 0 0; font-size: 15px; font-weight: bold; color: #333;">
-                ＼ 合計金額から <span style="font-size: 20px; color: red;">500円OFF</span>！ ／
+            <p style="font-size: 8px; font-weight: bold; margin: 20px 0 0 200px; ">
+            	するかも
             </p>
         </div>
         
-        <!-- 下部のボタン -->
-        <button class="ad-submit-btn" onclick="destroyAd()">買い物を続ける</button>
+        <button class="my-ad-btn" onclick="closeAd()">閉じて買い物を続ける</button>
     </div>
 </div>
 
-<!-- 広告を消す仕組み（JavaScript） -->
+<!-- 広告を消すJavaScript（そのまま） -->
 <script>
-function destroyAd() {
-    // 広告全体の枠（overlay）を取得して画面から完全に消し去る
-    var adElement = document.getElementById('popupAd');
-    if (adElement) {
-        adElement.style.display = 'none';
-    }
+function closeAd() {
+    document.getElementById('popupAd').style.display = 'none';
 }
 </script>
 <!-- ================================================================== -->
-
 
 	<!-- ヘッダー -->
   	<%@include file="/common/header_User.jsp"%>
