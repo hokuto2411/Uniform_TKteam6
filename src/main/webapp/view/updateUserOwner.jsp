@@ -42,7 +42,7 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				<th style="text-align: center">住所</th>
 				<th style="text-align: center">ID</th>
 				<th style="text-align: center">パスワード</th>
-				<th style="text-align: center">有効(0)</th>
+				<th style="text-align: center">資格</th>
 				<th style="text-align: center">削除</th>
 			</tr>
 
@@ -70,8 +70,9 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				}
 				else{
 				%>
-				<td style="text-align: center"><%=user.get(i).getUserfrag()%></td>
-				<td></td>
+				<td style="text-align: center; color: red;">無効</td>
+				<td style="text-align: center">
+				<a href="<%=request.getContextPath()%>/comeBack?userno=<%=user.get(i).getUserno()%>">復活</a>
 				<%
 				}
 				%>

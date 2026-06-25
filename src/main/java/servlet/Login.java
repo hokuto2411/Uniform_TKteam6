@@ -53,6 +53,15 @@ public class Login extends HttpServlet {
 				request.setAttribute("cmd", "login");
 				request.setAttribute("error", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
+				
+			}	
+			
+			if(user.getUserfrag()==1) {
+				
+				message="アカウントは無効です";
+				request.setAttribute("cmd", "login");
+				request.setAttribute("error", message);
+				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 			}
 
 		} catch (IllegalStateException e) {
