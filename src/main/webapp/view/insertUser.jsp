@@ -13,7 +13,6 @@
 <body>
 	<!-- ヘッダー -->
   	<%@include file="/common/header_User.jsp"%>
-  	<div style="padding-top: 150px"><%@include file="/common/sidebar_Owner.jsp"%></div>
   	<!-- コンテナ -->
   	<div class="container">
   	
