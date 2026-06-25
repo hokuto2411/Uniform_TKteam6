@@ -5,7 +5,22 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Uniform"%>
 <%@page import="java.util.ArrayList,bean.User,util.MyFormat"%>
-
+<%@page import="dao.UniformDAO"%>
+<%@page import="util.ArartStock"%>
+<%
+User user = (User)session.getAttribute("user");
+UniformDAO uniDao = new UniformDAO();
+ArartStock arart = new ArartStock();
+ArrayList<Uniform> uni_list = uniDao.selectAll();
+if(uni_list != null){
+	for(int i=0; i < uni_list.size(); i++){
+		Uniform uni = uni_list.get(i);
+		if(uni.getStock() <= 5){
+			arart.sendArart(user);
+		}
+	}
+}
+%>
 <head>
 	<title>管理者：商品一覧</title>
 	<link rel="stylesheet"
