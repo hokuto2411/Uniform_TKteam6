@@ -34,7 +34,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 		<!-- サブタイトル -->
 		<h1>商品変更画面</h1>
 		
-		<form action="<%=request.getContextPath() %>/detailUni">
+		<form action="<%=request.getContextPath() %>/updateUni" enctype="multipart/form-data" method="post">
 		<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">
 			
 		<%
@@ -55,7 +55,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
 					価格</th>
 				<td style="text-align: center; vertical-align: middle;">
-					<input type=text name="price" style="width:250px;" value="<%=objFormat.moneyFormat(uni.getPrice())%>"></td>
+					<input type=text name="price" style="width:250px;" value="<%=uni.getPrice()%>"></td>
 			</tr>
 			<tr>
 				<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width:150px">
