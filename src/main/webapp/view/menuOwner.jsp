@@ -3,7 +3,22 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.User"%>
 <%@page import="bean.Uniform"%>
-
+<%@page import="dao.UniformDAO"%>
+<%@page import="util.ArartStock"%>
+<%
+User user = (User)session.getAttribute("user");
+UniformDAO uniDao = new UniformDAO();
+ArartStock arart = new ArartStock();
+ArrayList<Uniform> uni_list = uniDao.selectAll();
+if(uni_list != null){
+	for(int i=0; i < uni_list.size(); i++){
+		Uniform uni = uni_list.get(i);
+		if(uni.getStock() <= 5){
+			arart.sendArart(user);
+		}
+	}
+}
+%>
 <html>
 <head>
 <title>管理者メインメニュー</title>
@@ -11,18 +26,20 @@
 <body>
 
 	<%@include file="/common/header_Owner.jsp"%>
+	
+	<!-- コンテナ -->
+  	<div class="container">
+  	
+  	<!-- サイドバー -->
+	<%@include file="/common/sidebar_Owner.jsp"%>
+	
+	<!-- メイン -->
+	<main>
+	
+		
+		<h1>管理者メインメニュー</h1>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-<h2 style="text-align: center">管理者メインメニュー</h2>
-
-	<div style="margin-bottom: 350px">
-		<table style="margin: auto; border: 0;">
+		<table style="margin-top:10px; border: 0;">
 			<tr>
 				<td style="border: none;"><br></td>
 			</tr>
@@ -67,7 +84,7 @@
 			</tr>
 
 		</table>
-	</div>
-
+</main>
+</div>
 </body>
 </html>
