@@ -2,10 +2,10 @@
 
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bean.OrderedItem"%>
+<%@page import="bean.OrderDetail"%>
 
 <%
-ArrayList<OrderedItem> orderedItemList = (ArrayList<OrderedItem>) request.getAttribute("orderedItemList");
+ArrayList<OrderDetail> detail_list = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
 %>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ ArrayList<OrderedItem> orderedItemList = (ArrayList<OrderedItem>) request.getAtt
 <meta charset="UTF-8">
 <title>注文履歴確認画面</title>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/view/css/style.css">
+	href="<%=request.getContextPath()%>/view/css/User.css">
 </head>
 
 <body>
@@ -36,16 +36,17 @@ ArrayList<OrderedItem> orderedItemList = (ArrayList<OrderedItem>) request.getAtt
 				</tr>
 
 				<%
-				if (orderedItemList != null) {
-					for (int i = 0; i < orderedItemList.size(); i++) {
+				if (detail_list != null) {
+					for (int i = 0; i < detail_list.size(); i++) {
+						OrderDetail detail = detail_list.get(i);
 				%>
 
 				<tr>
 
 					<td><a
-						href="<%=request.getContextPath()%>/detailShowOrderedItem?orderno=<%=orderedItemList.get(i).getOrderno()%>">
+						href="<%=request.getContextPath()%>/detailShowOrderedItem?orderno=<%=detail.getOrderno()%>">
 
-							<%=orderedItemList.get(i).getOrderno()%>
+							<%=detail.getOrderno()%>
 
 					</a></td>
 

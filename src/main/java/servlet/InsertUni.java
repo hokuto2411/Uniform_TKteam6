@@ -125,7 +125,7 @@ public class InsertUni extends HttpServlet{
 			cmd = "omenu";
 		}catch(Exception e){
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			cmd = "omenu"
+			cmd = "logout";
 		}finally {
 			if(error == null || error.trim().equals("")) {
 				request.getRequestDispatcher("/view/menuOwner.jsp").forward(request, response);
