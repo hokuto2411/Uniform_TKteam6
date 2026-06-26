@@ -71,7 +71,7 @@ OrderDAO orderDaoObj = new OrderDAO();
 			
 			<td style="text-align: left; padding-left: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= (order.getOrdercomment() != null) ? order.getOrdercomment() : "なし" %></td>
 			
-			<td style="text-align: center;"><a href="<%=request.getContextPath() %>/detailOrderedItemOwner?orderno=<%=order.getOrderno()%>&cmd=update">変更</a></td>
+			<td style="text-align: center;"><a href="<%=request.getContextPath() %>/detailOrderedItemOwner?orderno=<%=order.getOrderno()%>&cmd=update">▶変更</a></td>
 		</tr>
 		<%
 		}
