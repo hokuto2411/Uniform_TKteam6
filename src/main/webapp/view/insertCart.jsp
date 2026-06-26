@@ -28,7 +28,7 @@ Uniform uni = (Uniform) request.getAttribute("uni");
 		<main>
 
 			<h1>
-			下記のユニフォームをカートに追加しました。
+			ユニフォームをカートに追加しました。
 			</h1>
 
 			<table style="margin-left: 10%; width: 70%; table-layout: fixed; text-align:left; ">

@@ -65,6 +65,7 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 			</tr>
 		</table>
 		
+		<div style="padding-top:30px; margin-right:10%">
 		<input type="file" name="image" style="padding-bottom:30px">
 		<input type="hidden" name="unino" value="<%=uni.getUnino()%>">
 		
@@ -73,7 +74,9 @@ Uniform uni =(Uniform)request.getAttribute("uniInfo");
 		%>
 		<input type="hidden" name ="cmdSwitch" value="owner">
 		<input type="submit" value="変更完了"
-				style="margin:50px auto">
+				class="color-change" style="margin-left:30%;">
+		<span class="tooltip"><span class="tooltip-text">すべての項目(画像を含む)を変更しましたか？</span>　✓登録前にチェック！</span>
+		</div>	
 		</form>
 	</main>
 

@@ -35,7 +35,8 @@ MyFormat mft = new MyFormat();
 	<div class="container">
 	
 	<!-- サイドバー -->
-	<%@include file="/common/sidebar_Owner.jsp"%>	
+	<div style="margin-top: 40px"><%@include file="/common/sidebar_Owner.jsp"%></div>	
+
 
 	<main>
 		<!-- サブタイトル -->
@@ -93,7 +94,7 @@ MyFormat mft = new MyFormat();
 			<div class="color-change3">
 				<!-- 商品名 -->
 				<p><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>&cmdSwitch=owner">
-						<%=uni.getUniname()%></a>
+						▶<%=uni.getUniname()%></a>
 				<!-- 商品画像 -->
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"

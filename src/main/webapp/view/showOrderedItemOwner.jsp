@@ -17,7 +17,7 @@
   	<div class="container">
   	
   	<!-- サイドバー -->
-	<%@include file="/common/sidebar_Owner.jsp"%>	
+	<div style="margin-top: 70px"><%@include file="/common/sidebar_Owner.jsp"%></div>	
 	
 	<!-- メイン -->
 	<main>
@@ -25,6 +25,7 @@
 			top: 150px; 
 			width: 150px; 
 			padding-right: 30px; 
+			margin-top:50px;
 			float: right; 
 			text-align: right; 
 			padding-left: 10px; 

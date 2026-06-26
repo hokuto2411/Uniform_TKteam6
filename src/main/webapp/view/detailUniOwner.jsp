@@ -59,18 +59,18 @@
 		%>
 		
 		<div style="margin-top:20px">	
-			<div style="float:left; margin-left:50%">
+			<div style="float:left; margin-left:30%">
 				<form action="<%=request.getContextPath()%>
 							/detailUni" method="get">
 				<input type="hidden" name="unino" value=<%=uni.getUnino()%>> 
 				<input type="hidden" name="cmdSwitch" value=update>
-				<input type="submit" value="変更">
+				<input type="submit" value="変更"  class="color-change">
 				</form>
 			</div>
 			<div style="float:left; margin-left:10%">
 				<form action="<%=request.getContextPath()%>/deleteUni" method="get">
 				<input type="hidden" name="unino" value=<%=uni.getUnino()%>>
-				<input type="submit" value="削除">
+				<input type="submit" value="削除"  class="color-change">
 				</form>
 			</div>
 		</div>
