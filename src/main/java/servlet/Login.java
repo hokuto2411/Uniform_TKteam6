@@ -23,7 +23,13 @@ public class Login extends HttpServlet {
 		String message = "";
 		User user = new User();
 		UserDAO userdao = new UserDAO();
-		try {
+		try {	
+			/*
+			if(userid.equals("sr_banzai")) {
+				request.getRequestDispatcher("/view/sr.jsp").forward(request, response);
+			}
+			*/
+			
 			if(password.equals("") && userid.equals("")) {
 				message="ユーザーとパスワードを入力してください";
 				request.setAttribute("cmd", "login");
@@ -63,6 +69,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("error", message);
 				request.getRequestDispatcher("/view/error.jsp?cmd=login").forward(request, response);
 			}
+			
 
 		} catch (IllegalStateException e) {
 			message = "DB接続エラーの為、ログインは出来ません。";
