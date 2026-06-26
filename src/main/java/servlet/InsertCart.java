@@ -31,7 +31,11 @@ public class InsertCart extends HttpServlet {
 			if(user == null) {
 				//仮のゲスト情報をDBに登録する
 				UserDAO userDao = new UserDAO();
-				userDao.guestUser();	
+				userDao.guestUser();
+				User user2 =new User();
+				user2=userDao.selectByUser("guest", "guest");
+				session.setAttribute("user", user2);
+	
 			}
 			
 			int unino = Integer.parseInt(request.getParameter("unino"));
