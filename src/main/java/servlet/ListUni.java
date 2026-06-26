@@ -38,6 +38,19 @@ public class ListUni extends HttpServlet {
 			//メソッドを利用しデータベースから書籍情報を取得
 			ArrayList<Uniform> list = uniDao.selectAll();
 
+			//追加
+			for(int i=0;i<list.size();i++) {
+				
+				Uniform uni=list.get(i);
+				int uniStock=uni.getStock();
+				
+				if(uniStock<=0) {
+					
+					uniStock=0;
+					uni.setStock(uniStock);
+				}
+			}
+			
 			//取得したユニフォーム情報をリクエストスコープに格納
 			request.setAttribute("uniList", list);
 
