@@ -56,7 +56,7 @@ if(uni_list != null){
 			</tr>
 			<tr>
 				<td style="font-size: 20px; border: none;">
-					<a href="<%=request.getContextPath()%>/showOrderedItemOwner">【注文一覧】</a>
+					<a href="<%=request.getContextPath()%>/listOrderOwner">【注文一覧】</a>
 				</td>
 			</tr>
 			<tr>
@@ -64,7 +64,7 @@ if(uni_list != null){
 			</tr>
 			<tr>
 				<td style="font-size: 20px; border: none;">
-					<a href="<%=request.getContextPath()%>/view/salesConfirmationOwner . jsp">【売上確認】</a>
+					<a href="<%=request.getContextPath()%>/salesConfirmationOwner">【売上確認】</a>
 				</td>
 			</tr>
 			<tr>

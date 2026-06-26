@@ -1,12 +1,12 @@
 package bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Order {
 	private int orderno;
 	private int userno;
 	private int sumprice;
-	private Date orderdate;
+	private Timestamp orderdate; 
 	private int deposit;
 	private int send;
 	private String ordercomment;
@@ -42,11 +42,11 @@ public class Order {
 		this.sumprice = sumprice;
 	}
 	
-	public Date getOrderdate() {
-		return orderdate;
+	public Timestamp getOrderdate() {
+	    return orderdate;
 	}
-	public void setOrderdate(Date orderdate) {
-		this.orderdate = orderdate;
+	public void setOrderdate(Timestamp orderdate) {
+	    this.orderdate = orderdate;
 	}
 	
 	public int getDeposit() {

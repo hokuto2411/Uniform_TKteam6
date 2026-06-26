@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
@@ -58,12 +57,12 @@ public class BuyComplete extends HttpServlet {
 			OrderDetailDAO DetailDaoObj = new OrderDetailDAO();
 			MyFormat fmt = new MyFormat();
 			
-			// 現在のタイムスタンプを取得
-			Date sqlDate = new Date(System.currentTimeMillis());
+			// 💡 修正ポイント：DTO(Order.java)のTimestamp型に合わせて、現在のシステム日時を取得・流し込み
+			java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(System.currentTimeMillis());
 			
 			Order order = new Order();
 			order.setUserno(user.getUserno());
-			order.setOrderdate(sqlDate);
+			order.setOrderdate(sqlTimestamp); // 型エラーなくカチッと連動します
 			order.setOrdercomment(comment);
 			
 			String msg = user.getUsername() + "様\n\n"
@@ -87,7 +86,7 @@ public class BuyComplete extends HttpServlet {
 			msg += "\n合計金額 : " + fmt.moneyFormat(total) + "円\n\n"
 					+ "またのご利用よろしくお願いします。";			
 			
-			// 💡 メール送信処理
+			// メール送信処理
 			String email = user.getMailaddress();
 			SendMail mail = new SendMail();
 			boolean TFMail = mail.sendMail(msg, email);
@@ -99,17 +98,17 @@ public class BuyComplete extends HttpServlet {
 				return;
 			}
 			
-			// 💡 データベース保存処理（親テーブル）
+			// データベース保存処理（親テーブル）
 			order.setSumprice(total);
 			int generatedOrderno = OrderDaoObj.insert(order); 
 			
-			// 💡 データベース保存処理（子明細テーブル）
+			// データベース保存処理（子明細テーブル）
 			for (OrderDetail detail : detail_list) {
 				detail.setOrderno(generatedOrderno);
 				DetailDaoObj.insert(detail);
 			}
 			
-			// 💡 表示用の合計金額をリクエストに詰め、カート（セッション）をクリアする
+			// 表示用の合計金額をリクエストに詰め、カート（セッション）をクリアする
 			request.setAttribute("total_price", total);
 			session.setAttribute("detail_list", null); 
 			

@@ -33,7 +33,6 @@ public class UserDAO {
 			//リターン用のオブジェクト
 			User user = new User();
 			try {
-				//SQL文
 				String sql = "SELECT * FROM userinfo WHERE userid ='" + userid + "' AND password='" + password + "';";
 
 				con = getConnection();
@@ -73,6 +72,7 @@ public class UserDAO {
 
 			return user;
 		}
+
 		
 		public void insertUser(User user) {
 			

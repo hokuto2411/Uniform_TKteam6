@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import bean.Order;
 import dao.OrderDAO;
@@ -19,12 +20,13 @@ public class SalesConfirmationOwner extends HttpServlet {
 		
 		String error = "";		
 		try {
+			HttpSession session = request.getSession();
 			OrderDAO OrderDaoObj = new OrderDAO();
 			ArrayList<Order> order_list = OrderDaoObj.selectAll();
 			
+			
 			int lastmonth = OrderDaoObj.getLastMonth();
 			request.setAttribute("lastmonth",lastmonth);
-			
 			request.setAttribute("order_list",order_list);
 			
 			request.getRequestDispatcher("/view/salesConfirmationOwner.jsp").forward(request, response);
