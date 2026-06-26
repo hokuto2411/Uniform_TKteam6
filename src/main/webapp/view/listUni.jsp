@@ -159,6 +159,8 @@ function closeAd() {
 					 style="height:150px;border:1px brack;">
 				<!-- 価格 -->
 				<p><%=fmt.moneyFormat(uni.getPrice()) %>
+				<!-- 在庫（追加） -->
+				<p>在庫（残り<%=uni.getStock()%>個）
 				</div>
 				
 				
