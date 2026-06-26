@@ -4,10 +4,10 @@
 <%@page import="java.util.ArrayList,bean.User"%>
 <%@page import="bean.Uniform"%>
 <%@page import="dao.UniformDAO"%>
-
 <%
 User user = (User)session.getAttribute("user");
 UniformDAO uniDao = new UniformDAO();
+
 %>
 <html>
 <head>
