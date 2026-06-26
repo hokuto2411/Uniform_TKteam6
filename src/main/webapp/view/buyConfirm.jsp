@@ -13,14 +13,31 @@
 </head>
 
 <%
-ArrayList<Uniform> uniList = (ArrayList<Uniform>) request.getAttribute("uni_list");
-ArrayList<OrderDetail> detailList = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
 User user = (User) session.getAttribute("user");
-MyFormat myFormat = new MyFormat();
+
+ArrayList<Uniform> uniList = null;
+ArrayList<OrderDetail> detailList = null;
+
 int total = 0;
-if (request.getAttribute("total_price") != null) {
-	total = (int) request.getAttribute("total_price");
-}
+
+MyFormat myFormat = new MyFormat();
+
+	if(user.getUserid().equals("guest")){ 
+		uniList = (ArrayList<Uniform>) session.getAttribute("uni_list");
+	 	detailList = (ArrayList<OrderDetail>) session.getAttribute("detail_list");
+	
+			if (session.getAttribute("total_price") != null) {
+				total = (int) session.getAttribute("total_price");
+			}
+
+	}else{ 
+
+		ArrayList<Uniform> uniListLogin = (ArrayList<Uniform>) request.getAttribute("uni_list");
+		ArrayList<OrderDetail> detailListLogin = (ArrayList<OrderDetail>) request.getAttribute("detail_list");
+
+			if (request.getAttribute("total_price") != null) {
+				total = (int) request.getAttribute("total_price");
+			}
 %>
 
 <body>
@@ -46,7 +63,7 @@ if (request.getAttribute("total_price") != null) {
 		</p>
 
 		<%
-		if (user != null) {
+		if (user.getUserid().equals("guest")) {
 		%>
 		
 		<!-- 商品情報 -->		
@@ -79,6 +96,42 @@ if (request.getAttribute("total_price") != null) {
 			合計金額：<%=myFormat.moneyFormat(total)%>
 		</h2>
 
+		<%
+		}
+		else
+		{
+		%>
+		
+		<!-- 商品情報 -->		
+		<h3 style="text-align:left;">■商品情報</h3>
+		<table style="margin-left:0; width: 80%; border-collapse: collapse; margin-bottom: 20px; width:50%;" border="1";>
+					<tr style="background-color: #f2f2f2;">
+						<th>商品名</th>
+						<th>数量</th>
+						<th>小計価格</th>
+					</tr>
+		
+				<%
+					if (uniListLogin != null && detailListLogin != null) {
+						for (int i = 0; i < uniListLogin.size(); i++) {
+							Uniform uni = uniListLogin.get(i);
+							OrderDetail detail = detailListLogin.get(i);
+				%>
+					<tr>
+						<td style="text-align: center;"><%=uni.getUniname()%></td>
+						<td style="text-align: center;"><%=detail.getQuantity()%>点</td>
+						<td style="text-align: center;"><%=myFormat.moneyFormat(uni.getPrice() * detail.getQuantity())%></td>
+					</tr>
+				<%
+						}
+					}
+				%>
+				</table>
+
+		<h2 style="float: right; color: red; margin: 20px 200px;">
+			合計金額：<%=myFormat.moneyFormat(total)%>
+		</h2>
+
 		<h3  style="text-align:left;">■お客様情報</h3>
 				<table style="margin-left:0; width: 50%; border-collapse: collapse; margin-bottom: 20px;" border="1">
 					<tr>
@@ -105,12 +158,12 @@ if (request.getAttribute("total_price") != null) {
 		<input type="submit" value="購入を確定する" class="color-change">
 		</div>
 		</form>
-
-				<% } else { %>
-				<p style="color: red; text-align: center;">ユーザー情報が確認できません。再度ログインしてください。</p>
-				<% } %>
 			</main>
-	
+
+<%
+		}
+	}		
+%>
 	</div>
 </body>
 </html>
