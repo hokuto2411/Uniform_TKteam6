@@ -24,7 +24,7 @@ public class GuestBuy extends HttpServlet {
 			UserDAO userdao =new UserDAO();
 			
 			
-			User user = new User();
+			User user=(User)session.getAttribute("user");
 			user.setUsername(request.getParameter("username"));
 			user.setAddress(request.getParameter("address"));
 			user.setMailaddress(request.getParameter("mailaddress"));
