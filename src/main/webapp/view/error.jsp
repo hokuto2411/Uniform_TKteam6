@@ -187,23 +187,23 @@ String cmd = (String) request.getAttribute("cmd");
     <%
     if (cmd.equals("menu")){
     %>
-      <a class="back-link" href="<%=request.getContextPath()%>/view/menu.jsp">メニューに戻る</a>
+      <a class="back-link" href="<%=request.getContextPath()%>/view/menu.jsp">▶メニューに戻る</a>
     <%
     }else if(cmd.equals("omenu")){
     %>
-      <a class="back-link" href="<%=request.getContextPath()%>/view/menuOwner.jsp">管理者メニューに戻る</a>
+      <a class="back-link" href="<%=request.getContextPath()%>/view/menuOwner.jsp">▶管理者メニューに戻る</a>
     <%
     }else if(cmd.equals("login")){
     %>
-      <a class="back-link" href="<%=request.getContextPath()%>/view/login.jsp">ログイン画面に戻る</a>
+      <a class="back-link" href="<%=request.getContextPath()%>/view/login.jsp">▶ログイン画面に戻る</a>
     <%
     }else if(cmd.equals("insert")){
     %>
-      <a class="back-link" href="<%=request.getContextPath()%>/view/insertUser.jsp">登録画面に戻る</a>
+      <a class="back-link" href="<%=request.getContextPath()%>/view/insertUser.jsp">▶登録画面に戻る</a>
     <%
     }else{
     %>
-      <a class="back-link" href="<%=request.getContextPath()%>/view/login.jsp">ログアウト</a>
+      <a class="back-link" href="<%=request.getContextPath()%>/view/login.jsp">▶ログアウト</a>
     <%
     }
     %>
