@@ -13,6 +13,7 @@ MyFormat fmt = new MyFormat();
 ArrayList<Order> order_list = (ArrayList<Order>) request.getAttribute("order_list");
 OrderDetailDAO detailDao = new OrderDetailDAO();
 
+
 %>
 <!DOCTYPE html>
 <html>
@@ -38,8 +39,10 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 	<table style="margin: auto; width:100%; table-layout:fixed;">
 		<tr style="height:50px;">
 			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">注文No.</th>
-			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">合計金額</th>
-			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">入金状況</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">注文商品</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">小計金額</th>
+			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">
+				<span class="tooltip"><span class="tooltip-text">入金されましたら「入金する」をクリックしてください。</span>入金状況</span></th>
 			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">発注状況</th>
 			<th style="background-color: #00FFFF; text-align: center; vertical-align: middle; width: 150px;">日付</th>
 		</tr>
@@ -59,24 +62,25 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 			OrderDetail detail = detail_list.get(j);
 			Uniform uni = UniDao.selectByUnino(detail.getUnino());
 		%>
-		<tr>
-			<td><%=order.getOrderno()%></td>
-			<td><%=fmt.moneyFormat((detail.getQuantity() * uni.getPrice()))%></td>
+		<tr style="height:30px;">
+			<td  style="border:none; text-align:center;"><%=order.getOrderno()%></td>
+			<td  style="border:none; text-align:center;"><%=uni.getUniname()%></td>
+			<td  style="border:none; text-align:center;"><%=fmt.moneyFormat((detail.getQuantity() * uni.getPrice()))%></td>
 			<%
 			String deposit;
 			if (order.getDeposit() == 0) {
-				deposit = "入金する";
+				deposit = "▶入金する";
 			} else {
-				deposit = "入金済み";
+				deposit = "▶入金済み";
 			}
 			%>
 
-			<td><a
+			<td  style="border:none; text-align:center;"><a
 				href="<%=request.getContextPath()%>/updateDeposit?orderno=<%=order.getOrderno()%>">
 					<%=deposit%>
 			</a></td>
 
-			<td>
+			<td  style="border:none; text-align:center;">
 				<%
 				String send;
 				if (order.getSend() == 0) {
@@ -85,7 +89,7 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 					send = "発送済み";
 				}
 				%> <%=send%></td>
-			<td><%=order.getOrderdate()%></td>
+			<td  style="border:none; text-align:center;"><%=order.getOrderdate()%></td>
 		</tr>
 
 		<%
@@ -94,8 +98,6 @@ OrderDetailDAO detailDao = new OrderDetailDAO();
 		}
 		%>
 	</table>
-
-	<%@include file="../common/footer.jsp"%>
 	
 	</main>
 	</div>
