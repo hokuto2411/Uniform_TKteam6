@@ -60,7 +60,7 @@ ArrayList<Uniform> uni_list = UniformDaoObj.selectAll();
 				<tr style="height:50px;">
 					<td style="text-align: center; width: 400px; border:none"><%=uni.getUniname() %></td>
 					<td style="text-align: center; width: 400px; border:none"><%=detail.getQuantity() %></td>
-					<td style="text-align: center; width: 400px; border:none"><%=fmt.moneyFormat(uni.getPrice()) %></td>
+					<td style="text-align: center; width: 400px; border:none"><%=fmt.moneyFormat(uni.getPrice()*detail.getQuantity()) %></td>
 					<td style="text-align: center; width: 400px; border:none"><a
 						href="<%=request.getContextPath()%>/showCart?delunino=<%=uni.getUnino()%>">削除</a>
 				</td>
