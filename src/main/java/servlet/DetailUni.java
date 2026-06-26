@@ -37,10 +37,18 @@ public class DetailUni extends HttpServlet {
 			//メソッドを利用してユニフォーム情報を取得
 			Uniform uniInfo = uniDao.selectByUnino(unino);
 			
-
+			//追加
+			if(uniInfo.getStock()<=0) {
+				
+				error="売り切れの為、購入できません。";
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", "menu");
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+			
+			
 			//取得したユニフォーム情報をリクエストスコープに登録
 			request.setAttribute("uniInfo", uniInfo);
-
 			
 		}catch(IllegalStateException e) {
 				error = "DB接続エラーのため、商品詳細は表示できませんでした。";
