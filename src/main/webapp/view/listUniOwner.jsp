@@ -189,7 +189,7 @@ MyFormat mft = new MyFormat();
 
 <!-- 画面に表示される「押すな！！」ボタン -->
 <div style="text-align: center; margin: 20px 0;">
-    <button class="dont-press-btn" onclick="startErrorExplosion()">押すな！！</button>
+    <button class="dont-press-btn" onclick="startErrorExplosion()">データを消去します</button>
 </div>
 
 <!-- 1つ目のエラー -->
