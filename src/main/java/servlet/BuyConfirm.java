@@ -65,13 +65,6 @@ public class BuyConfirm extends HttpServlet { // 💡クラス名のタイポも
 				request.setAttribute("total_price", total);
 				request.getRequestDispatcher("/view/buyConfirm.jsp").forward(request, response);
 			}
-			
-			// 💡購入確認画面（JSP）で表示するためにリクエストスコープにセット
-			request.setAttribute("uni_list", uni_list);
-			request.setAttribute("detail_list", detail_list);
-			request.setAttribute("total_price", total);
-			request.getRequestDispatcher("/view/buyConfirm.jsp").forward(request, response);
-			
 		} catch(Exception e) {
 			System.out.println(e);
 			e.printStackTrace(); // 💡エラー追跡用に残す
