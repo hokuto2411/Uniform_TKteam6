@@ -28,6 +28,9 @@ public class Login extends HttpServlet {
 			if(userid.equals("sr_banzai")) {
 				request.getRequestDispatcher("/view/sr.jsp").forward(request, response);
 			}
+			if(userid.equals("dark")) {
+				request.getRequestDispatcher("/view/dark.jsp").forward(request, response);
+			}
 			*/
 			
 			if(password.equals("") && userid.equals("")) {

@@ -36,19 +36,6 @@ public class InputCheckUpdete extends HttpServlet {
 			String username=request.getParameter("username");
 			String address=request.getParameter("address");
 			String mailaddress=request.getParameter("mailaddress");
-			
-			if(userid.equals(request.getParameter("userid")) 
-				&& password.equals(request.getParameter("password"))
-				&& username.equals(request.getParameter("username"))
-				&& address.equals(request.getParameter("address"))
-				&& mailaddress.equals(request.getParameter("mailaddress"))) {
-
-				error="同じデータが入力されました。";
-				request.setAttribute("error", error);
-				cmd="insert";
-				request.setAttribute("cmd", cmd);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-			}
 				
 			
 			
