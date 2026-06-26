@@ -25,6 +25,7 @@
 			top: 150px; 
 			width: 150px; 
 			padding-right: 30px; 
+			margin-top:50px;
 			float: right; 
 			text-align: right; 
 			padding-left: 10px; 
