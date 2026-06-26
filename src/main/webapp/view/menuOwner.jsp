@@ -4,20 +4,10 @@
 <%@page import="java.util.ArrayList,bean.User"%>
 <%@page import="bean.Uniform"%>
 <%@page import="dao.UniformDAO"%>
-<%@page import="util.ArartStock"%>
+
 <%
 User user = (User)session.getAttribute("user");
 UniformDAO uniDao = new UniformDAO();
-ArartStock arart = new ArartStock();
-ArrayList<Uniform> uni_list = uniDao.selectAll();
-if(uni_list != null){
-	for(int i=0; i < uni_list.size(); i++){
-		Uniform uni = uni_list.get(i);
-		if(uni.getStock() <= 5){
-			arart.sendArart(user);
-		}
-	}
-}
 %>
 <html>
 <head>

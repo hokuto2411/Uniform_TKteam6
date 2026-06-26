@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Order"%>
-<%@page import="java.util.ArrayList,dao.OrderDAO"%>
+<%@page import="java.util.ArrayList,bean.Order, bean.Uniform, bean.User"%>
+<%@page import="java.util.ArrayList,dao.OrderDAO, dao.UniformDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="util.MyFormat"%>
+
+<%@page import="util.ArartStock"%>
 <%
 MyFormat fmt = new MyFormat();
 ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("order_list");
@@ -15,6 +17,18 @@ if (lastmonth == 1) {
 	lastmonth2 = lastmonth - 1;
 }
 OrderDAO orderDaoObj = new OrderDAO();
+User user = (User)session.getAttribute("user");
+UniformDAO uniDao = new UniformDAO();
+ArartStock arart = new ArartStock();
+ArrayList<Uniform> uni_list = uniDao.selectAll();
+if(uni_list != null){
+	for(int i=0; i < uni_list.size(); i++){
+		Uniform uni = uni_list.get(i);
+		if(uni.getStock() <= 5){
+			arart.sendArart(user);
+		}
+	}
+}
 %>
 <!DOCTYPE html>
 <html>
