@@ -35,7 +35,7 @@ MyFormat mft = new MyFormat();
 	<div class="container">
 	
 	<!-- サイドバー -->
-	<div style="margin-top: 50px"><%@include file="/common/sidebar_Owner.jsp"%></div>	
+	<div style="margin-top: 40px"><%@include file="/common/sidebar_Owner.jsp"%></div>	
 
 
 	<main>
