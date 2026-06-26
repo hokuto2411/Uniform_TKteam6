@@ -61,7 +61,7 @@
 			</tr>
 		</table>
 		<div style="text-align:left; margin-left: 30%; margin-top:10px">
-			<input type="submit" value="確認へ">
+			<input type="submit" value="確認へ"  class="color-change">
 		</div>
 	</form>	
 	</main>
