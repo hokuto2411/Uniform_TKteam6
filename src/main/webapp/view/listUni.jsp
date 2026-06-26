@@ -152,7 +152,7 @@ function closeAd() {
 			<div class="color-change3">
 				<!-- 商品名 -->
 				<p><a href="<%=request.getContextPath()%>/detailUni?unino=<%=uni.getUnino()%>">
-						<%=uni.getUniname()%></a>
+						▶<%=uni.getUniname()%></a>
 				<!-- 商品画像 -->
 				<p><img src="<%=request.getContextPath() %>/file/<%= uni.getImage() %>"
 					 alt="<%=uni.getUniname() %>"
