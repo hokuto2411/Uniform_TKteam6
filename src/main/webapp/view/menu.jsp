@@ -59,8 +59,6 @@ User user =(User)session.getAttribute("user");
 			<p>全ての方にとってのホームになれますように。
 			<p>　神田ユニフォームはみなさまの運動を
 			<p>応援しております。
-			<p>
-			<p>以上、例文
 			</div>
 			
 		</div>
