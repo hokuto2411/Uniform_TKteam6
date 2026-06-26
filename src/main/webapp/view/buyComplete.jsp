@@ -37,7 +37,7 @@
 
 			<div style="text-align: center">
 
-				[<a href="<%=request.getContextPath()%>/listUni"> 商品一覧へ戻る </a>]
+				<a href="<%=request.getContextPath()%>/listUni"> ▶商品一覧へ戻る </a>
 
 			</div>
 
