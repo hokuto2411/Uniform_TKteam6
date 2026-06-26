@@ -33,7 +33,7 @@ public class GuestBuy extends HttpServlet {
 			session.setAttribute("user", user);
 			
 			request.getRequestDispatcher("/view/buyConfirm.jsp").forward(request, response);
-			
+			return;
 		}catch(IllegalStateException e) {
 			System.out.println(e);
 			error = "DB接続エラーのため、カートを表示できませんでした。";
@@ -46,6 +46,8 @@ public class GuestBuy extends HttpServlet {
 			request.setAttribute("error",error);
 			request.setAttribute("cmd","menu");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		}finally {
+			
 		}
 		
 		

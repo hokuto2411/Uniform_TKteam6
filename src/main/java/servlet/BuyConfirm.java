@@ -49,7 +49,7 @@ public class BuyConfirm extends HttpServlet { // 💡クラス名のタイポも
 				}
 			}
 
-			if(user == null) {
+			if(user.getUserid().equals("guest")) {
 				//ゲストの場合
 				session.setAttribute("uni_list", uni_list);
 				session.setAttribute("detail_list", detail_list);

@@ -23,7 +23,7 @@ import util.SendMail;
 @WebServlet("/buyComplete")
 public class BuyComplete extends HttpServlet {
 	// 購入確認画面のフォームがPOSTで送られてくるためdoPostで受け取ります
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		String error = "";
@@ -125,8 +125,5 @@ public class BuyComplete extends HttpServlet {
 		}
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doPost(request, response);
-	}
+	
 }
