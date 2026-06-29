@@ -37,7 +37,7 @@ ArrayList<User> user = (ArrayList<User>) request.getAttribute("user_list");
 				<th style="text-align: center">住所</th>
 				<th style="text-align: center">ID</th>
 				<th style="text-align: center">パスワード</th>
-				<th style="text-align: center">有効(0)</th>
+				<th style="text-align: center">状態</th>
 				<th style="text-align: center">削除</th>
 			</tr>
 
