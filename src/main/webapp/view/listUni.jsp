@@ -81,7 +81,7 @@ MyFormat fmt = new MyFormat();
                 代金から 500円引き！
             </p>
             <p style="font-size: 8px; font-weight: bold; margin: 20px 0 0 200px; ">
-            	するかも
+            	
             </p>
         </div>
         
