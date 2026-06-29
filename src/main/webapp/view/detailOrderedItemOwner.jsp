@@ -79,7 +79,7 @@ User user = (User)session.getAttribute("user");
 
 				<tr>
 					<th>価格 : </th>
-					<td>¥<%=fmt.moneyFormat(uniform.getPrice())%></td>
+					<td><%=fmt.moneyFormat(uniform.getPrice())%></td>
 				</tr>
 
 				<tr>
